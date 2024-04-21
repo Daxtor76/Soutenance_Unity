@@ -1,0 +1,18 @@
+- 3 couloirs de déplacement
+- Dash
+- Crouch
+- Jump
+- Main camera
+- Chunks (load, spawn, nice algo for smooth LD)
+	Straight chunks
+	Curved chunks
+- Exotic camera for curved chunks
+- Patounes
+- Defeat
+- Character mesh & animation
+- Save with json (serialize & deserialize objects) between scenes
+- Menu scene
+- End scene
+
+
+Et si la camera était nous et qu'on courait derrière le chien en essayant de le faire obéir ?
