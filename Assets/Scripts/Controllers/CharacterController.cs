@@ -34,20 +34,20 @@ public class CharacterController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Q))
         {
             if (_character.state != Character.States.Idle)
-                _character.SetCorridor("left");
+                _character.SetCorridor(-1);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
             if (_character.state != Character.States.Idle)
-                _character.SetCorridor("right");
+                _character.SetCorridor(1);
         }
         _character.mover?.Move(_character);
     }
 
-    private void OnCorridorChanged(string direction)
+    private void OnCorridorChanged(int direction)
     {
+        _character.animator.SetTrigger("Jump");
         _character.mover?.Strafe(_character, direction);
-        // TO DO: Add strafe animation
     }
 
     private void OnStateChanged()

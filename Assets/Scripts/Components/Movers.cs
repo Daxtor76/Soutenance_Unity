@@ -5,26 +5,22 @@ public abstract class Mover : IMover
 {
     public abstract void Move(Character character);
 
-    public virtual void Strafe(Character character, string direction)
+    public virtual void Strafe(Character character, int direction)
     {
-        Vector3 strafeVector = new Vector3();
+        float offset = 0.0f;
         Vector3 characterCurrentPosition = character.go.transform.position;
         
         switch (direction)
         {
-            case "right":
-                strafeVector.x += 2;
+            case 1:
+                offset += 2;
                 break;
-            case "left":
-                strafeVector.x -= 2;
+            case -1:
+                offset -= 2;
                 break;
         }
 
-        Vector3 finalVector = new Vector3(
-            Mathf.Clamp(characterCurrentPosition.x + strafeVector.x, character.initialPos.x - 2, character.initialPos.x + 2),
-            characterCurrentPosition.y,
-            characterCurrentPosition.z);
-        character.go.transform.position = finalVector;
+        character.targetX = Mathf.Clamp(character.targetX + offset, character.initialPos.x - 2, character.initialPos.x + 2);
     }
 }
 
@@ -32,10 +28,16 @@ public class WalkMover : Mover
 {
     public override void Move(Character character)
     {
-        character.go.transform.position += new Vector3(
+        Vector3 from = character.go.transform.position;
+        Vector3 to = new Vector3(
+            character.targetX, 
             0.0f,
+            character.go.transform.position.z + character.speed * Time.deltaTime);
+        
+        character.go.transform.position = new Vector3(
+            Mathf.Lerp(from.x, to.x, 3 * Time.deltaTime),
             0.0f,
-            character.speed * Time.deltaTime);
+            Mathf.Lerp(from.z, to.z, 250 * Time.deltaTime));
     }
 }
 

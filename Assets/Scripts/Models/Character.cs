@@ -20,7 +20,8 @@ public class Character
     public int corridorId { get; private set; }
     
     public UnityEvent StateChanged = new UnityEvent();
-    public UnityEvent<string> CorridorChanged = new UnityEvent<string>();
+    public UnityEvent<int> CorridorChanged = new UnityEvent<int>();
+    public float targetX = 0.0f;
 
     public Character(IMover mover, GameObject go, float speed)
     {
@@ -31,6 +32,7 @@ public class Character
         this.animator = GetAnimator();
         corridorId = 0;
         initialPos = go.transform.position;
+        targetX = initialPos.x;
     }
 
     private Animator GetAnimator()
@@ -39,19 +41,23 @@ public class Character
         return animator != null ? animator : null;
     }
 
-    public void SetCorridor(string direction)
+    public void SetCorridor(int direction)
     {
         int corridor = 0;
         switch (direction)
         {
-            case "right":
+            case 1:
                 corridor += 1;
                 break;
-            case "left":
+            case -1:
                 corridor -= 1;
                 break;
         }
-        corridorId = Math.Clamp(corridor, -1, 1);
+
+        if (corridorId == corridor)
+            return;
+
+        corridorId += corridor;
         CorridorChanged?.Invoke(direction);
     }
 
