@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Character
 {
@@ -9,35 +11,58 @@ public class Character
         RunFast
     }
 
-    public GameObject Go { get; private set; }
-    public Animator Animator { get; private set; }
-    public IMover Mover { get; private set; }
-    public float Speed { get; private set; }
-    public States State { get; private set; }
+    public GameObject go { get; private set; }
+    public Vector3 initialPos { get; private set; }
+    public Animator animator { get; private set; }
+    public IMover mover { get; private set; }
+    public float speed { get; private set; }
+    public States state { get; private set; }
+    public int corridorId { get; private set; }
+    
+    public UnityEvent StateChanged = new UnityEvent();
+    public UnityEvent<string> CorridorChanged = new UnityEvent<string>();
 
     public Character(IMover mover, GameObject go, float speed)
     {
-        this.Mover = mover;
-        this.Go = go;
-        this.Speed = speed;
-        this.State = States.Idle;
-        this.Animator = GetAnimator();
+        this.mover = mover;
+        this.go = go;
+        this.speed = speed;
+        this.state = States.Idle;
+        this.animator = GetAnimator();
+        corridorId = 0;
+        initialPos = go.transform.position;
     }
 
     private Animator GetAnimator()
     {
-        Animator animator = Go.GetComponentInChildren<Animator>();
+        Animator animator = go.GetComponentInChildren<Animator>();
         return animator != null ? animator : null;
+    }
+
+    public void SetCorridor(string direction)
+    {
+        int corridor = 0;
+        switch (direction)
+        {
+            case "right":
+                corridor += 1;
+                break;
+            case "left":
+                corridor -= 1;
+                break;
+        }
+        corridorId = Math.Clamp(corridor, -1, 1);
+        CorridorChanged?.Invoke(direction);
     }
 
     public void SetState(States state)
     {
-        State = state;
-        Animator.SetInteger("CharacterState",(int)State);
+        this.state = state;
+        StateChanged?.Invoke();
     }
 
     public void SetMover(IMover mover)
     {
-        this.Mover = mover;
+        this.mover = mover;
     }
 }
