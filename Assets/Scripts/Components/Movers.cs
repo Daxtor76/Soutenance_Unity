@@ -1,26 +1,34 @@
-using System;
 using UnityEngine;
 
 public abstract class Mover : IMover
 {
     public abstract void Move(Character character);
 
-    public virtual void Strafe(Character character, int direction)
+    public void Strafe(Character character, int direction)
     {
         float offset = 0.0f;
-        Vector3 characterCurrentPosition = character.go.transform.position;
         
         switch (direction)
         {
             case 1:
-                offset += 2;
+                offset += Const.SPACINGX;
                 break;
             case -1:
-                offset -= 2;
+                offset -= Const.SPACINGX;
                 break;
         }
 
-        character.targetX = Mathf.Clamp(character.targetX + offset, character.initialPos.x - 2, character.initialPos.x + 2);
+        character.targetX = offset;
+    }
+
+    public void Jump(Character character)
+    {
+        character.targetY = Const.JUMPHEIGHT;
+    }
+
+    public bool IsGrounded(Character character)
+    {
+        return Physics.Raycast(character.go.transform.position, Vector2.down, 0.1f);
     }
 }
 
@@ -28,16 +36,18 @@ public class WalkMover : Mover
 {
     public override void Move(Character character)
     {
-        Vector3 from = character.go.transform.position;
-        Vector3 to = new Vector3(
-            character.targetX, 
-            0.0f,
-            character.go.transform.position.z + character.speed * Time.deltaTime);
+        // Apply Gravity
+        character.targetY += Const.GRAVITY * Time.deltaTime;
         
-        character.go.transform.position = new Vector3(
-            Mathf.Lerp(from.x, to.x, 3 * Time.deltaTime),
-            0.0f,
-            Mathf.Lerp(from.z, to.z, 250 * Time.deltaTime));
+        if (character.targetX > 0.0f)
+            character.targetX += Const.GRAVITY * Time.deltaTime;
+        else
+            character.targetX -= Const.GRAVITY * Time.deltaTime;
+        
+        if (IsGrounded(character) && character.targetY < 0.0f)
+            character.targetY = 0.0f;
+        
+        character.go.transform.Translate(new Vector3(character.targetX, character.targetY, character.speed) * Time.deltaTime);
     }
 }
 
@@ -45,9 +55,17 @@ public class RunMover : Mover
 {
     public override void Move(Character character)
     {
-        character.go.transform.position += new Vector3(
-            0.0f,
-            0.0f,
-            character.speed * Time.deltaTime * 3f);
+        // Apply Gravity
+        character.targetY += Const.GRAVITY * Time.deltaTime;
+        
+        if (character.targetX > 0.0f)
+            character.targetX += Const.GRAVITY * Time.deltaTime;
+        else
+            character.targetX -= Const.GRAVITY * Time.deltaTime;
+        
+        if (IsGrounded(character) && character.targetY < 0.0f)
+            character.targetY = 0.0f;
+        
+        character.go.transform.Translate(new Vector3(character.targetX, character.targetY, character.speed * 2) * Time.deltaTime);
     }
 }

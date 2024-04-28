@@ -21,7 +21,9 @@ public class Character
     
     public UnityEvent StateChanged = new UnityEvent();
     public UnityEvent<int> CorridorChanged = new UnityEvent<int>();
+    public UnityEvent Jumping = new UnityEvent();
     public float targetX = 0.0f;
+    public float targetY = 0.0f;
 
     public Character(IMover mover, GameObject go, float speed)
     {
@@ -31,8 +33,6 @@ public class Character
         this.state = States.Idle;
         this.animator = GetAnimator();
         corridorId = 0;
-        initialPos = go.transform.position;
-        targetX = initialPos.x;
     }
 
     private Animator GetAnimator()

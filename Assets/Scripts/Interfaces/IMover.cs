@@ -6,4 +6,6 @@ public interface IMover
 {
     void Move(Character character);
     void Strafe(Character character, int direction);
+    void Jump(Character character);
+    bool IsGrounded(Character character);
 }

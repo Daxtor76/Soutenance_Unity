@@ -14,15 +14,16 @@ public class CharacterController : MonoBehaviour
     {
         _character = new Character(
             null,
-            Instantiate(characterPrefab, new Vector3(spawnPoint.position.x, 0.0f, spawnPoint.position.z), Quaternion.identity),
+            Instantiate(characterPrefab, new Vector3(spawnPoint.position.x, 0.1f, spawnPoint.position.z), Quaternion.identity),
             2.0f);
         _character.StateChanged.AddListener(OnStateChanged);
         _character.CorridorChanged.AddListener(OnCorridorChanged);
+        _character.Jumping.AddListener(OnJump);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.W))
         {
             if (_character.state == Character.States.Idle)
                 _character.SetState(Character.States.RunSlow);
@@ -31,7 +32,7 @@ public class CharacterController : MonoBehaviour
             else
                 _character.SetState(Character.States.Idle);
         }
-        else if (Input.GetKeyDown(KeyCode.Q))
+        else if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.A))
         {
             if (_character.state != Character.States.Idle)
                 _character.SetCorridor(-1);
@@ -41,12 +42,28 @@ public class CharacterController : MonoBehaviour
             if (_character.state != Character.States.Idle)
                 _character.SetCorridor(1);
         }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (_character.state != Character.States.Idle)
+            {
+                _character.Jumping.Invoke();
+            }
+        }
+        
         _character.mover?.Move(_character);
+    }
+
+    private void OnJump()
+    {
+        if (_character.mover.IsGrounded(_character))
+        {
+            _character.mover?.Jump(_character);
+        }
     }
 
     private void OnCorridorChanged(int direction)
     {
-        _character.animator.SetTrigger("Jump");
+        _character.animator.SetTrigger("Strafe");
         _character.mover?.Strafe(_character, direction);
     }
 

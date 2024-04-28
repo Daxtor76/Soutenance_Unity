@@ -1,8 +1,8 @@
 - Installer URP
-- 3 couloirs de déplacement
+- 3 couloirs de déplacement -> ok
 - Dash
 - Crouch
-- Jump
+- Jump -> ok
 - Main camera
 - Chunks (load, spawn, nice algo for smooth LD)
 	Straight chunks
@@ -14,6 +14,3 @@
 - Save with json (serialize & deserialize objects) between scenes
 - Menu scene
 - End scene
-
-
-Et si la camera était nous et qu'on courait derrière le chien en essayant de le faire obéir ?
