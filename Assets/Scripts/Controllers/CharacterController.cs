@@ -57,6 +57,7 @@ public class CharacterController : MonoBehaviour
     {
         if (_character.mover.IsGrounded(_character))
         {
+            _character.animator.SetTrigger("Jump");
             _character.mover?.Jump(_character);
         }
     }
