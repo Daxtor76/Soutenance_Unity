@@ -3,7 +3,6 @@ using UnityEngine;
 public abstract class Mover : IMover
 {
     public abstract void Move(Character character);
-
     public void Strafe(Character character, int direction)
     {
         float offset = 0.0f;
@@ -17,7 +16,6 @@ public abstract class Mover : IMover
                 offset -= Const.SPACINGX;
                 break;
         }
-
         character.targetX = offset;
     }
 

@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,7 +13,6 @@ public class Character
     }
 
     public GameObject go { get; private set; }
-    public Vector3 initialPos { get; private set; }
     public Animator animator { get; private set; }
     public IMover mover { get; private set; }
     public float speed { get; private set; }

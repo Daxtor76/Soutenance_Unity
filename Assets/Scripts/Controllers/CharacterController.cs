@@ -9,7 +9,6 @@ public class CharacterController : MonoBehaviour
     public Transform spawnPoint;
     private Character _character;
 
-
     private void Awake()
     {
         _character = new Character(
