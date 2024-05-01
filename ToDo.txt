@@ -1,12 +1,12 @@
 - Installer URP
 - 3 couloirs de déplacement -> ok
 - Jump -> ok
-- Obstacle
+- Obstacle -> ok
+- Patounes -> ok
 - Crouch
 - Running obstacle
 - Moving obstacle
 - Dash & Destroyable obstacle
-- Patounes
 - "Pause pipi"
 - Discreat
 - Reverse

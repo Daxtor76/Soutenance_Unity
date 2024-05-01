@@ -10,12 +10,4 @@ public class GameController : MonoBehaviour
     {
         Character = new Character(Instantiate(characterPrefab, new Vector3(spawnPoint.position.x, 0.1f, spawnPoint.position.z), Quaternion.identity));
     }
-
-    private void Start()
-    {
-    }
-
-    private void Update()
-    {
-    }
 }

@@ -52,9 +52,12 @@ public class CharacterRunState : State
         character.Go.GetComponent<CollisionController>().CollisionHappened.AddListener(OnCollisionHappened);
     }
 
-    private void OnCollisionHappened(GameObject arg0)
+    private void OnCollisionHappened(GameObject other)
     {
-        character.StateController.ChangeState(character.idleState);
+        if (other.CompareTag(Const.OBSTACLE_TAG_NAME))
+        {
+            character.StateController.ChangeState(character.idleState);
+        }
     }
 
     public override void Update()

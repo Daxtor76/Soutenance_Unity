@@ -15,6 +15,7 @@ public class Character
     public IState idleState { get; private set; }
     public IState runState { get; private set; }
     private Rigidbody _rigidbody;
+    public ScoreController ScoreController { get; private set; }
 
     public Character(GameObject go)
     {
@@ -24,6 +25,7 @@ public class Character
         AnimationController = Go.AddComponent<AnimationController>();
         CollisionController = Go.AddComponent<CollisionController>();
         MovementController = Go.AddComponent<MovementController>();
+        ScoreController = Go.AddComponent<ScoreController>();
 
         _rigidbody = Go.AddComponent<Rigidbody>();
         _rigidbody.isKinematic = true;
