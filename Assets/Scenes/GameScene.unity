@@ -1570,10 +1570,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3357900222572911491, guid: 3c43bd9edf2be934d8fffd00212b737e, type: 3}
-      propertyPath: value
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4911902327936415331, guid: 3c43bd9edf2be934d8fffd00212b737e, type: 3}
       propertyPath: m_Name
       value: Patoune
