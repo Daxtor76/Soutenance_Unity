@@ -8,6 +8,6 @@ public class GameController : MonoBehaviour
     public Transform spawnPoint;
     private void Awake()
     {
-        Character = new Character(Instantiate(characterPrefab, new Vector3(spawnPoint.position.x, 0.1f, spawnPoint.position.z), Quaternion.identity));
+        Character = new Character(Instantiate(characterPrefab, new Vector3(spawnPoint.position.x, spawnPoint.position.y + 0.05f, spawnPoint.position.z), Quaternion.identity));
     }
 }

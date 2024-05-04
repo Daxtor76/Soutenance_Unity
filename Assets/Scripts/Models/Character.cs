@@ -14,6 +14,7 @@ public class Character
     public StateController StateController { get; private set; }
     public IState idleState { get; private set; }
     public IState runState { get; private set; }
+    public IState smoothRunState { get; private set; }
     private Rigidbody _rigidbody;
     public ScoreController ScoreController { get; private set; }
 
@@ -32,8 +33,9 @@ public class Character
         
         idleState = new CharacterIdleState(this);
         runState = new CharacterRunState(this);
+        smoothRunState = new CharacterSmoothRunState(this);
         StateController.ChangeState(idleState);
         
-        groundMover = new GroundMover(Const.CHARACTER_FORWARD_SPEED);
+        groundMover = new SmoothGroundMover(Const.CHARACTER_FORWARD_SPEED, Const.CHARACTER_SIDE_SPEED);
     }
 }

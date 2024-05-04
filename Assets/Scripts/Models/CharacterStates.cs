@@ -34,7 +34,7 @@ public class CharacterIdleState : State
     {
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.W))
         {
-            character.StateController.ChangeState(character.runState);
+            character.StateController.ChangeState(character.smoothRunState);
         }
     }
 }
@@ -79,6 +79,53 @@ public class CharacterRunState : State
             }
         }
         else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            character.AnimationController.Animator.SetTrigger("Jump");
+            character.MovementController.Jump(Const.CHARACTER_JUMP_HEIGHT);
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+            character.StateController.ChangeState(character.idleState);
+    }
+
+    public override void Exit()
+    {
+        character.Go.GetComponent<CollisionController>().CollisionHappened.RemoveListener(OnCollisionHappened);
+    }
+}
+
+public class CharacterSmoothRunState : State
+{
+    public CharacterSmoothRunState(Character chara)
+    {
+        character = chara;
+    }
+    public override void Enter()
+    {
+        character.MovementController.CurrentMover = new SmoothGroundMover(Const.CHARACTER_FORWARD_SPEED, Const.CHARACTER_SIDE_SPEED);
+        character.AnimationController.Animator.SetInteger("CharacterState",1);
+        character.Go.GetComponent<CollisionController>().CollisionHappened.AddListener(OnCollisionHappened);
+    }
+
+    private void OnCollisionHappened(GameObject other)
+    {
+        if (other.CompareTag(Const.OBSTACLE_TAG_NAME))
+        {
+            character.StateController.ChangeState(character.idleState);
+        }
+    }
+
+    public override void Update()
+    {
+        if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.A))
+        {
+            character.MovementController.CurrentMover.Strafe(-1);
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            character.MovementController.CurrentMover.Strafe(1);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             character.AnimationController.Animator.SetTrigger("Jump");
             character.MovementController.Jump(Const.CHARACTER_JUMP_HEIGHT);

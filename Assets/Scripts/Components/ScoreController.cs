@@ -20,7 +20,7 @@ public class ScoreController : MonoBehaviour
     {
         if (other.CompareTag(Const.PATOUNE_TAG_NAME))
         {
-            WinPoints(other.GetComponent<PatouneController>().value);
+            WinPoints(other.GetComponent<PatouneController>().scoreValue);
             Destroy(other);
         }
     }
