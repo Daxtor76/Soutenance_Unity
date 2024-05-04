@@ -7,9 +7,9 @@
 - Running obstacle
 - Moving obstacle
 - Dash & Destroyable obstacle
-- "Pause pipi"
-- Discreat
 - Reverse
+- Discreat
+- "Pause pipi"
 - Main camera effects
 - Chunks (load, spawn, nice algo for smooth LD)
 	Straight chunks
@@ -19,5 +19,6 @@
 - Main menu (no scene switch to game)
 - Character animation clean
 - Save with json (serialize & deserialize objects) between scenes
+- BDD ???
 - Menu scene
 - End scene
