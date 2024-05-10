@@ -1,6 +1,9 @@
-﻿public interface IState
+﻿using UnityEngine;
+
+public interface IState
 {
-    void Enter();
-    void Update();
-    void Exit();
+    void Enter(Character character);
+    void Update(Character character);
+    void Exit(Character character);
+    void OnCollisionHappened(Character character, GameObject other);
 }

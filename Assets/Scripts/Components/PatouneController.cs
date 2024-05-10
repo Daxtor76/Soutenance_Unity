@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PatouneController : MonoBehaviour
 {

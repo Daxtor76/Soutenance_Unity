@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a20b0765a0e7a142a8d7e8c636c7c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 45
-  value: 5
+  rotationSpeed: 45
+  scoreValue: 5
 --- !u!65 &7378091157944285994
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

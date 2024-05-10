@@ -4,38 +4,34 @@ using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Character
+public class Character : MonoBehaviour
 {
-    public GameObject Go { get; private set; }
+    public CharacterController CharacterController { get; private set; }
     public AnimationController AnimationController { get; private set; }
     public CollisionController CollisionController { get; private set; }
     public MovementController MovementController { get; private set; }
     public IMover groundMover { get; private set; }
     public StateController StateController { get; private set; }
     public IState idleState { get; private set; }
-    public IState runState { get; private set; }
     public IState smoothRunState { get; private set; }
-    private Rigidbody _rigidbody;
     public ScoreController ScoreController { get; private set; }
 
-    public Character(GameObject go)
+    private void Awake()
     {
-        Go = go;
+        CharacterController = GetComponent<CharacterController>();
         
-        StateController = Go.AddComponent<StateController>();
-        AnimationController = Go.AddComponent<AnimationController>();
-        CollisionController = Go.AddComponent<CollisionController>();
-        MovementController = Go.AddComponent<MovementController>();
-        ScoreController = Go.AddComponent<ScoreController>();
-
-        _rigidbody = Go.AddComponent<Rigidbody>();
-        _rigidbody.isKinematic = true;
+        CollisionController = this.AddComponent<CollisionController>();
         
-        idleState = new CharacterIdleState(this);
-        runState = new CharacterRunState(this);
-        smoothRunState = new CharacterSmoothRunState(this);
-        StateController.ChangeState(idleState);
+        StateController = this.AddComponent<StateController>();
+        idleState = new CharacterIdleState();
+        smoothRunState = new CharacterSmoothRunState();
         
+        AnimationController = this.AddComponent<AnimationController>();
+        ScoreController = this.AddComponent<ScoreController>();
+        
+        MovementController = this.AddComponent<MovementController>();
         groundMover = new SmoothGroundMover(Const.CHARACTER_FORWARD_SPEED, Const.CHARACTER_SIDE_SPEED);
+        
+        StateController.ChangeState(idleState);
     }
 }
