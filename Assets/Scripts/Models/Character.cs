@@ -26,11 +26,11 @@ public class Character : MonoBehaviour
         idleState = new CharacterIdleState();
         smoothRunState = new CharacterSmoothRunState();
         
-        AnimationController = this.AddComponent<AnimationController>();
-        ScoreController = this.AddComponent<ScoreController>();
-        
         MovementController = this.AddComponent<MovementController>();
         groundMover = new SmoothGroundMover(Const.CHARACTER_FORWARD_SPEED, Const.CHARACTER_SIDE_SPEED);
+        
+        ScoreController = this.AddComponent<ScoreController>();
+        AnimationController = this.AddComponent<AnimationController>();
         
         StateController.ChangeState(idleState);
     }

@@ -8,4 +8,10 @@ public static class Const
     public const string SCORING_TEXT_NAME = "ScoringText";
     public const string OBSTACLE_TAG_NAME = "Obstacle";
     public const string PATOUNE_TAG_NAME = "Patoune";
+
+    public const string PATH_TO_CHARACTER_FOLDER = "Prefabs/Character/";
+    public const string CHARACTER_NAME = "Character";
+    public const string PATH_TO_TILES_FOLDER = "Prefabs/Tiles/";
+    public const string INITIAL_TILE_NAME = "Tile_Beginning";
+    public const string COMMON_TILE_NAME = "Tile";
 }

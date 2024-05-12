@@ -46,7 +46,7 @@ public class CharacterSmoothRunState : State
     public override void Enter(Character character)
     {
         character.MovementController.CurrentMover = new SmoothGroundMover(Const.CHARACTER_FORWARD_SPEED, Const.CHARACTER_SIDE_SPEED);
-        character.AnimationController.Animator.SetInteger("CharacterState",1);
+        character.AnimationController?.Animator.SetInteger("CharacterState",1);
     }
 
     public override void Update(Character character)
