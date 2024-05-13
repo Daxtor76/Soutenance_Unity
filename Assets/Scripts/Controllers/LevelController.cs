@@ -40,12 +40,19 @@ public class LevelController : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
+        {
             AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
+            RemoveTile();
+        }
     }
 
     private void BuildInitialLevelTiles()
     {
         AddTile(tilesModels[0]);
+        AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
+        AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
+        AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
+        AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
     }
 
     private void AddTile(GameObject tileToAdd)
@@ -59,6 +66,13 @@ public class LevelController : MonoBehaviour
         );
         
         spawnedTiles.Add(Instantiate(tileToAdd, spawnPosition, Quaternion.identity, tilesContainer));
+    }
+
+    private void RemoveTile()
+    {
+        GameObject tileToRemove = spawnedTiles[0];
+        spawnedTiles.RemoveAt(0);
+        Destroy(tileToRemove);
     }
 
     private Transform GetTilesContainer()
