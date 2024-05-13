@@ -21,6 +21,7 @@ public class MovementController : MonoBehaviour
     
     public void Jump(float jumpHeight)
     {
-        CurrentMover?.Jump(jumpHeight);
+        if (characterController.isGrounded)
+            CurrentMover?.Jump(jumpHeight);
     }
 }
