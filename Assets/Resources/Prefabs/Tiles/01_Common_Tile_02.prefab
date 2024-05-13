@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1197003911696975477, guid: 0fe8cfb39f1b13a428fa0b35828a574c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 1197003911696975477, guid: 0fe8cfb39f1b13a428fa0b35828a574c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -112,7 +112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6091627058614783638, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}
       propertyPath: m_Name
-      value: Tile
+      value: 01_Common_Tile_02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -157,7 +157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1197003911696975477, guid: 0fe8cfb39f1b13a428fa0b35828a574c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6
+      value: 1.9000001
       objectReference: {fileID: 0}
     - target: {fileID: 1197003911696975477, guid: 0fe8cfb39f1b13a428fa0b35828a574c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -219,7 +219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1352670621754306205, guid: dad6e481370c25e45b06bf364dd46561, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9
+      value: 5.56
       objectReference: {fileID: 0}
     - target: {fileID: 1352670621754306205, guid: dad6e481370c25e45b06bf364dd46561, type: 3}
       propertyPath: m_LocalRotation.w
@@ -347,7 +347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7221895788960600765, guid: 3005a9390c272284db07cabc4a6327b5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2
+      value: 7.82
       objectReference: {fileID: 0}
     - target: {fileID: 7221895788960600765, guid: 3005a9390c272284db07cabc4a6327b5, type: 3}
       propertyPath: m_LocalRotation.w

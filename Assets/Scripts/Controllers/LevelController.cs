@@ -1,45 +1,68 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Object = System.Object;
+using Random = UnityEngine.Random;
 
 public class LevelController : MonoBehaviour
 {
     private static LevelController _instance = null;
     public static LevelController Instance => _instance;
-    private GameObject tilesContainer;
-    public  Queue<GameObject> tiles { get; private set; }
+    
+    private Transform tilesContainer;
+    private List<GameObject> tilesModels = new List<GameObject>();
+    public List<GameObject> spawnedTiles = new List<GameObject>();
     private void Awake()
     {
         if (_instance != null && _instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
 
         _instance = this;
-        //DontDestroyOnLoad(this.gameObject);
-        tilesContainer = GetTilesContainer();
-        tiles = BuildInitialLevelTiles();
         
-        foreach (GameObject go in tiles)
-            Debug.Log(go.name);
+        LoadTiles();
+        tilesContainer = GetTilesContainer();
+        BuildInitialLevelTiles();
     }
 
-    private Queue<GameObject> BuildInitialLevelTiles()
+    private void LoadTiles()
     {
-        Queue<GameObject> tiles = new Queue<GameObject>();
-        tiles.Enqueue(Resources.Load(Const.PATH_TO_TILES_FOLDER + Const.INITIAL_TILE_NAME) as GameObject);
-        tiles.Enqueue(Resources.Load(Const.PATH_TO_TILES_FOLDER + Const.COMMON_TILE_NAME) as GameObject);
-        tiles.Enqueue(Resources.Load(Const.PATH_TO_TILES_FOLDER + Const.COMMON_TILE_NAME) as GameObject);
-        tiles.Enqueue(Resources.Load(Const.PATH_TO_TILES_FOLDER + Const.COMMON_TILE_NAME) as GameObject);
-        tiles.Enqueue(Resources.Load(Const.PATH_TO_TILES_FOLDER + Const.COMMON_TILE_NAME) as GameObject);
-
-        return tiles;
+        Object[] tiles = Resources.LoadAll(Const.PATH_TO_TILES_FOLDER, typeof(GameObject));
+        foreach (Object obj in tiles)
+            tilesModels.Add(obj as GameObject);
     }
 
-    private GameObject GetTilesContainer()
+    private void Update()
     {
-        return GameObject.Find("TilesContainer");
+        if (Input.GetKeyDown(KeyCode.Space))
+            AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
+    }
+
+    private void BuildInitialLevelTiles()
+    {
+        AddTile(tilesModels[0]);
+    }
+
+    private void AddTile(GameObject tileToAdd)
+    {
+        Vector3 spawnPosition = new Vector3(
+            0.0f,
+            0.0f,
+            spawnedTiles.Count > 0
+                ? spawnedTiles.Last().transform.position.z + spawnedTiles.Last().GetComponent<Tile>().size.z
+                : Vector3.zero.z
+        );
+        
+        spawnedTiles.Add(Instantiate(tileToAdd, spawnPosition, Quaternion.identity, tilesContainer));
+    }
+
+    private Transform GetTilesContainer()
+    {
+        return GameObject.Find("TilesContainer").transform;
     }
 }
