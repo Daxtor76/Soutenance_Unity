@@ -11,10 +11,10 @@ public class ScoreController : MonoBehaviour
     {
         character = GetComponent<Character>();
         Points = 0;
-        character.CollisionController.CollisionHappened.AddListener(OnCollisionHappened);
+        character.CollisionController.CollisionWithTriggerHappened.AddListener(OnCollisionWithTriggerHappened);
     }
 
-    private void OnCollisionHappened(GameObject other)
+    private void OnCollisionWithTriggerHappened(GameObject other)
     {
         if (other.CompareTag(Const.PATOUNE_TAG_NAME))
         {

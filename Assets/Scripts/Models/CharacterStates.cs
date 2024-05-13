@@ -14,7 +14,7 @@ public abstract class State : IState
     {
     }
 
-    public virtual void OnCollisionHappened(Character character, GameObject other)
+    public virtual void OnCollisionWithTriggerHappened(Character character, GameObject other)
     {
         if (other.CompareTag(Const.OBSTACLE_TAG_NAME))
         {

@@ -11,12 +11,12 @@ public class StateController : MonoBehaviour
     private void Awake()
     {
         character = GetComponent<Character>();
-        character.CollisionController.CollisionHappened.AddListener(OnCollisionHappened);
+        character.CollisionController.CollisionWithTriggerHappened.AddListener(OnCollisionWithTriggerHappened);
     }
 
-    private void OnCollisionHappened(GameObject other)
+    private void OnCollisionWithTriggerHappened(GameObject other)
     {
-        CurrentState?.OnCollisionHappened(character, other);
+        CurrentState?.OnCollisionWithTriggerHappened(character, other);
     }
 
     private void Update()
