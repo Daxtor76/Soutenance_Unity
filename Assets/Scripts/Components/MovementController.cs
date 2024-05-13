@@ -18,10 +18,4 @@ public class MovementController : MonoBehaviour
     {
         CurrentMover?.Move(characterController);
     }
-    
-    public void Jump(float jumpHeight)
-    {
-        if (characterController.isGrounded)
-            CurrentMover?.Jump(jumpHeight);
-    }
 }

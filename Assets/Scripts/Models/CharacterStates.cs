@@ -60,13 +60,18 @@ public class CharacterSmoothRunState : State
         {
             character.MovementController.CurrentMover.Strafe(1);
         }
-        
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (character.MovementController.CurrentMover.isGrounded(character.CharacterController))
         {
-            character.AnimationController.Animator.SetTrigger("Jump");
-            character.MovementController.Jump(Const.CHARACTER_JUMP_HEIGHT);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                character.AnimationController.Animator.SetTrigger("Jump");
+                character.MovementController.CurrentMover.Jump(Const.CHARACTER_JUMP_HEIGHT);
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                character.StateController.ChangeState(character.idleState);
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.S))
-            character.StateController.ChangeState(character.idleState);
     }
 }

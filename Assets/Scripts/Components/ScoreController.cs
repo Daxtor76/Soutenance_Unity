@@ -11,10 +11,6 @@ public class ScoreController : MonoBehaviour
     {
         character = GetComponent<Character>();
         Points = 0;
-    }
-
-    private void Start()
-    {
         character.CollisionController.CollisionHappened.AddListener(OnCollisionHappened);
     }
 

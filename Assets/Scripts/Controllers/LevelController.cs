@@ -39,7 +39,7 @@ public class LevelController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
             RemoveTile();
