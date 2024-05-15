@@ -25,7 +25,7 @@ public class MovementController : MonoBehaviour
         {
             CurrentMover?.Strafe(Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
             
-            if (CurrentMover.IsGrounded(actor.CharacterController))
+            if (CurrentMover != null && CurrentMover.IsGrounded(actor.CharacterController))
             {
                 if (Input.GetButtonDown(Const.JUMP_AXIS_NAME))
                     CurrentMover?.Jump(Const.CHARACTER_JUMP_HEIGHT);
