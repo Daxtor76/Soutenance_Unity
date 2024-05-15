@@ -18,7 +18,7 @@ public abstract class State : IState
     {
         if (other.CompareTag(Const.OBSTACLE_TAG_NAME))
         {
-            actor.StateController.ChangeState(actor.idleState);
+            actor.StateController.ChangeState(actor.StateController.idleState);
         }
     }
 }
@@ -37,11 +37,11 @@ public class IdleState : State
         {
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.W))
             {
-                actor.StateController.ChangeState(actor.smoothRunState);
+                actor.StateController.ChangeState(actor.StateController.smoothRunState);
             }
         }
         else
-            actor.StateController.ChangeState(actor.smoothRunState);
+            actor.StateController.ChangeState(actor.StateController.smoothRunState);
     }
 }
 
@@ -49,7 +49,7 @@ public class SmoothRunState : State
 {
     public override void Enter(Actor actor)
     {
-        actor.MovementController.CurrentMover = actor.groundMover;
+        actor.MovementController.CurrentMover = actor.MovementController.groundMover;
         actor.AnimationController?.Animator?.SetInteger("CharacterState",1);
     }
 
@@ -75,7 +75,7 @@ public class SmoothRunState : State
                 }
                 else if (Input.GetKeyDown(KeyCode.S))
                 {
-                    actor.StateController.ChangeState(actor.idleState);
+                    actor.StateController.ChangeState(actor.StateController.idleState);
                 }
             }
         }

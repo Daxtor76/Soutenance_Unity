@@ -7,13 +7,19 @@ public class StateController : MonoBehaviour
     public Actor Actor { get; private set; }
     public IState CurrentState { get; set; }
     public UnityEvent<IState> StateChanged = new UnityEvent<IState>();
+    
+    public IState idleState { get; private set; }
+    public IState smoothRunState { get; private set; }
 
     private void Awake()
     {
         Actor = GetComponent<Actor>();
         Actor.CollisionController?.CollisionWithTriggerHappened.AddListener(OnCollisionWithTriggerHappened);
         
-        ChangeState(Actor.idleState);
+        idleState = new IdleState();
+        smoothRunState = new SmoothRunState();
+        
+        ChangeState(idleState);
     }
 
     private void OnCollisionWithTriggerHappened(GameObject other)
