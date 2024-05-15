@@ -55,29 +55,5 @@ public class SmoothRunState : State
 
     public override void Update(Actor actor)
     {
-        if (actor.InputHandler)
-        {
-            if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.A))
-            {
-                actor.MovementController.CurrentMover.Strafe(-1);
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                actor.MovementController.CurrentMover.Strafe(1);
-            }
-            
-            if (actor.MovementController.CurrentMover.IsGrounded(actor.CharacterController))
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    actor.AnimationController.Animator.SetTrigger("Jump");
-                    actor.MovementController.CurrentMover.Jump(Const.CHARACTER_JUMP_HEIGHT);
-                }
-                else if (Input.GetKeyDown(KeyCode.S))
-                {
-                    actor.StateController.ChangeState(actor.StateController.idleState);
-                }
-            }
-        }
     }
 }

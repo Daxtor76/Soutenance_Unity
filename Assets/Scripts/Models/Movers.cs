@@ -5,15 +5,16 @@ public abstract class Mover : IMover
     protected float ForwardSpeed { get; set; }
     protected float SideSpeed { get; set; }
     protected Vector3 velocity = Vector3.zero;
-    public abstract void Move(CharacterController characterController);
-    public virtual void Strafe(int pDir)
+
+    public abstract void Run(CharacterController characterController);
+    public virtual void Strafe(float pDir)
     {
         switch (pDir)
         {
-            case 1:
+            case > 0:
                 velocity.x += SideSpeed;
                 break;
-            case -1:
+            case < 0:
                 velocity.x -= SideSpeed;
                 break;
             default:
@@ -35,6 +36,16 @@ public abstract class Mover : IMover
         }
         return true;
     }
+
+    public void SetForwardSpeed(float newSpeed)
+    {
+        ForwardSpeed = newSpeed;
+    }
+
+    public void SetSideSpeed(float newSpeed)
+    {
+        SideSpeed = newSpeed;
+    }
 }
 
 public class SmoothGroundMover : Mover
@@ -46,7 +57,7 @@ public class SmoothGroundMover : Mover
         
         velocity.z = ForwardSpeed;
     }
-    public override void Move(CharacterController characterController)
+    public override void Run(CharacterController characterController)
     {
         if (IsGrounded(characterController) && velocity.y < 0f)
             velocity.y = 0f;
