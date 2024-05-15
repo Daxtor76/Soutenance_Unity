@@ -12,10 +12,10 @@ public abstract class Mover : IMover
         switch (pDir)
         {
             case > 0:
-                velocity.x += SideSpeed;
+                velocity.x = SideSpeed;
                 break;
             case < 0:
-                velocity.x -= SideSpeed;
+                velocity.x = -SideSpeed;
                 break;
             default:
                 velocity.x = 0.0f;
@@ -64,7 +64,6 @@ public class SmoothGroundMover : Mover
         
         characterController.Move(velocity * Time.deltaTime);
         
-        velocity.x = 0.0f;
         velocity.y += Const.GRAVITY * Time.deltaTime;
     }
 }
