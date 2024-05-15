@@ -4,31 +4,33 @@ using UnityEngine.Events;
 
 public class StateController : MonoBehaviour
 {
-    public Character character { get; private set; }
+    public Actor Actor { get; private set; }
     public IState CurrentState { get; set; }
     public UnityEvent<IState> StateChanged = new UnityEvent<IState>();
 
     private void Awake()
     {
-        character = GetComponent<Character>();
-        character.CollisionController.CollisionWithTriggerHappened.AddListener(OnCollisionWithTriggerHappened);
+        Actor = GetComponent<Actor>();
+        Actor.CollisionController?.CollisionWithTriggerHappened.AddListener(OnCollisionWithTriggerHappened);
+        
+        ChangeState(Actor.idleState);
     }
 
     private void OnCollisionWithTriggerHappened(GameObject other)
     {
-        CurrentState?.OnCollisionWithTriggerHappened(character, other);
+        CurrentState?.OnCollisionWithTriggerHappened(Actor, other);
     }
 
     private void Update()
     {
-        CurrentState?.Update(character);
+        CurrentState?.Update(Actor);
     }
 
     public void ChangeState(IState newState)
     {
-        CurrentState?.Exit(character);
+        CurrentState?.Exit(Actor);
         CurrentState = newState;
-        CurrentState?.Enter(character);
+        CurrentState?.Enter(Actor);
         
         StateChanged.Invoke(CurrentState);
     }

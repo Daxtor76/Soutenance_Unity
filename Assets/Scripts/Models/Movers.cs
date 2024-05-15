@@ -27,10 +27,15 @@ public abstract class Mover : IMover
         velocity.y = jumpHeight;
     }
 
-    public bool isGrounded(CharacterController characterController)
+    public bool IsGrounded(CharacterController characterController)
     {
-        RaycastHit hitInfo;
-        return Physics.Raycast(characterController.transform.position, Vector3.down, out hitInfo, 0.05f);
+        if (characterController)
+        {
+            RaycastHit hitInfo;
+            return Physics.Raycast(characterController.transform.position, Vector3.down, out hitInfo, 0.05f);
+        }
+        else
+            return true;
     }
 }
 
@@ -45,7 +50,7 @@ public class SmoothGroundMover : Mover
     }
     public override void Move(CharacterController characterController)
     {
-        if (isGrounded(characterController) && velocity.y < 0f)
+        if (IsGrounded(characterController) && velocity.y < 0f)
             velocity.y = 0f;
         
         characterController.Move(velocity * Time.deltaTime);

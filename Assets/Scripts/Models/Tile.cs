@@ -12,13 +12,13 @@ public class Tile : MonoBehaviour
         size = GetTileSize();
     }
 
-    private GameObject GetTileMesh()
-    {
-        return transform.Find("Mesh").gameObject;
-    }
-
     private Vector3 GetTileSize()
     {
         return GetTileMesh().transform.localScale;
+    }
+
+    private GameObject GetTileMesh()
+    {
+        return transform.Find("Mesh").gameObject;
     }
 }

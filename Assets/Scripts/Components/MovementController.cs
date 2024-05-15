@@ -11,7 +11,8 @@ public class MovementController : MonoBehaviour
 
     private void Awake()
     {
-        characterController = GetComponent<CharacterController>();
+        if (TryGetComponent<CharacterController>(out CharacterController cc))
+            characterController = cc;
     }
 
     void Update()
