@@ -12,16 +12,13 @@ public class ScoreController : MonoBehaviour
     {
         actor = GetComponent<Actor>();
         Points = 0;
-        actor.CollisionController?.CollisionWithTriggerHappened?.AddListener(OnCollisionWithTriggerHappened);
+        actor.CollisionController?.OnCollisionWithPatoune?.AddListener(OnHitPatoune);
     }
 
-    private void OnCollisionWithTriggerHappened(GameObject other)
+    private void OnHitPatoune(GameObject other)
     {
-        if (other.CompareTag(Const.PATOUNE_TAG_NAME))
-        {
-            WinPoints(other.GetComponent<PatouneController>().scoreValue);
-            Destroy(other);
-        }
+        WinPoints(other.GetComponent<PatouneController>().scoreValue);
+        Destroy(other);
     }
 
     private void WinPoints(int value)

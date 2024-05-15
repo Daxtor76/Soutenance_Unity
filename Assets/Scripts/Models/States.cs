@@ -14,12 +14,9 @@ public abstract class State : IState
     {
     }
 
-    public virtual void OnCollisionWithTriggerHappened(Actor actor, GameObject other)
+    public virtual void OnObstacleHit(Actor actor, GameObject other)
     {
-        if (other.CompareTag(Const.OBSTACLE_TAG_NAME))
-        {
-            actor.StateController.ChangeState(actor.StateController.idleState);
-        }
+        actor.StateController.ChangeState(actor.StateController.idleState);
     }
 }
 

@@ -14,7 +14,7 @@ public class StateController : MonoBehaviour
     private void Awake()
     {
         Actor = GetComponent<Actor>();
-        Actor.CollisionController?.CollisionWithTriggerHappened.AddListener(OnCollisionWithTriggerHappened);
+        Actor.CollisionController?.OnCollisionWithObstacle.AddListener(OnObstacleHit);
         
         idleState = new IdleState();
         smoothRunState = new SmoothRunState();
@@ -22,9 +22,9 @@ public class StateController : MonoBehaviour
         ChangeState(idleState);
     }
 
-    private void OnCollisionWithTriggerHappened(GameObject other)
+    private void OnObstacleHit(GameObject other)
     {
-        CurrentState?.OnCollisionWithTriggerHappened(Actor, other);
+        CurrentState?.OnObstacleHit(Actor, other);
     }
 
     private void Update()

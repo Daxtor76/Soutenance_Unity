@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Object = System.Object;
@@ -9,6 +10,7 @@ using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour
 {
+    private Actor character;
     private Transform tilesContainer;
     private List<GameObject> tilesModels = new List<GameObject>();
     [SerializeField]private List<GameObject> spawnedTiles = new List<GameObject>();
@@ -21,15 +23,23 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         BuildInitialTiles();
-        CreateCharacter();
+        character = CreateCharacter();
+        character.CollisionController.OnCollisionWithTileSpawner.AddListener(BuildPathTile);
     }
 
-    private void CreateCharacter()
+    private void BuildPathTile()
+    {
+        AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
+        RemoveFirstTile();
+    }
+
+    private Actor CreateCharacter()
     {
         GameObject characterPrefab = Resources.Load(Const.PATH_TO_CHARACTER_FOLDER + Const.CHARACTER_NAME) as GameObject;
         Transform spawnPoint = spawnedTiles.First().transform;
         
-        GameObject characterGo = Instantiate(characterPrefab, new Vector3(spawnPoint.position.x, spawnPoint.position.y + 0.1f, spawnPoint.position.z + 2.0f), Quaternion.identity);
+        GameObject chara = Instantiate(characterPrefab, new Vector3(spawnPoint.position.x, spawnPoint.position.y + 0.1f, spawnPoint.position.z + 2.0f), Quaternion.identity);
+        return chara.GetComponent<Actor>();
     }
 
     private void LoadTiles()
@@ -44,21 +54,17 @@ public class LevelManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
-            RemoveTile();
+            RemoveFirstTile();
         }
     }
 
     private void BuildInitialTiles()
     {
         AddTile(tilesModels[0]);
-        AddTile(tilesModels[3]);
-        AddTile(tilesModels[3]);
-        AddTile(tilesModels[3]);
-        AddTile(tilesModels[3]);
-        /*AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
         AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
         AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
-        AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);*/
+        AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
+        AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
     }
 
     private void AddTile(GameObject tileToAdd)
@@ -74,7 +80,7 @@ public class LevelManager : MonoBehaviour
         spawnedTiles.Add(Instantiate(tileToAdd, spawnPosition, Quaternion.identity, tilesContainer));
     }
 
-    private void RemoveTile()
+    private void RemoveFirstTile()
     {
         GameObject tileToRemove = spawnedTiles[0];
         spawnedTiles.RemoveAt(0);

@@ -10,6 +10,7 @@ public static class Const
     public const string SCORING_TEXT_NAME = "ScoringText";
     public const string OBSTACLE_TAG_NAME = "Obstacle";
     public const string PATOUNE_TAG_NAME = "Patoune";
+    public const string TILESPAWNER_TAG_NAME = "TileSpawner";
     
     public const string STRAFE_AXIS_NAME = "Strafe";
     public const string RUN_AXIS_NAME = "Run";
