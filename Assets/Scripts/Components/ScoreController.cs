@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 public class ScoreController : MonoBehaviour
 {
-    public Actor actor;
+    private Actor actor;
     public int Points { get; private set; }
     public UnityEvent<int> ScoreChanged = new UnityEvent<int>();
     private void Awake()

@@ -5,18 +5,16 @@ using UnityEngine.Events;
 
 public class MovementController : MonoBehaviour
 {
-    private CharacterController characterController;
-
+    private Actor actor;
     public IMover CurrentMover { get; set; }
 
     private void Awake()
     {
-        if (TryGetComponent<CharacterController>(out CharacterController cc))
-            characterController = cc;
+        actor = GetComponent<Actor>();
     }
 
     void Update()
     {
-        CurrentMover?.Move(characterController);
+        CurrentMover?.Move(actor.CharacterController);
     }
 }

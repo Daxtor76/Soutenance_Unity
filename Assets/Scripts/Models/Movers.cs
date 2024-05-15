@@ -31,11 +31,9 @@ public abstract class Mover : IMover
     {
         if (characterController)
         {
-            RaycastHit hitInfo;
-            return Physics.Raycast(characterController.transform.position, Vector3.down, out hitInfo, 0.05f);
+            return Physics.Raycast(characterController.transform.position, Vector3.down, 0.05f);
         }
-        else
-            return true;
+        return true;
     }
 }
 

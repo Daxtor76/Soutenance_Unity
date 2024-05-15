@@ -33,11 +33,15 @@ public class IdleState : State
 
     public override void Update(Actor actor)
     {
-        base.Update(actor);
-        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.W))
+        if (actor.InputHandler)
         {
-            actor.StateController.ChangeState(actor.smoothRunState);
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.W))
+            {
+                actor.StateController.ChangeState(actor.smoothRunState);
+            }
         }
+        else
+            actor.StateController.ChangeState(actor.smoothRunState);
     }
 }
 
@@ -45,32 +49,34 @@ public class SmoothRunState : State
 {
     public override void Enter(Actor actor)
     {
-        actor.MovementController.CurrentMover = new SmoothGroundMover(Const.CHARACTER_FORWARD_SPEED, Const.CHARACTER_SIDE_SPEED);
+        actor.MovementController.CurrentMover = actor.groundMover;
         actor.AnimationController?.Animator?.SetInteger("CharacterState",1);
     }
 
     public override void Update(Actor actor)
     {
-        base.Update(actor);
-        if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.A))
+        if (actor.InputHandler)
         {
-            actor.MovementController.CurrentMover.Strafe(-1);
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            actor.MovementController.CurrentMover.Strafe(1);
-        }
-
-        if (actor.MovementController.CurrentMover.IsGrounded(actor.CharacterController))
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.A))
             {
-                actor.AnimationController.Animator.SetTrigger("Jump");
-                actor.MovementController.CurrentMover.Jump(Const.CHARACTER_JUMP_HEIGHT);
+                actor.MovementController.CurrentMover.Strafe(-1);
             }
-            else if (Input.GetKeyDown(KeyCode.S))
+            else if (Input.GetKey(KeyCode.D))
             {
-                actor.StateController.ChangeState(actor.idleState);
+                actor.MovementController.CurrentMover.Strafe(1);
+            }
+            
+            if (actor.MovementController.CurrentMover.IsGrounded(actor.CharacterController))
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    actor.AnimationController.Animator.SetTrigger("Jump");
+                    actor.MovementController.CurrentMover.Jump(Const.CHARACTER_JUMP_HEIGHT);
+                }
+                else if (Input.GetKeyDown(KeyCode.S))
+                {
+                    actor.StateController.ChangeState(actor.idleState);
+                }
             }
         }
     }

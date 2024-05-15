@@ -24,6 +24,9 @@ public class Actor : MonoBehaviour
         
         if (TryGetComponent<CollisionController>(out CollisionController collisionController))
             CollisionController = collisionController;
+        
+        if (TryGetComponent<InputHandler>(out InputHandler inputHandler))
+            InputHandler = inputHandler;
 
         if (TryGetComponent<MovementController>(out MovementController movementController))
         {
@@ -40,9 +43,6 @@ public class Actor : MonoBehaviour
             idleState = new IdleState();
             smoothRunState = new SmoothRunState();
         }
-        
-        if (TryGetComponent<InputHandler>(out InputHandler inputHandler))
-            InputHandler = inputHandler;
         
         if (TryGetComponent<ScoreController>(out ScoreController scoreController))
             ScoreController = scoreController;
