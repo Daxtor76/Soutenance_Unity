@@ -1,10 +1,6 @@
-using System;
-using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class Actor : MonoBehaviour
+public abstract class Actor : MonoBehaviour
 {
     public CharacterController CharacterController { get; private set; }
     public AnimationController AnimationController { get; private set; }
@@ -16,27 +12,27 @@ public class Actor : MonoBehaviour
 
     private void Awake()
     {
-        if (TryGetComponent<CharacterController>(out CharacterController characterController))
+        if (TryGetComponent(out CharacterController characterController))
             CharacterController = characterController;
         
-        if (TryGetComponent<CollisionController>(out CollisionController collisionController))
+        if (TryGetComponent(out CollisionController collisionController))
             CollisionController = collisionController;
         
-        if (TryGetComponent<InputHandler>(out InputHandler inputHandler))
+        if (TryGetComponent(out InputHandler inputHandler))
             InputHandler = inputHandler;
 
-        if (TryGetComponent<MovementController>(out MovementController movementController))
+        if (TryGetComponent(out MovementController movementController))
             MovementController = movementController;
 
-        if (TryGetComponent<StateController>(out StateController stateController))
+        if (TryGetComponent(out StateController stateController))
         {
             StateController = stateController;
         }
         
-        if (TryGetComponent<ScoreController>(out ScoreController scoreController))
+        if (TryGetComponent(out ScoreController scoreController))
             ScoreController = scoreController;
         
-        if (TryGetComponent<AnimationController>(out AnimationController animationController))
+        if (TryGetComponent(out AnimationController animationController))
             AnimationController = animationController;
     }
 }

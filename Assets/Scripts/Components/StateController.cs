@@ -17,19 +17,19 @@ public class StateController : MonoBehaviour
         Actor.CollisionController?.OnCollisionWithObstacle.AddListener(OnObstacleHit);
         
         idleState = new IdleState();
-        smoothRunState = new SmoothRunState();
+        smoothRunState = new RunState();
         
         ChangeState(idleState);
-    }
-
-    private void OnObstacleHit(GameObject other)
-    {
-        CurrentState?.OnObstacleHit(Actor, other);
     }
 
     private void Update()
     {
         CurrentState?.Update(Actor);
+    }
+
+    private void OnObstacleHit(GameObject other)
+    {
+        CurrentState?.OnObstacleHit(Actor, other);
     }
 
     public void ChangeState(IState newState)

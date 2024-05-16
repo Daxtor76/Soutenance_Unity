@@ -6,7 +6,16 @@ public abstract class Mover : IMover
     protected float SideSpeed { get; set; }
     protected Vector3 velocity = Vector3.zero;
 
-    public abstract void Run(CharacterController characterController);
+    public virtual void Run(CharacterController characterController)
+    {
+        if (IsGrounded(characterController) && velocity.y < 0f)
+            velocity.y = 0f;
+        
+        characterController.Move(velocity * Time.deltaTime);
+        
+        velocity.y += Const.GRAVITY * Time.deltaTime;
+    }
+
     public virtual void Strafe(float pDir)
     {
         switch (pDir)
@@ -48,9 +57,9 @@ public abstract class Mover : IMover
     }
 }
 
-public class SmoothGroundMover : Mover
+public class StrafeMover : Mover
 {
-    public SmoothGroundMover(float pForwardSpeed, float pSideSpeed)
+    public StrafeMover(float pForwardSpeed, float pSideSpeed)
     {
         ForwardSpeed = pForwardSpeed;
         SideSpeed = pSideSpeed;
@@ -59,11 +68,33 @@ public class SmoothGroundMover : Mover
     }
     public override void Run(CharacterController characterController)
     {
-        if (IsGrounded(characterController) && velocity.y < 0f)
-            velocity.y = 0f;
+        // TO DO: Make this mover move the GO from left to right looping
+    }
+}
+
+public class ForwardMover : Mover
+{
+    public ForwardMover(float pForwardSpeed)
+    {
+        ForwardSpeed = pForwardSpeed;
+        SideSpeed = 0.0f;
         
-        characterController.Move(velocity * Time.deltaTime);
+        velocity.z = ForwardSpeed;
+    }
+
+    public override void Strafe(float pDir)
+    {
+        // I don't strafe as I just move forward
+    }
+}
+
+public class CharacterMover : Mover
+{
+    public CharacterMover(float pForwardSpeed, float pSideSpeed)
+    {
+        ForwardSpeed = pForwardSpeed;
+        SideSpeed = pSideSpeed;
         
-        velocity.y += Const.GRAVITY * Time.deltaTime;
+        velocity.z = ForwardSpeed;
     }
 }

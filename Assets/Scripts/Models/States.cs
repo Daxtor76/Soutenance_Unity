@@ -32,7 +32,7 @@ public class IdleState : State
     {
         if (actor.InputHandler)
         {
-            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(Const.RUN_AXIS_NAME))
             {
                 actor.StateController.ChangeState(actor.StateController.smoothRunState);
             }
@@ -42,11 +42,14 @@ public class IdleState : State
     }
 }
 
-public class SmoothRunState : State
+public class RunState : State
 {
     public override void Enter(Actor actor)
     {
-        actor.MovementController.CurrentMover = actor.MovementController.groundMover;
+        actor.MovementController.CurrentMover = new CharacterMover(
+            Const.CHARACTER_FORWARD_SPEED,
+            Const.CHARACTER_SIDE_SPEED
+        );
         actor.AnimationController?.Animator?.SetInteger("CharacterState",1);
     }
 

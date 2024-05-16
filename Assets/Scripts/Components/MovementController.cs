@@ -6,16 +6,15 @@ using UnityEngine.Events;
 public class MovementController : MonoBehaviour
 {
     private Actor actor;
-    public IMover groundMover { get; private set; }
     public IMover CurrentMover { get; set; }
 
     private void Awake()
     {
         actor = GetComponent<Actor>();
         if (actor.InputHandler)
-            groundMover = new SmoothGroundMover(Const.CHARACTER_FORWARD_SPEED, Const.CHARACTER_SIDE_SPEED);
+            CurrentMover = null;
         else
-            groundMover = new SmoothGroundMover(Const.ENEMY_FORWARD_SPEED, Const.ENEMY_SIDE_SPEED);
+            CurrentMover = new CharacterMover(Const.ENEMY_FORWARD_SPEED, Const.ENEMY_SIDE_SPEED);
     }
 
     void Update()
