@@ -43,6 +43,7 @@ public abstract class Mover : IMover
 
     public virtual void Update(Actor actor)
     {
+        Run(actor.CharacterController);
     }
 
     public virtual void Exit(Actor actor)

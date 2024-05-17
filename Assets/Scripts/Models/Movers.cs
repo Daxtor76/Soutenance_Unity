@@ -43,18 +43,15 @@ public class CharacterMover : Mover
 
     public override void Update(Actor actor)
     {
-        Run(actor.CharacterController);
-        if (actor.InputHandler)
+        base.Update(actor);
+        Strafe(Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
+        
+        if (IsGrounded(actor.CharacterController))
         {
-            Strafe(Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
-            
-            if (IsGrounded(actor.CharacterController))
-            {
-                if (Input.GetButtonDown(Const.JUMP_AXIS_NAME))
-                    Jump(Const.CHARACTER_JUMP_HEIGHT);
-                else if (Input.GetKeyDown(KeyCode.S)) // TO DO: remove it when DISCRETION feature is done
-                    actor.StateController.ChangeState(actor.StateController.idleState);
-            }
+            if (Input.GetButtonDown(Const.JUMP_AXIS_NAME))
+                Jump(Const.CHARACTER_JUMP_HEIGHT);
+            else if (Input.GetKeyDown(KeyCode.S)) // TO DO: remove it when DISCRETION feature is done
+                actor.StateController.ChangeState(actor.StateController.idleState);
         }
     }
 }

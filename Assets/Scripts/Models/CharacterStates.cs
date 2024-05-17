@@ -9,12 +9,9 @@ public class CharacterIdleState : State
 
     public override void Update(Actor actor)
     {
-        if (actor.InputHandler)
+        if (Input.GetButtonDown(Const.RUN_AXIS_NAME))
         {
-            if (Input.GetButtonDown(Const.RUN_AXIS_NAME))
-            {
-                actor.StateController.ChangeState(actor.StateController.runState);
-            }
+            actor.StateController.ChangeState(actor.StateController.runState);
         }
     }
 }
