@@ -1,67 +1,10 @@
 using UnityEngine;
 
-public abstract class Mover : IMover
-{
-    protected float ForwardSpeed { get; set; }
-    protected float SideSpeed { get; set; }
-    protected Vector3 velocity = Vector3.zero;
-
-    public virtual void Run(CharacterController characterController)
-    {
-        if (IsGrounded(characterController) && velocity.y < 0f)
-            velocity.y = 0f;
-        
-        characterController.Move(velocity * Time.deltaTime);
-        
-        velocity.y += Const.GRAVITY * Time.deltaTime;
-    }
-
-    public virtual void Strafe(float pDir)
-    {
-        switch (pDir)
-        {
-            case > 0:
-                velocity.x = SideSpeed;
-                break;
-            case < 0:
-                velocity.x = -SideSpeed;
-                break;
-            default:
-                velocity.x = 0.0f;
-                break;
-        }
-    }
-
-    public void Jump(float jumpHeight)
-    {
-        velocity.y = jumpHeight;
-    }
-
-    public bool IsGrounded(CharacterController characterController)
-    {
-        if (characterController)
-        {
-            return Physics.Raycast(characterController.transform.position, Vector3.down, 0.05f);
-        }
-        return true;
-    }
-
-    public void SetForwardSpeed(float newSpeed)
-    {
-        ForwardSpeed = newSpeed;
-    }
-
-    public void SetSideSpeed(float newSpeed)
-    {
-        SideSpeed = newSpeed;
-    }
-}
-
 public class StrafeMover : Mover
 {
-    public StrafeMover(float pForwardSpeed, float pSideSpeed)
+    public StrafeMover(float pSideSpeed)
     {
-        ForwardSpeed = pForwardSpeed;
+        ForwardSpeed = 0.0f;
         SideSpeed = pSideSpeed;
         
         velocity.z = ForwardSpeed;
@@ -96,5 +39,22 @@ public class CharacterMover : Mover
         SideSpeed = pSideSpeed;
         
         velocity.z = ForwardSpeed;
+    }
+
+    public override void Update(Actor actor)
+    {
+        Run(actor.CharacterController);
+        if (actor.InputHandler)
+        {
+            Strafe(Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
+            
+            if (IsGrounded(actor.CharacterController))
+            {
+                if (Input.GetButtonDown(Const.JUMP_AXIS_NAME))
+                    Jump(Const.CHARACTER_JUMP_HEIGHT);
+                else if (Input.GetKeyDown(KeyCode.S)) // TO DO: remove it when DISCRETION feature is done
+                    actor.StateController.ChangeState(actor.StateController.idleState);
+            }
+        }
     }
 }

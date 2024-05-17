@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,20 +7,13 @@ public class StateController : MonoBehaviour
 {
     public Actor Actor { get; private set; }
     public IState CurrentState { get; set; }
-    public UnityEvent<IState> StateChanged = new UnityEvent<IState>();
-    
-    public IState idleState { get; private set; }
-    public IState smoothRunState { get; private set; }
+    public IState idleState { get; protected internal set; }
+    public IState runState { get; protected internal set; }
 
     private void Awake()
     {
         Actor = GetComponent<Actor>();
         Actor.CollisionController?.OnCollisionWithObstacle.AddListener(OnObstacleHit);
-        
-        idleState = new IdleState();
-        smoothRunState = new RunState();
-        
-        ChangeState(idleState);
     }
 
     private void Update()
@@ -37,7 +31,5 @@ public class StateController : MonoBehaviour
         CurrentState?.Exit(Actor);
         CurrentState = newState;
         CurrentState?.Enter(Actor);
-        
-        StateChanged.Invoke(CurrentState);
     }
 }

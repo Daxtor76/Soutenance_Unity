@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public int amount;
-    public GameObject enemyPrefab;
+    public List<GameObject> enemyPrefab;
     public Tile tile;
     
 }

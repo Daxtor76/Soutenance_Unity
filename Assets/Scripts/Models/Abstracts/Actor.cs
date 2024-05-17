@@ -12,22 +12,20 @@ public abstract class Actor : MonoBehaviour
 
     private void Awake()
     {
-        if (TryGetComponent(out CharacterController characterController))
-            CharacterController = characterController;
-        
-        if (TryGetComponent(out CollisionController collisionController))
-            CollisionController = collisionController;
-        
         if (TryGetComponent(out InputHandler inputHandler))
             InputHandler = inputHandler;
 
+        if (TryGetComponent(out StateController stateController))
+            StateController = stateController;
+        
+        if (TryGetComponent(out CharacterController characterController))
+            CharacterController = characterController;
+
         if (TryGetComponent(out MovementController movementController))
             MovementController = movementController;
-
-        if (TryGetComponent(out StateController stateController))
-        {
-            StateController = stateController;
-        }
+        
+        if (TryGetComponent(out CollisionController collisionController))
+            CollisionController = collisionController;
         
         if (TryGetComponent(out ScoreController scoreController))
             ScoreController = scoreController;

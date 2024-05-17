@@ -10,15 +10,6 @@ public class AnimationController : MonoBehaviour
         Animator = GetAnimator();
     }
 
-    private void Start()
-    {
-        gameObject.GetComponent<StateController>().StateChanged.AddListener(OnStateChanged);
-    }
-
-    private void OnStateChanged(IState newState)
-    {
-    }
-
     private Animator GetAnimator()
     {
         Animator animator = gameObject.GetComponentInChildren<Animator>();

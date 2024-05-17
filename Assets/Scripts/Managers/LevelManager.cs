@@ -33,13 +33,13 @@ public class LevelManager : MonoBehaviour
         RemoveFirstTile();
     }
 
-    private Actor CreateCharacter()
+    private Character CreateCharacter()
     {
         GameObject characterPrefab = Resources.Load(Const.PATH_TO_CHARACTER_FOLDER + Const.CHARACTER_NAME) as GameObject;
         Transform spawnPoint = spawnedTiles.First().transform;
         
         GameObject chara = Instantiate(characterPrefab, new Vector3(spawnPoint.position.x, spawnPoint.position.y + 0.1f, spawnPoint.position.z + 2.0f), Quaternion.identity);
-        return chara.GetComponent<Actor>();
+        return chara.GetComponent<Character>();
     }
 
     private void LoadTiles()

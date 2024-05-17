@@ -1,7 +1,12 @@
-﻿public class Character : Actor
+﻿using System;
+using UnityEngine;
+public class Character : Actor
 {
-    public Character()
+    private void Start()
     {
+        StateController.idleState = new CharacterIdleState();
+        StateController.runState = new CharacterRunState();
         
+        StateController?.ChangeState(StateController.idleState);
     }
 }

@@ -134,9 +134,9 @@ GameObject:
   m_Component:
   - component: {fileID: 921088965072136365}
   - component: {fileID: -8794043509305133468}
-  - component: {fileID: 3906471866525084751}
-  - component: {fileID: -7310115243431133994}
+  - component: {fileID: 4079732372208693198}
   - component: {fileID: -2529625965523372555}
+  - component: {fileID: -7310115243431133994}
   - component: {fileID: -5906775834354726520}
   - component: {fileID: -4327315304846398277}
   - component: {fileID: 191356792600098710}
@@ -191,7 +191,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.35, z: 0.4}
---- !u!114 &3906471866525084751
+--- !u!114 &4079732372208693198
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,19 +200,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4985428344738864338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 538296177af86bb449431b8ea4effae5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-7310115243431133994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4985428344738864338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b24f2dacadcab147a61ef84e45437af, type: 3}
+  m_Script: {fileID: 11500000, guid: 090a0a3643474cd0adb81f85f896c2fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &-2529625965523372555
@@ -227,9 +215,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1a552c916645c1bbf13742c406a345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StateChanged:
+  OnStateChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-7310115243431133994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4985428344738864338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b24f2dacadcab147a61ef84e45437af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-5906775834354726520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +242,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6deb237d796144d98e188885d3ffeccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionWithTriggerHappened:
+  OnCollisionWithObstacle:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCollisionWithPatoune:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCollisionWithTileSpawner:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &-4327315304846398277
@@ -281,7 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f401ade5a77470a996ce7f29fe50503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actor: {fileID: 0}
   ScoreChanged:
     m_PersistentCalls:
       m_Calls: []
