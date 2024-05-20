@@ -3,22 +3,18 @@
 - Jump -> ok
 - Obstacle -> ok
 - Patounes -> ok
-- Crouch
-- Running obstacle
-- Moving obstacle
-- Dash & Destroyable obstacle
-- Reverse
-- Discreat
-- "Pause pipi"
-- Main camera effects
+- Enemy forward -> ok
+- Enemy strafe -> ok
 - Chunks (load, spawn, nice algo for smooth LD)
 	Straight chunks
 	Curved chunks
 - Exotic camera for curved chunks
+- Discreat
+- Reverse
+- Main camera effects
 - Defeat
 - Main menu (no scene switch to game)
 - Character animation clean
-- Save with json (serialize & deserialize objects) between scenes
-- BDD ???
+- Pass data between scenes with a singleton
 - Menu scene
 - End scene

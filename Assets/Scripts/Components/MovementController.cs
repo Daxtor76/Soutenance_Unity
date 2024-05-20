@@ -7,6 +7,7 @@ public class MovementController : MonoBehaviour
 {
     public Actor Actor { get; private set; }
     public IMover CurrentMover { get; private set; }
+    public IMover runMover { get; protected internal set; }
 
     private void Awake()
     {

@@ -2,16 +2,32 @@ using UnityEngine;
 
 public class StrafeMover : Mover
 {
+    private int _strafeDirection = 0;
     public StrafeMover(float pSideSpeed)
     {
         ForwardSpeed = 0.0f;
         SideSpeed = pSideSpeed;
         
         velocity.z = ForwardSpeed;
+        
+        while(_strafeDirection == 0)
+            _strafeDirection = Random.Range(-1, 1);
     }
-    public override void Run(CharacterController characterController)
+
+    public override void Enter(Actor actor)
     {
-        // TO DO: Make this mover move the GO from left to right looping
+    }
+
+    public override void Update(Actor actor)
+    {
+        base.Update(actor);
+
+        if (actor.transform.position.x >= 4.0f)
+            _strafeDirection = -1;
+        else if (actor.transform.position.x <= -4.0f)
+            _strafeDirection = 1;
+        
+        Strafe(_strafeDirection);
     }
 }
 
@@ -23,11 +39,6 @@ public class ForwardMover : Mover
         SideSpeed = 0.0f;
         
         velocity.z = ForwardSpeed;
-    }
-
-    public override void Strafe(float pDir)
-    {
-        // I don't strafe as I just move forward
     }
 }
 
