@@ -10,15 +10,15 @@
 	o Detect character distance -> ok 
 	o Look at character -> ok 
 	o Move to character -> ok 
-- Discreat
-	o Character slow
-	o Make sleeping enemy not detect discreat character
-- Bug: collisions make the character go in the ground
+- Discreat -> ok
+	o Character slow -> ok
+	o Make sleeping enemy not detect discreat character -> ok
 - Chunks (load, spawn, nice algo for smooth LD)
 	o Straight chunks
 	o Decoration
 - Curved chunks
 - Exotic camera for curved chunks
+- Bug: collisions make the character go in the ground
 - Character animation clean
 	- Use blend tree in animator
 - Main camera effects
