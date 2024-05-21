@@ -9,6 +9,7 @@ public class StateController : MonoBehaviour
     public IState CurrentState { get; set; }
     public IState idleState { get; protected internal set; }
     public IState runState { get; protected internal set; }
+    public IState sleepState { get; protected internal set; }
 
     private void Awake()
     {

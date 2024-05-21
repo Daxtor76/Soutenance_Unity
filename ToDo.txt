@@ -5,8 +5,8 @@
 - Patounes -> ok
 - Enemy forward -> ok
 - Enemy strafe -> ok
-- Use transform.forward to move to take rotation into account
-	o Bug: collisions make the character go in the ground
+- Use transform.forward to move to take rotation into account -> ok
+	o Bug: collisions make the character go in the ground -> ok
 - Chunks (load, spawn, nice algo for smooth LD)
 	Straight chunks
 - Discreat

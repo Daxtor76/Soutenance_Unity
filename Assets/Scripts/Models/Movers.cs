@@ -38,6 +38,15 @@ public class ForwardMover : Mover
     }
 }
 
+public class ToTargetMover : Mover
+{
+    public ToTargetMover(float pForwardSpeed, float pSideSpeed)
+    {
+        ForwardSpeed = pForwardSpeed;
+        SideSpeed = pSideSpeed;
+    }
+}
+
 public class CharacterMover : Mover
 {
     public CharacterMover(float pForwardSpeed, float pSideSpeed)

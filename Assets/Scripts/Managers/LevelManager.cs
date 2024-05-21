@@ -39,6 +39,7 @@ public class LevelManager : MonoBehaviour
         Transform spawnPoint = spawnedTiles.First().transform;
         
         GameObject chara = Instantiate(characterPrefab, new Vector3(spawnPoint.position.x, spawnPoint.position.y + 0.05f, spawnPoint.position.z + 2.0f), Quaternion.identity);
+        chara.name = "Character";
         return chara.GetComponent<Character>();
     }
 
