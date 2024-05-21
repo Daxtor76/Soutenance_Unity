@@ -40,10 +40,19 @@ public class ForwardMover : Mover
 
 public class ToTargetMover : Mover
 {
-    public ToTargetMover(float pForwardSpeed, float pSideSpeed)
+    private Actor _target;
+    public ToTargetMover(float pForwardSpeed, float pSideSpeed, Actor pTarget)
     {
         ForwardSpeed = pForwardSpeed;
         SideSpeed = pSideSpeed;
+        _target = pTarget;
+    }
+
+    public override void Move(CharacterController characterController)
+    {
+        // Make the controller move to a target
+        characterController.transform.LookAt(new Vector3(_target.transform.position.x,
+            characterController.transform.position.y, _target.transform.position.z));
     }
 }
 
