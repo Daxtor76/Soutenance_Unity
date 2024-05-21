@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class EnemyIdleState : State
 {
@@ -18,21 +19,25 @@ public class EnemyRunState : State
 
 public class EnemySleepState : State
 {
-    private Transform _characterTransform;
+    private Actor _character;
     public override void Enter(Actor actor)
     {
-        _characterTransform = GameObject.Find("Character").transform;
+        _character = GameObject.Find("Character").GetComponent<Character>();
     }
 
     public override void Update(Actor actor)
     {
-        // TO DO: add if player not in discreat stance
-        if (IsCharacterTooClose(actor.transform.position, 5.0f))
+        if (!IsCharacterSneaky() && IsCharacterTooClose(actor.transform.position, 5.0f))
             actor.MovementController.ChangeMover(actor.MovementController.runMover);
+    }
+
+    bool IsCharacterSneaky()
+    {
+        return _character.StateController.CurrentState.GetType() == typeof(CharacterSneakyState);
     }
 
     bool IsCharacterTooClose(Vector3 actorPos, float distance)
     {
-        return Vector3.Distance(actorPos, _characterTransform.position) < distance;
+        return Vector3.Distance(actorPos, _character.transform.position) < distance;
     }
 }
