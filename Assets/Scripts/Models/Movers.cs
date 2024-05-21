@@ -53,6 +53,7 @@ public class ToTargetMover : Mover
         // Make the controller move to a target
         characterController.transform.LookAt(new Vector3(_target.transform.position.x,
             characterController.transform.position.y, _target.transform.position.z));
+        base.Move(characterController);
     }
 }
 
