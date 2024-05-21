@@ -8,8 +8,6 @@ public class StrafeMover : Mover
         ForwardSpeed = 0.0f;
         SideSpeed = pSideSpeed;
         
-        velocity.z = ForwardSpeed;
-        
         while(_strafeDirection == 0)
             _strafeDirection = Random.Range(-1, 1);
     }
@@ -27,7 +25,7 @@ public class StrafeMover : Mover
         else if (actor.transform.position.x <= -4.0f)
             _strafeDirection = 1;
         
-        Strafe(_strafeDirection);
+        Strafe(actor.CharacterController, _strafeDirection);
     }
 }
 
@@ -37,8 +35,6 @@ public class ForwardMover : Mover
     {
         ForwardSpeed = pForwardSpeed;
         SideSpeed = 0.0f;
-        
-        velocity.z = ForwardSpeed;
     }
 }
 
@@ -48,14 +44,12 @@ public class CharacterMover : Mover
     {
         ForwardSpeed = pForwardSpeed;
         SideSpeed = pSideSpeed;
-        
-        velocity.z = ForwardSpeed;
     }
 
     public override void Update(Actor actor)
     {
         base.Update(actor);
-        Strafe(Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
+        Strafe(actor.CharacterController, Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
         
         if (IsGrounded(actor.CharacterController))
         {

@@ -5,16 +5,21 @@
 - Patounes -> ok
 - Enemy forward -> ok
 - Enemy strafe -> ok
+- Use transform.forward to move to take rotation into account
+	o Bug: collisions make the character go in the ground
 - Chunks (load, spawn, nice algo for smooth LD)
 	Straight chunks
-	Curved chunks
-- Exotic camera for curved chunks
 - Discreat
+	o Character slow
+	o Specific enemy
+- Curved chunks
+- Exotic camera for curved chunks
 - Reverse
+- Character animation clean
+	- Use blend tree in animator
 - Main camera effects
 - Defeat
 - Main menu (no scene switch to game)
-- Character animation clean
 - Pass data between scenes with a singleton
 - Menu scene
 - End scene

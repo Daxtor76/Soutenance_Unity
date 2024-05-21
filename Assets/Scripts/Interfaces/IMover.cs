@@ -2,8 +2,8 @@ using UnityEngine;
 
 public interface IMover
 {
-    void Run(CharacterController characterController);
-    void Strafe(float pDir);
+    void Move(CharacterController characterController);
+    void Strafe(CharacterController characterController, float pDir);
     public bool IsGrounded(CharacterController characterController);
     void Jump(float jumpHeight);
     void Enter(Actor actor);
