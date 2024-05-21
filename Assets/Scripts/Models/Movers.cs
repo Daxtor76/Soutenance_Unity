@@ -74,8 +74,28 @@ public class CharacterMover : Mover
         {
             if (Input.GetButtonDown(Const.JUMP_AXIS_NAME))
                 Jump(Const.CHARACTER_JUMP_HEIGHT);
-            else if (Input.GetKeyDown(KeyCode.S)) // TO DO: remove it when DISCRETION feature is done
-                actor.StateController.ChangeState(actor.StateController.idleState);
+            else if (Input.GetButton(Const.SNEAK_AXIS_NAME)) // TO DO: remove it when DISCRETION feature is done
+            {
+                actor.StateController.ChangeState(actor.StateController.sneakyState);
+            }
         }
+    }
+}
+
+public class CharacterSneakyMover : Mover
+{
+    public CharacterSneakyMover(float pForwardSpeed, float pSideSpeed)
+    {
+        ForwardSpeed = pForwardSpeed;
+        SideSpeed = pSideSpeed;
+    }
+
+    public override void Update(Actor actor)
+    {
+        base.Update(actor);
+        Strafe(actor.CharacterController, Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
+
+        if (Input.GetButtonUp(Const.SNEAK_AXIS_NAME))
+            actor.StateController.ChangeState(actor.StateController.runState);
     }
 }

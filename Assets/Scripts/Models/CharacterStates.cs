@@ -27,3 +27,14 @@ public class CharacterRunState : State
         actor.AnimationController?.Animator?.SetInteger("CharacterState",1);
     }
 }
+
+public class CharacterSneakyState : State
+{
+    public override void Enter(Actor actor)
+    {
+        actor.MovementController.ChangeMover(new CharacterSneakyMover(
+            Const.CHARACTER_SNEAKY_FORWARD_SPEED,
+            Const.CHARACTER_SNEAKY_SIDE_SPEED
+        ));
+    }
+}

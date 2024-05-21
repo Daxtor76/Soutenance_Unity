@@ -6,18 +6,23 @@
 - Enemy forward -> ok
 - Enemy strafe -> ok
 - Use transform.forward to move to take rotation into account -> ok
-	o Bug: collisions make the character go in the ground -> ok
-- Chunks (load, spawn, nice algo for smooth LD)
-	Straight chunks
+- Sleeping enemy -> ok
+	o Detect character distance -> ok 
+	o Look at character -> ok 
+	o Move to character -> ok 
 - Discreat
 	o Character slow
-	o Specific enemy
+	o Make sleeping enemy not detect discreat character
+- Bug: collisions make the character go in the ground
+- Chunks (load, spawn, nice algo for smooth LD)
+	o Straight chunks
+	o Decoration
 - Curved chunks
 - Exotic camera for curved chunks
-- Reverse
 - Character animation clean
 	- Use blend tree in animator
 - Main camera effects
+- Reverse
 - Defeat
 - Main menu (no scene switch to game)
 - Pass data between scenes with a singleton

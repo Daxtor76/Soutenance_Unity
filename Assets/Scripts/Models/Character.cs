@@ -6,6 +6,7 @@ public class Character : Actor
     {
         StateController.idleState = new CharacterIdleState();
         StateController.runState = new CharacterRunState();
+        StateController.sneakyState = new CharacterSneakyState();
         
         StateController?.ChangeState(StateController.idleState);
     }
