@@ -14,9 +14,9 @@
 	o Character slow -> ok
 	o Make sleeping enemy not detect discreat character -> ok
 - Chunks (load, spawn, nice algo for smooth LD)
-	o Straight chunks
-	o Tree generator
-	o Grass generator
+	o Straight chunks -> ok
+	o Decoration -> ok v1
+	o Lighting
 - Curved chunks
 - Exotic camera for curved chunks
 - Bug: collisions make the character go in the ground
