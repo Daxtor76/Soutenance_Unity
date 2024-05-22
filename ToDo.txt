@@ -16,12 +16,18 @@
 - Chunks (load, spawn, nice algo for smooth LD)
 	o Straight chunks -> ok
 	o Decoration -> ok v1
-	o Lighting
-- Curved chunks
-- Exotic camera for curved chunks
+	o Lighting -> ok
+- Bug: enemies behaviors
+- Feature: when the character gather enough patounes, he becomes in fire, goes faster and can kill enemies
 - Bug: collisions make the character go in the ground
+- Camera controller
+	o Mettre des transforms au endroits importants
+	o Utiliser smooth damp
+	o Look at player (ou un peu devant lui)
 - Character animation clean
 	- Use blend tree in animator
+- Curved chunks
+- Exotic camera for curved chunks
 - Main camera effects
 - Reverse
 - Defeat
