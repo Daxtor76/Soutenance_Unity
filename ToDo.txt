@@ -17,16 +17,17 @@
 	o Straight chunks -> ok
 	o Decoration -> ok v1
 	o Lighting -> ok
-- Bug: enemies behaviors
-- Feature: when the character gather enough patounes, he becomes in fire, goes faster and can kill enemies
-- Bug: collisions make the character go in the ground
+- Bug: enemies behaviors -> ok
+- Bug: collisions make the character go in the ground -> ok
+- Curved chunks
 - Camera controller
 	o Mettre des transforms au endroits importants
 	o Utiliser smooth damp
 	o Look at player (ou un peu devant lui)
+- Feature: when the character gather enough patounes, he becomes in fire, goes faster and can kill enemies
+- Bug: IsGrounded doesn't work 100% (raycast)
 - Character animation clean
 	- Use blend tree in animator
-- Curved chunks
 - Exotic camera for curved chunks
 - Main camera effects
 - Reverse

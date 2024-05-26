@@ -10,26 +10,29 @@ using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour
 {
-    private Actor character;
-    private Transform tilesContainer;
-    private List<GameObject> tilesModels = new List<GameObject>();
+    private Actor _character;
+    private Camera _camera;
+    private Transform _tilesContainer;
+    private List<GameObject> _tilesModels = new List<GameObject>();
     [SerializeField]private List<GameObject> spawnedTiles = new List<GameObject>();
     private void Awake()
     {
         LoadTiles();
-        tilesContainer = GetTilesContainer();
+        _tilesContainer = GetTilesContainer();
     }
 
     private void Start()
     {
         BuildInitialTiles();
-        character = CreateCharacter();
-        character.CollisionController.OnCollisionWithTileSpawner.AddListener(BuildPathTile);
+        _character = CreateCharacter();
+        _character.CollisionController.OnCollisionWithTileSpawner.AddListener(BuildPathTile);
+
+        _camera = CreateCamera();
     }
 
     private void BuildPathTile()
     {
-        AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
+        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
         RemoveFirstTile();
     }
 
@@ -39,33 +42,43 @@ public class LevelManager : MonoBehaviour
         Transform spawnPoint = spawnedTiles.First().transform;
         
         GameObject chara = Instantiate(characterPrefab, new Vector3(spawnPoint.position.x, spawnPoint.position.y + 0.05f, spawnPoint.position.z + 2.0f), Quaternion.identity);
-        chara.name = "Character";
+        chara.name = Const.CHARACTER_NAME;
         return chara.GetComponent<Character>();
+    }
+
+    private Camera CreateCamera()
+    {
+        GameObject camPrefab = Resources.Load(Const.PATH_TO_CAMERA_FOLDER + Const.CAMERA_NAME) as GameObject;
+        Transform spawnPoint = spawnedTiles.First().transform;
+        
+        GameObject cam = Instantiate(camPrefab, new Vector3(spawnPoint.position.x + 0.5f, spawnPoint.position.y + 0.75f, spawnPoint.position.z + 1.0f), Quaternion.identity);
+        cam.name = Const.CAMERA_NAME;
+        return cam.GetComponent<Camera>();
     }
 
     private void LoadTiles()
     {
         Object[] tiles = Resources.LoadAll(Const.PATH_TO_TILES_FOLDER, typeof(GameObject));
         foreach (Object obj in tiles)
-            tilesModels.Add(obj as GameObject);
+            _tilesModels.Add(obj as GameObject);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
-            AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
+            AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
             RemoveFirstTile();
         }
     }
 
     private void BuildInitialTiles()
     {
-        AddTile(tilesModels[0]);
-        AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
-        AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
-        AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
-        AddTile(tilesModels[Random.Range(1, tilesModels.Count)]);
+        AddTile(_tilesModels[0]);
+        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
+        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
+        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
+        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
     }
 
     private void AddTile(GameObject tileToAdd)
@@ -78,7 +91,7 @@ public class LevelManager : MonoBehaviour
                 : Vector3.zero.z
         );
         
-        spawnedTiles.Add(Instantiate(tileToAdd, spawnPosition, Quaternion.identity, tilesContainer));
+        spawnedTiles.Add(Instantiate(tileToAdd, spawnPosition, Quaternion.identity, _tilesContainer));
     }
 
     private void RemoveFirstTile()

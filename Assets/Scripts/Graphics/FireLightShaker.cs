@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class FireLightShaker : MonoBehaviour
 {
-    private Light light;
+    private Light pointLight;
     private float timer = 0.0f;
     private float maxTimer = 3.5f;
     private float minIntensity;
@@ -22,10 +22,10 @@ public class FireLightShaker : MonoBehaviour
 
     private void Awake()
     {
-        light = GetLight();
+        pointLight = GetLight();
         timer = Random.Range(0.0f, maxTimer);
-        minIntensity = light.intensity;
-        minRange = light.range;
+        minIntensity = pointLight.intensity;
+        minRange = pointLight.range;
     }
 
     private void Update()
@@ -34,8 +34,8 @@ public class FireLightShaker : MonoBehaviour
         if (timer > maxTimer)
             timer = 0.0f;
         
-        light.intensity = Mathf.Lerp(minIntensity, maxIntensity, curve.Evaluate(timer));
-        light.range = Mathf.Lerp(minRange, maxRange, curve.Evaluate(timer));
+        pointLight.intensity = Mathf.Lerp(minIntensity, maxIntensity, curve.Evaluate(timer));
+        pointLight.range = Mathf.Lerp(minRange, maxRange, curve.Evaluate(timer));
     }
 
     private Light GetLight()

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public abstract class Actor : MonoBehaviour
 {
-    public CharacterController CharacterController { get; private set; }
     public AnimationController AnimationController { get; private set; }
     public CollisionController CollisionController { get; private set; }
     public MovementController MovementController { get; private set; }
@@ -17,9 +16,6 @@ public abstract class Actor : MonoBehaviour
 
         if (TryGetComponent(out StateController stateController))
             StateController = stateController;
-        
-        if (TryGetComponent(out CharacterController characterController))
-            CharacterController = characterController;
 
         if (TryGetComponent(out MovementController movementController))
             MovementController = movementController;

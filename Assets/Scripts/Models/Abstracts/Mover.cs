@@ -8,30 +8,34 @@ public abstract class Mover : IMover
     private Vector3 _strafeVelocity = new Vector3();
     private Vector3 _jumpVelocity = new Vector3();
 
-    public virtual void Move(CharacterController characterController)
+    public virtual void Move(Actor actor)
     {
+        _jumpVelocity.y += Const.GRAVITY * Time.deltaTime;
+        // Jump movement
+        if (IsGrounded(actor, out Transform hit) && _jumpVelocity.y <= 0f)
+            _jumpVelocity.y = 0f;
+        
+        actor.transform.Translate(_jumpVelocity * Time.deltaTime, Space.World);
+        
         // Ground movement
-        _runVelocity = characterController.transform.forward * ForwardSpeed;
+        _runVelocity = actor.transform.forward * ForwardSpeed;
         
         Vector3 movementVelocity = _runVelocity + _strafeVelocity;
-        characterController.Move(movementVelocity * Time.deltaTime);
+        actor.transform.Translate(movementVelocity * Time.deltaTime, Space.World);
         
-        // Jump movement
-        _jumpVelocity.y += Const.GRAVITY * Time.deltaTime;
-        if (IsGrounded(characterController) && _jumpVelocity.y <= 0f)
-            _jumpVelocity.y = 0f;
-        characterController.Move(_jumpVelocity * Time.deltaTime);
+        /*if (actor.gameObject.name == "Character")
+            Debug.Log($"movement velocity: {movementVelocity} // jumpvelocity: {_jumpVelocity} // position: {actor.transform.position}");*/
     }
 
-    public virtual void Strafe(CharacterController characterController, float pDir)
+    public virtual void Strafe(Actor actor, float pDir)
     {
         switch (pDir)
         {
             case > 0:
-                _strafeVelocity = characterController.transform.right * SideSpeed;
+                _strafeVelocity = actor.transform.right * SideSpeed;
                 break;
             case < 0:
-                _strafeVelocity = -characterController.transform.right * SideSpeed;
+                _strafeVelocity = -actor.transform.right * SideSpeed;
                 break;
             default:
                 _strafeVelocity = Vector3.zero;
@@ -50,20 +54,19 @@ public abstract class Mover : IMover
 
     public virtual void Update(Actor actor)
     {
-        Move(actor.CharacterController);
+        Move(actor);
     }
 
     public virtual void Exit(Actor actor)
     {
     }
 
-    public bool IsGrounded(CharacterController characterController)
+    public bool IsGrounded(Actor actor, out Transform hitTransform)
     {
-        if (characterController)
-        {
-            return Physics.Raycast(characterController.transform.position, Vector3.down, 0.05f);
-        }
-        return true;
+        Physics.Raycast(actor.transform.position, Vector3.down, out RaycastHit hit, 0.05f, LayerMask.GetMask("Ground"));
+        hitTransform = hit.transform;
+        Debug.DrawRay(actor.transform.position, Vector3.down * 0.05f, hit.collider ? Color.green : Color.red, 0.1f);
+        return hit.collider;
     }
 
     public void SetForwardSpeed(float newSpeed)

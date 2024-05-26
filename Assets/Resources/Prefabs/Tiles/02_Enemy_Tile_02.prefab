@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6091627058614783638, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}
       propertyPath: m_Name
-      value: 02_Enemy_Tile_01
+      value: 02_Enemy_Tile_02
       objectReference: {fileID: 0}
     - target: {fileID: 6091627058614783638, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}
       propertyPath: m_TagString
@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8133891195061249520, guid: e5dc220b06db83b47a266265ed4859f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8133891195061249520, guid: e5dc220b06db83b47a266265ed4859f6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8133891195061249520, guid: e2e5d2796e53f2644893f5d9fd8d507d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8133891195061249520, guid: e2e5d2796e53f2644893f5d9fd8d507d, type: 3}
       propertyPath: m_LocalPosition.z

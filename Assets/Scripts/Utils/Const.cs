@@ -18,11 +18,15 @@ public static class Const
     public const string JUMP_AXIS_NAME = "Jump";
     public const string SNEAK_AXIS_NAME = "Sneak";
 
-    public const string PATH_TO_CHARACTER_FOLDER = "Prefabs/Character/";
+    public const string PATH_TO_CHARACTER_FOLDER = "Prefabs/Characters/";
     public const string CHARACTER_NAME = "Character";
+    public const string PATH_TO_CAMERA_FOLDER = "Prefabs/Camera/";
+    public const string CAMERA_NAME = "Camera";
     public const string PATH_TO_TILES_FOLDER = "Prefabs/Tiles/";
     public const string INITIAL_TILE_NAME = "Tile_Beginning";
     public const string COMMON_TILE_NAME = "Tile";
     public const string PATH_TO_CONTROLLERS_FOLDER = "Prefabs/Controllers/";
     public const string LEVEL_CONTROLLER_NAME = "LevelController";
+
+    public const string CHARACTER_CAMERA_DUMMY = "CameraDummy";
 }
