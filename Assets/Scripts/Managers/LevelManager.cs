@@ -51,7 +51,7 @@ public class LevelManager : MonoBehaviour
         GameObject camPrefab = Resources.Load(Const.PATH_TO_CAMERA_FOLDER + Const.CAMERA_NAME) as GameObject;
         Transform spawnPoint = spawnedTiles.First().transform;
         
-        GameObject cam = Instantiate(camPrefab, new Vector3(spawnPoint.position.x + 0.5f, spawnPoint.position.y + 0.75f, spawnPoint.position.z + 1.0f), Quaternion.identity);
+        GameObject cam = Instantiate(camPrefab, new Vector3(spawnPoint.position.x + 0.3f, spawnPoint.position.y + 0.75f, spawnPoint.position.z + 0.75f), Quaternion.identity);
         cam.name = Const.CAMERA_NAME;
         return cam.GetComponent<Camera>();
     }
