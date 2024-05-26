@@ -29,4 +29,5 @@ public static class Const
     public const string LEVEL_CONTROLLER_NAME = "LevelController";
 
     public const string CHARACTER_CAMERA_DUMMY = "CameraDummy";
+    public const string TILE_NEXT_SPAWN_DUMMY = "NextSpawnDummy";
 }

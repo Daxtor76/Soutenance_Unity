@@ -1,5 +1,5 @@
-- Installer URP
-- 3 couloirs de déplacement -> ok
+- 3 couloirs de déplacement -> killed
+- Smooth strafing -> ok
 - Jump -> ok
 - Obstacle -> ok
 - Patounes -> ok
@@ -20,6 +20,8 @@
 - Bug: enemies behaviors -> ok
 - Bug: collisions make the character go in the ground -> ok
 - Curved chunks
+	o Right -> ok
+	o Left
 - Camera controller
 	o Mettre des transforms au endroits importants
 	o Utiliser smooth damp

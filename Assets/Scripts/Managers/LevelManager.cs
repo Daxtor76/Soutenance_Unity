@@ -83,15 +83,26 @@ public class LevelManager : MonoBehaviour
 
     private void AddTile(GameObject tileToAdd)
     {
-        Vector3 spawnPosition = new Vector3(
+        /*Vector3 spawnPositionfrgegr = new Vector3(
             0.0f,
             0.0f,
             spawnedTiles.Count > 0
                 ? spawnedTiles.Last().transform.position.z + spawnedTiles.Last().GetComponent<Tile>().size.z
                 : Vector3.zero.z
-        );
+        );*/
+
+        Transform spawnTransform;
+        if (spawnedTiles.Count > 0)
+            spawnTransform = spawnedTiles.Last().GetComponent<Tile>().nextSpawnDummy;
+        else
+            spawnTransform = null;
         
-        spawnedTiles.Add(Instantiate(tileToAdd, spawnPosition, Quaternion.identity, _tilesContainer));
+        spawnedTiles.Add(Instantiate(
+            tileToAdd, 
+            spawnTransform ? spawnTransform.position : Vector3.zero, 
+            spawnTransform ? spawnTransform.rotation : Quaternion.identity, 
+            _tilesContainer
+        ));
     }
 
     private void RemoveFirstTile()
