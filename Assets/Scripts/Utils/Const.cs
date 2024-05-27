@@ -1,5 +1,6 @@
 public static class Const
 {
+    // Values
     public const float GRAVITY = -9.81f;
     public const float CHARACTER_JUMP_HEIGHT = 5.0f;
     public const float CHARACTER_FORWARD_SPEED = 3.0f;
@@ -8,16 +9,20 @@ public static class Const
     public const float CHARACTER_SNEAKY_SIDE_SPEED = 1.0f;
     public const float ENEMY_FORWARD_SPEED = 2.0f;
     public const float ENEMY_SIDE_SPEED = 3.0f;
-    public const string SCORING_TEXT_NAME = "ScoringText";
+    
+    // Tags
     public const string OBSTACLE_TAG_NAME = "Obstacle";
     public const string PATOUNE_TAG_NAME = "Patoune";
     public const string TILESPAWNER_TAG_NAME = "TileSpawner";
+    public const string ROTATOR_TAG_NAME = "Rotator";
     
+    // Controls
     public const string STRAFE_AXIS_NAME = "Strafe";
     public const string RUN_AXIS_NAME = "Run";
     public const string JUMP_AXIS_NAME = "Jump";
     public const string SNEAK_AXIS_NAME = "Sneak";
 
+    // Paths & names
     public const string PATH_TO_CHARACTER_FOLDER = "Prefabs/Characters/";
     public const string CHARACTER_NAME = "Character";
     public const string PATH_TO_CAMERA_FOLDER = "Prefabs/Camera/";
@@ -30,4 +35,7 @@ public static class Const
 
     public const string CHARACTER_CAMERA_DUMMY = "CameraDummy";
     public const string TILE_NEXT_SPAWN_DUMMY = "NextSpawnDummy";
+    
+    // UI
+    public const string SCORING_TEXT_NAME = "ScoringText";
 }

@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8824957253033377705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 418416274797374644}
+  - component: {fileID: 3247794050067889031}
+  m_Layer: 0
+  m_Name: RotatorCollider
+  m_TagString: Rotator
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &418416274797374644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824957253033377705}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0.25}
+  m_LocalScale: {x: 1, y: 10, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3160973414146826101}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3247794050067889031
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824957253033377705}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1772409465630183410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1017,6 +1070,9 @@ PrefabInstance:
     - {fileID: 8425071131847495663, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}
     - {fileID: 7517671186559593521, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1061307090690997610, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 418416274797374644}
     - targetCorrespondingSourceObject: {fileID: 8821964468327362636, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}
       insertIndex: 4
       addedObject: {fileID: 6607704096119211565}
@@ -1049,6 +1105,11 @@ PrefabInstance:
       addedObject: {fileID: 1841283151335300341}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}
+--- !u!4 &3160973414146826101 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1061307090690997610, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}
+  m_PrefabInstance: {fileID: 2694434331179459103}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3789967578557383480 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1295953472448405799, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}

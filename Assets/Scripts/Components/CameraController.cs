@@ -20,8 +20,7 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         LookAtCharacter();
-
-        FollowTarget(_target);
+        //FollowTarget(_target);
     }
 
     private void FollowTarget(Transform target)

@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
         _character = CreateCharacter();
         _character.CollisionController.OnCollisionWithTileSpawner.AddListener(BuildPathTile);
 
-        _camera = CreateCamera();
+        //_camera = CreateCamera();
     }
 
     private void BuildPathTile()

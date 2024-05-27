@@ -8,6 +8,7 @@ public class CollisionController : MonoBehaviour
     public UnityEvent<GameObject> OnCollisionWithObstacle = new UnityEvent<GameObject>();
     public UnityEvent<GameObject> OnCollisionWithPatoune = new UnityEvent<GameObject>();
     public UnityEvent OnCollisionWithTileSpawner = new UnityEvent();
+    public UnityEvent<bool> OnCollisionWithRotator = new UnityEvent<bool>();
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,6 +24,11 @@ public class CollisionController : MonoBehaviour
         else if (other.gameObject.CompareTag(Const.TILESPAWNER_TAG_NAME))
         {
             OnCollisionWithTileSpawner?.Invoke();
+        }
+        else if (other.gameObject.CompareTag(Const.ROTATOR_TAG_NAME))
+        {
+            string otherParentName = other.transform.parent.name;
+            OnCollisionWithRotator?.Invoke(otherParentName.Contains("Left"));
         }
     }
 }
