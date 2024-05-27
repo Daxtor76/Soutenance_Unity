@@ -4,9 +4,11 @@ public abstract class Mover : IMover
 {
     protected float ForwardSpeed { get; set; }
     protected float SideSpeed { get; set; }
+    protected float RotationSpeed { get; set; }
     private Vector3 _runVelocity = new Vector3();
     private Vector3 _strafeVelocity = new Vector3();
     private Vector3 _jumpVelocity = new Vector3();
+    private Quaternion _targetRotation = new Quaternion();
 
     public virtual void Move(Actor actor)
     {
@@ -25,6 +27,9 @@ public abstract class Mover : IMover
         
         /*if (actor.gameObject.name == "Character")
             Debug.Log($"movement velocity: {movementVelocity} // jumpvelocity: {_jumpVelocity} // position: {actor.transform.position}");*/
+        
+        // Rotation
+        ApplyRotation(actor);
     }
 
     public virtual void Strafe(Actor actor, float pDir)
@@ -39,6 +44,24 @@ public abstract class Mover : IMover
                 break;
             default:
                 _strafeVelocity = Vector3.zero;
+                break;
+        }
+    }
+
+    private void ApplyRotation(Actor actor)
+    {
+        actor.transform.rotation = Quaternion.RotateTowards(actor.transform.rotation, _targetRotation, RotationSpeed * Time.deltaTime);
+    }
+
+    public virtual void SetTargetRotation(int pDir = 0)
+    {
+        switch (pDir)
+        {
+            case 1:
+                _targetRotation.y += 90.0f;
+                break;
+            case -1:
+                _targetRotation.y -= 90.0f;
                 break;
         }
     }
@@ -77,5 +100,10 @@ public abstract class Mover : IMover
     public void SetSideSpeed(float newSpeed)
     {
         SideSpeed = newSpeed;
+    }
+
+    public void SetRotationSpeed(float newSpeed)
+    {
+        RotationSpeed = newSpeed;
     }
 }

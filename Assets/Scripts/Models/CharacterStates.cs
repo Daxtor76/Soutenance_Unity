@@ -22,7 +22,8 @@ public class CharacterRunState : State
     {
         actor.MovementController.ChangeMover(new CharacterMover(
             Const.CHARACTER_FORWARD_SPEED,
-            Const.CHARACTER_SIDE_SPEED
+            Const.CHARACTER_SIDE_SPEED,
+            Const.CHARACTER_ROTATION_SPEED
         ));
         actor.AnimationController?.Animator?.SetInteger("CharacterState",1);
     }
@@ -34,7 +35,8 @@ public class CharacterSneakyState : State
     {
         actor.MovementController.ChangeMover(new CharacterSneakyMover(
             Const.CHARACTER_SNEAKY_FORWARD_SPEED,
-            Const.CHARACTER_SNEAKY_SIDE_SPEED
+            Const.CHARACTER_SNEAKY_SIDE_SPEED,
+            Const.CHARACTER_ROTATION_SPEED
         ));
     }
 }

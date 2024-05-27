@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 707417447536296233}
   m_Layer: 0
   m_Name: RotatorCollider
-  m_TagString: Rotator
+  m_TagString: RightRotator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

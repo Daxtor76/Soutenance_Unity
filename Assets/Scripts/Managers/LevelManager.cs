@@ -75,10 +75,11 @@ public class LevelManager : MonoBehaviour
     private void BuildInitialTiles()
     {
         AddTile(_tilesModels[0]);
-        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
-        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
-        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
-        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
+        AddTile(_tilesModels[4]);
+        // AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
+        // AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
+        // AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
+        // AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
     }
 
     private void AddTile(GameObject tileToAdd)

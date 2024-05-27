@@ -7,6 +7,7 @@ public static class Const
     public const float CHARACTER_SNEAKY_FORWARD_SPEED = 1f;
     public const float CHARACTER_SIDE_SPEED = 3.0f;
     public const float CHARACTER_SNEAKY_SIDE_SPEED = 1.0f;
+    public const float CHARACTER_ROTATION_SPEED = 20.0f;
     public const float ENEMY_FORWARD_SPEED = 2.0f;
     public const float ENEMY_SIDE_SPEED = 3.0f;
     
@@ -14,7 +15,8 @@ public static class Const
     public const string OBSTACLE_TAG_NAME = "Obstacle";
     public const string PATOUNE_TAG_NAME = "Patoune";
     public const string TILESPAWNER_TAG_NAME = "TileSpawner";
-    public const string ROTATOR_TAG_NAME = "Rotator";
+    public const string LEFT_ROTATOR_TAG_NAME = "LeftRotator";
+    public const string RIGHT_ROTATOR_TAG_NAME = "RightRotator";
     
     // Controls
     public const string STRAFE_AXIS_NAME = "Strafe";

@@ -58,10 +58,16 @@ public class ToTargetMover : Mover
 
 public class CharacterMover : Mover
 {
-    public CharacterMover(float pForwardSpeed, float pSideSpeed)
+    public CharacterMover(float pForwardSpeed, float pSideSpeed, float pRotationSpeed)
     {
         SetForwardSpeed(pForwardSpeed);
         SetSideSpeed(pSideSpeed);
+        SetRotationSpeed(pRotationSpeed);
+    }
+
+    public override void Enter(Actor actor)
+    {
+        actor.CollisionController.OnCollisionWithRotator.AddListener(SetTargetRotation);
     }
 
     public override void Update(Actor actor)
@@ -76,14 +82,25 @@ public class CharacterMover : Mover
         Strafe(actor, Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
         base.Update(actor);
     }
+
+    public override void Exit(Actor actor)
+    {
+        actor.CollisionController.OnCollisionWithRotator.RemoveListener(SetTargetRotation);
+    }
 }
 
 public class CharacterSneakyMover : Mover
 {
-    public CharacterSneakyMover(float pForwardSpeed, float pSideSpeed)
+    public CharacterSneakyMover(float pForwardSpeed, float pSideSpeed, float pRotationSpeed)
     {
         SetForwardSpeed(pForwardSpeed);
         SetSideSpeed(pSideSpeed);
+        SetRotationSpeed(pRotationSpeed);
+    }
+
+    public override void Enter(Actor actor)
+    {
+        actor.CollisionController.OnCollisionWithRotator.AddListener(SetTargetRotation);
     }
 
     public override void Update(Actor actor)
@@ -93,5 +110,10 @@ public class CharacterSneakyMover : Mover
 
         if (Input.GetButtonUp(Const.SNEAK_AXIS_NAME))
             actor.StateController.ChangeState(actor.StateController.runState);
+    }
+
+    public override void Exit(Actor actor)
+    {
+        actor.CollisionController.OnCollisionWithRotator.RemoveListener(SetTargetRotation);
     }
 }
