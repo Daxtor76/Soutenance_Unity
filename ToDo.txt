@@ -35,16 +35,20 @@
 - Bug: Repare enemies -> ok
 - Level Generator add rules
 	o Make a cool algorithm -> ok
+- Integrate assets
+	o Ghosts -> ok
 - Feature: when the character gather enough patounes, he becomes in fire, goes faster and can kill enemies
-- Character animation clean
+- Actors animation clean
 	- Use blend tree in animator
 - Exotic camera for curved chunks
 - Main camera effects
-- Reverse
 - Defeat
 - Main menu (no scene switch to game)
+- Tutorial
+	o Pause game when new enemy
+	o Description display
+	o Space to close
 - Pass data between scenes with a singleton
-- Menu scene
 - End scene
 - Polish
 	o Coyote time
