@@ -115,13 +115,9 @@ public class LevelManager : MonoBehaviour
             if (randomValue <= cumulativeSpawnChance)
             {
                 if (_tilesModels[i].CompareTag("BeginningTile") || (_tilesModels[i].CompareTag("CurvedTile") && _previousTileTag == "CurvedTile"))
-                {
-                    Debug.Log("Here we go agen");
                     return PickRandomTile();
-                }
                 
                 _previousTileTag = _tilesModels[i].tag;
-                Debug.Log($"previous: {_previousTileTag}, current:{_tilesModels[i].tag}");
                 return _tilesModels[i];
             }
         }
