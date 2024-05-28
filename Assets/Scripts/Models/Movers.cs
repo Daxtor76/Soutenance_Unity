@@ -13,10 +13,6 @@ public class StrafeMover : Mover
             _strafeDirection = Random.Range(-1, 1);
     }
 
-    public override void Enter(Actor actor)
-    {
-    }
-
     public override void Update(Actor actor)
     {
         if (actor.transform.position.x >= 4.0f)
