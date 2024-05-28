@@ -13,6 +13,8 @@ public abstract class Mover : IMover
 
     public virtual void Enter(Actor actor)
     {
+        _currentRotation = actor.transform.eulerAngles;
+        _targetRotation = _currentRotation;
     }
 
     public virtual void Update(Actor actor)
