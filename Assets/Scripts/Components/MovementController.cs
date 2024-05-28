@@ -14,9 +14,14 @@ public class MovementController : MonoBehaviour
         Actor = GetComponent<Actor>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         CurrentMover?.Update(Actor);
+    }
+
+    private void FixedUpdate()
+    {
+        CurrentMover?.FixedUpdate(Actor);
     }
 
     public void ChangeMover(IMover newMover)

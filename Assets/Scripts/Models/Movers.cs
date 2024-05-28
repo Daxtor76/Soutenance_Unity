@@ -24,8 +24,8 @@ public class StrafeMover : Mover
         else if (actor.transform.position.x <= -4.0f)
             _strafeDirection = -1;
         
-        Strafe(actor, _strafeDirection);
-        base.Update(actor);
+        CalculateStrafe(actor, _strafeDirection);
+        //base.Update(actor);
     }
 }
 
@@ -50,12 +50,12 @@ public class ToTargetMover : Mover
         _target = pTarget;
     }
 
-    public override void Move(Actor actor)
+    public override void CalculateMovement(Actor actor)
     {
         // Make the actor move to a target
         actor.transform.LookAt(new Vector3(_target.transform.position.x,
             actor.transform.position.y, _target.transform.position.z));
-        base.Move(actor);
+        base.CalculateMovement(actor);
     }
 }
 
@@ -78,11 +78,11 @@ public class CharacterMover : Mover
         if (IsGrounded(actor, out Transform hit))
         {
             if (Input.GetButtonDown(Const.JUMP_AXIS_NAME))
-                Jump(Const.CHARACTER_JUMP_HEIGHT);
+                CalculateJump(Const.CHARACTER_JUMP_HEIGHT);
             else if (Input.GetButton(Const.SNEAK_AXIS_NAME))
                 actor.StateController.ChangeState(actor.StateController.sneakyState);
         }
-        Strafe(actor, Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
+        CalculateStrafe(actor, Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
         base.Update(actor);
     }
 
@@ -108,7 +108,7 @@ public class CharacterSneakyMover : Mover
 
     public override void Update(Actor actor)
     {
-        Strafe(actor, Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
+        CalculateStrafe(actor, Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
         base.Update(actor);
 
         if (Input.GetButtonUp(Const.SNEAK_AXIS_NAME))
