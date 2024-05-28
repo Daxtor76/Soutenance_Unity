@@ -10,18 +10,22 @@ public class StrafeMover : Mover
         SetRotationSpeed(0.0f);
         
         while(_strafeDirection == 0)
-            _strafeDirection = Random.Range(-1, 1);
+            _strafeDirection = Random.Range(-1, 2);
     }
 
     public override void Update(Actor actor)
+    {
+        CalculateStrafe(actor, GetStrafeDirection(actor));
+        base.Update(actor);
+    }
+
+    private int GetStrafeDirection(Actor actor)
     {
         if (actor.transform.position.x >= 4.0f)
             _strafeDirection = 1;
         else if (actor.transform.position.x <= -4.0f)
             _strafeDirection = -1;
-        
-        CalculateStrafe(actor, _strafeDirection);
-        base.Update(actor);
+        return _strafeDirection;
     }
 }
 

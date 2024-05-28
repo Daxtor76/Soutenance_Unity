@@ -40,8 +40,10 @@
 - Feature: when the character gather enough patounes, he becomes in fire, goes faster and can kill enemies
 - Actors animation clean
 	- Use blend tree in animator
-- Exotic camera for curved chunks
-- Main camera effects
+- Camera
+	o Strafing effect (rotate on z)
+	o Acceleration effect (fov ?)
+	o Curved chunk anim (???)
 - Defeat
 - Main menu (no scene switch to game)
 - Tutorial
