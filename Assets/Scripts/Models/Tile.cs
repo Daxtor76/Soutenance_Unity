@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public Vector3 size;
-    public Transform nextSpawnDummy;
+    public Vector3 Size { get; private set; }
+    public Transform NextSpawnDummy { get; private set; }
+
+    public float spawnChance = 0.0f;
 
     private void Awake()
     {
-        size = GetTileSize();
-        nextSpawnDummy = GetDummy();
+        Size = GetTileSize();
+        NextSpawnDummy = GetDummy();
     }
 
     private Transform GetDummy()

@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 00_Beginning_Tile
       objectReference: {fileID: 0}
+    - target: {fileID: 6091627058614783638, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}
+      propertyPath: m_TagString
+      value: BeginningTile
+      objectReference: {fileID: 0}
     - target: {fileID: 7353544500288594256, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.94

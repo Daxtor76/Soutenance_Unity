@@ -32,9 +32,9 @@
 - Refacto:
 	o Delete sneakymover, manage it in charactermover and use the currentstate to help -> ok
 	o See if update and fixedupdate in movers are ok -> ok
-- Bug: Repare enemies
+- Bug: Repare enemies -> ok
 - Level Generator add rules
-	o Make an algorithm that
+	o Make a cool algorithm -> ok
 - Feature: when the character gather enough patounes, he becomes in fire, goes faster and can kill enemies
 - Character animation clean
 	- Use blend tree in animator

@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 133232359921394266, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}
+      propertyPath: spawnChance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1061307090690997610, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -50,11 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6091627058614783638, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}
       propertyPath: m_Name
-      value: 02_Enemy_Tile_02
+      value: 03_Enemy_Tile_02
       objectReference: {fileID: 0}
     - target: {fileID: 6091627058614783638, guid: 8492e15b2f73d1f4b97905ea7a7af2e9, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: EnemyTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

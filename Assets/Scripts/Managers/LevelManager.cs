@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
     private Transform _tilesContainer;
     private List<GameObject> _tilesModels = new List<GameObject>();
     [SerializeField]private List<GameObject> spawnedTiles = new List<GameObject>();
+    private string _previousTileTag = "";
     private void Awake()
     {
         LoadTiles();
@@ -32,7 +33,7 @@ public class LevelManager : MonoBehaviour
 
     private void BuildPathTile()
     {
-        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
+        AddTile(PickRandomTile());
         RemoveFirstTile();
     }
 
@@ -59,6 +60,7 @@ public class LevelManager : MonoBehaviour
     private void LoadTiles()
     {
         Object[] tiles = Resources.LoadAll(Const.PATH_TO_TILES_FOLDER, typeof(GameObject));
+
         foreach (Object obj in tiles)
             _tilesModels.Add(obj as GameObject);
     }
@@ -75,17 +77,17 @@ public class LevelManager : MonoBehaviour
     private void BuildInitialTiles()
     {
         AddTile(_tilesModels[0]);
-        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
-        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
-        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
-        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
+        AddTile(PickRandomTile());
+        AddTile(PickRandomTile());
+        AddTile(PickRandomTile());
+        AddTile(PickRandomTile());
     }
 
     private void AddTile(GameObject tileToAdd)
     {
         Transform spawnTransform;
         if (spawnedTiles.Count > 0)
-            spawnTransform = spawnedTiles.Last().GetComponent<Tile>().nextSpawnDummy;
+            spawnTransform = spawnedTiles.Last().GetComponent<Tile>().NextSpawnDummy;
         else
             spawnTransform = null;
         
@@ -95,6 +97,36 @@ public class LevelManager : MonoBehaviour
             spawnTransform ? spawnTransform.rotation : Quaternion.identity, 
             _tilesContainer
         ));
+    }
+
+    private GameObject PickRandomTile()
+    {
+        float totalSpawnChance = 0.0f;
+
+        foreach (GameObject tile in _tilesModels)
+            totalSpawnChance += tile.GetComponent<Tile>().spawnChance;
+
+        float randomValue = Random.Range(0.0f, totalSpawnChance);
+        float cumulativeSpawnChance = 0.0f;
+
+        for (int i = 0; i < _tilesModels.Count; i++)
+        {
+            cumulativeSpawnChance += _tilesModels[i].GetComponent<Tile>().spawnChance;
+            if (randomValue <= cumulativeSpawnChance)
+            {
+                if (_tilesModels[i].CompareTag("BeginningTile") || (_tilesModels[i].CompareTag("CurvedTile") && _previousTileTag == "CurvedTile"))
+                {
+                    Debug.Log("Here we go agen");
+                    return PickRandomTile();
+                }
+                
+                _previousTileTag = _tilesModels[i].tag;
+                Debug.Log($"previous: {_previousTileTag}, current:{_tilesModels[i].tag}");
+                return _tilesModels[i];
+            }
+        }
+
+        return _tilesModels[0];
     }
 
     private void RemoveFirstTile()
