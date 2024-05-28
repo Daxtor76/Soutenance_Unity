@@ -7,7 +7,7 @@ public static class Const
     public const float CHARACTER_SNEAKY_FORWARD_SPEED = 1f;
     public const float CHARACTER_SIDE_SPEED = 3.0f;
     public const float CHARACTER_SNEAKY_SIDE_SPEED = 1.0f;
-    public const float CHARACTER_ROTATION_SPEED = 20.0f;
+    public const float CHARACTER_ROTATION_SPEED = 40.0f;
     public const float ENEMY_FORWARD_SPEED = 2.0f;
     public const float ENEMY_SIDE_SPEED = 3.0f;
     

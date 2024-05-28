@@ -75,23 +75,14 @@ public class LevelManager : MonoBehaviour
     private void BuildInitialTiles()
     {
         AddTile(_tilesModels[0]);
-        AddTile(_tilesModels[4]);
-        // AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
-        // AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
-        // AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
-        // AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
+        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
+        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
+        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
+        AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
     }
 
     private void AddTile(GameObject tileToAdd)
     {
-        /*Vector3 spawnPositionfrgegr = new Vector3(
-            0.0f,
-            0.0f,
-            spawnedTiles.Count > 0
-                ? spawnedTiles.Last().transform.position.z + spawnedTiles.Last().GetComponent<Tile>().size.z
-                : Vector3.zero.z
-        );*/
-
         Transform spawnTransform;
         if (spawnedTiles.Count > 0)
             spawnTransform = spawnedTiles.Last().GetComponent<Tile>().nextSpawnDummy;

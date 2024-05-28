@@ -2,34 +2,44 @@
 
 public abstract class Mover : IMover
 {
-    protected float ForwardSpeed { get; set; }
-    protected float SideSpeed { get; set; }
-    protected float RotationSpeed { get; set; }
+    protected float ForwardSpeed { get; private set; }
+    protected float SideSpeed { get; private set; }
+    protected float RotationSpeed { get; private set; }
     private Vector3 _runVelocity = new Vector3();
     private Vector3 _strafeVelocity = new Vector3();
     private Vector3 _jumpVelocity = new Vector3();
-    private Quaternion _targetRotation = new Quaternion();
+    private Vector3 _currentRotation = new Vector3();
+    private Vector3 _targetRotation = new Vector3();
 
     public virtual void Move(Actor actor)
     {
+        ApplyGravity(actor);
+        ApplyJumpMovement(actor);
+        ApplyGroundMovemement(actor);
+        ApplyRotation(actor);
+
+        /*if (actor.gameObject.name == "Character")
+            Debug.Log($"movement velocity: {movementVelocity} // jumpvelocity: {_jumpVelocity} // position: {actor.transform.position}");*/
+    }
+
+    private void ApplyJumpMovement(Actor actor)
+    {
+        actor.transform.Translate(_jumpVelocity * Time.deltaTime, Space.World);
+    }
+
+    private void ApplyGravity(Actor actor)
+    {
         _jumpVelocity.y += Const.GRAVITY * Time.deltaTime;
-        // Jump movement
         if (IsGrounded(actor, out Transform hit) && _jumpVelocity.y <= 0f)
             _jumpVelocity.y = 0f;
-        
-        actor.transform.Translate(_jumpVelocity * Time.deltaTime, Space.World);
-        
-        // Ground movement
+    }
+
+    private void ApplyGroundMovemement(Actor actor)
+    {
         _runVelocity = actor.transform.forward * ForwardSpeed;
         
         Vector3 movementVelocity = _runVelocity + _strafeVelocity;
         actor.transform.Translate(movementVelocity * Time.deltaTime, Space.World);
-        
-        /*if (actor.gameObject.name == "Character")
-            Debug.Log($"movement velocity: {movementVelocity} // jumpvelocity: {_jumpVelocity} // position: {actor.transform.position}");*/
-        
-        // Rotation
-        ApplyRotation(actor);
     }
 
     public virtual void Strafe(Actor actor, float pDir)
@@ -50,7 +60,17 @@ public abstract class Mover : IMover
 
     private void ApplyRotation(Actor actor)
     {
-        actor.transform.rotation = Quaternion.RotateTowards(actor.transform.rotation, _targetRotation, RotationSpeed * Time.deltaTime);
+        float angle = _targetRotation.y - _currentRotation.y;
+        
+        if(angle > 0.5f)
+            _currentRotation.y += RotationSpeed * Time.deltaTime;
+        else if (angle < -0.5f)
+            _currentRotation.y -= RotationSpeed * Time.deltaTime;
+        else
+            _currentRotation = _targetRotation;
+        
+        actor.transform.rotation = Quaternion.AngleAxis(_currentRotation.y, actor.transform.up);
+        //Debug.Log($"angle: {angle}, chara: {actor.transform.rotation}, current: {_currentRotation}");
     }
 
     public virtual void SetTargetRotation(int pDir = 0)
@@ -88,7 +108,7 @@ public abstract class Mover : IMover
     {
         Physics.Raycast(actor.transform.position, Vector3.down, out RaycastHit hit, 0.05f, LayerMask.GetMask("Ground"));
         hitTransform = hit.transform;
-        Debug.DrawRay(actor.transform.position, Vector3.down * 0.05f, hit.collider ? Color.green : Color.red, 0.1f);
+        //Debug.DrawRay(actor.transform.position, Vector3.down * 0.05f, hit.collider ? Color.green : Color.red, 0.1f);
         return hit.collider;
     }
 

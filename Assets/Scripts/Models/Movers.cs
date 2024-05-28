@@ -5,8 +5,9 @@ public class StrafeMover : Mover
     private int _strafeDirection = 0;
     public StrafeMover(float pSideSpeed)
     {
-        ForwardSpeed = 0.0f;
-        SideSpeed = pSideSpeed;
+        SetForwardSpeed(0.0f);
+        SetSideSpeed(pSideSpeed);
+        SetRotationSpeed(0.0f);
         
         while(_strafeDirection == 0)
             _strafeDirection = Random.Range(-1, 1);
@@ -34,6 +35,7 @@ public class ForwardMover : Mover
     {
         SetForwardSpeed(pForwardSpeed);
         SetSideSpeed(0.0f);
+        SetRotationSpeed(0.0f);
     }
 }
 
@@ -42,8 +44,9 @@ public class ToTargetMover : Mover
     private Actor _target;
     public ToTargetMover(float pForwardSpeed, float pSideSpeed, Actor pTarget)
     {
-        ForwardSpeed = pForwardSpeed;
-        SideSpeed = pSideSpeed;
+        SetForwardSpeed(pForwardSpeed);
+        SetSideSpeed(pSideSpeed);
+        SetRotationSpeed(0.0f);
         _target = pTarget;
     }
 

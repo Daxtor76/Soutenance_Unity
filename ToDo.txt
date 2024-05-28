@@ -22,12 +22,12 @@
 - Curved chunks
 	o Right -> ok
 	o Left -> ok
-	o Make character rotate smoothly when entering a curved chunk
+	o Make character rotate smoothly when entering a curved chunk -> ok
 - Camera controller
 	o Mettre des transforms au endroits importants -> ok
-	o Utiliser smooth damp -> ok
+	o Utiliser smooth damp -> ???
 	o Look at player (ou un peu devant lui) -> ok
-	o Make camera rotate around character when entering a curved chunk
+	o Make camera rotate around character when entering a curved chunk -> ???
 - Feature: when the character gather enough patounes, he becomes in fire, goes faster and can kill enemies
 - Bug: IsGrounded doesn't work 100% (raycast)
 - Character animation clean
