@@ -9,5 +9,11 @@ public class Character : Actor
         StateController.sneakyState = new CharacterSneakyState();
         
         StateController?.ChangeState(StateController.idleState);
+        
+        MovementController.runMover = new CharacterMover(
+            Const.CHARACTER_FORWARD_SPEED,
+            Const.CHARACTER_STRAFE_SPEED,
+            Const.CHARACTER_ROTATION_SPEED
+        );
     }
 }

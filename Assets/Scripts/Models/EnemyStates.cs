@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyIdleState : State
 {
-    public override void Enter(Actor actor)
+    public override void Update(Actor actor)
     {
         actor.StateController.ChangeState(actor.StateController.runState);
     }

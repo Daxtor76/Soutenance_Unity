@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2782403359449674983, guid: 0fe8cfb39f1b13a428fa0b35828a574c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7560369802339453998, guid: 0fe8cfb39f1b13a428fa0b35828a574c, type: 3}
       propertyPath: m_Name
       value: Obstacle_Small
@@ -204,6 +208,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1197003911696975477, guid: 0fe8cfb39f1b13a428fa0b35828a574c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782403359449674983, guid: 0fe8cfb39f1b13a428fa0b35828a574c, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7560369802339453998, guid: 0fe8cfb39f1b13a428fa0b35828a574c, type: 3}

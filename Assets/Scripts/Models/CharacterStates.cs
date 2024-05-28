@@ -14,17 +14,20 @@ public class CharacterIdleState : State
             actor.StateController.ChangeState(actor.StateController.runState);
         }
     }
+
+    public override void Exit(Actor actor)
+    {
+        actor.MovementController.ChangeMover(actor.MovementController.runMover);
+    }
 }
 
 public class CharacterRunState : State
 {
     public override void Enter(Actor actor)
-    {
-        actor.MovementController.ChangeMover(new CharacterMover(
-            Const.CHARACTER_FORWARD_SPEED,
-            Const.CHARACTER_SIDE_SPEED,
-            Const.CHARACTER_ROTATION_SPEED
-        ));
+    { 
+        actor.MovementController.CurrentMover?.SetForwardSpeed(Const.CHARACTER_FORWARD_SPEED);
+        actor.MovementController.CurrentMover?.SetStrafeSpeed(Const.CHARACTER_STRAFE_SPEED);
+        
         actor.AnimationController?.Animator?.SetInteger("CharacterState",1);
     }
 }
@@ -33,10 +36,9 @@ public class CharacterSneakyState : State
 {
     public override void Enter(Actor actor)
     {
-        actor.MovementController.ChangeMover(new CharacterSneakyMover(
-            Const.CHARACTER_SNEAKY_FORWARD_SPEED,
-            Const.CHARACTER_SNEAKY_SIDE_SPEED,
-            Const.CHARACTER_ROTATION_SPEED
-        ));
+        actor.MovementController.CurrentMover?.SetForwardSpeed(Const.CHARACTER_SNEAKY_FORWARD_SPEED);
+        actor.MovementController.CurrentMover?.SetStrafeSpeed(Const.CHARACTER_SNEAKY_STRAFE_SPEED);
+        
+        actor.AnimationController?.Animator?.SetInteger("CharacterState",1);
     }
 }

@@ -184,6 +184,9 @@ MonoBehaviour:
   OnCollisionWithTileSpawner:
     m_PersistentCalls:
       m_Calls: []
+  OnCollisionWithRotator:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-4327315304846398277
 MonoBehaviour:
   m_ObjectHideFlags: 0

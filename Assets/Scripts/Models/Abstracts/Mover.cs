@@ -56,7 +56,7 @@ public abstract class Mover : IMover
     private void ApplyGravity(Actor actor)
     {
         _jumpVelocity.y += Const.GRAVITY * Time.deltaTime;
-        if (IsGrounded(actor, out Transform hit) && _jumpVelocity.y <= 0f)
+        if (IsGrounded(actor) && _jumpVelocity.y <= 0f)
             _jumpVelocity.y = 0f;
     }
 
@@ -116,17 +116,15 @@ public abstract class Mover : IMover
         _jumpVelocity.y = jumpHeight;
     }
 
-    public bool IsGrounded(Actor actor, out Transform hitTransform)
+    public bool IsGrounded(Actor actor)
     {
         Vector3 startPosition = actor.transform.position + Vector3.up;
         Physics.Raycast(startPosition, Vector3.down, out RaycastHit hit, 1.5f, LayerMask.GetMask("Ground"));
-        hitTransform = hit.transform;
 
-        if (!hitTransform)
+        if (!hit.transform)
             return false;
         
         float dist = hit.distance;
-        //Debug.DrawRay(actor.transform.position, Vector3.down * 0.05f, hit.collider ? Color.green : Color.red, 0.1f);
         return dist < 1.05f;
     }
 
@@ -135,7 +133,7 @@ public abstract class Mover : IMover
         ForwardSpeed = newSpeed;
     }
 
-    public void SetSideSpeed(float newSpeed)
+    public void SetStrafeSpeed(float newSpeed)
     {
         SideSpeed = newSpeed;
     }

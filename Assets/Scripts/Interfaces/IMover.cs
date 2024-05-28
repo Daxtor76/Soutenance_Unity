@@ -6,7 +6,9 @@ public interface IMover
     void ApplyMovement(Actor actor);
     void CalculateStrafe(Actor actor, float pDir);
     void SetTargetRotation(int pDir);
-    public bool IsGrounded(Actor actor, out Transform hit);
+    void SetForwardSpeed(float newSpeed);
+    void SetStrafeSpeed(float newSpeed);
+    public bool IsGrounded(Actor actor);
     void CalculateJump(float jumpHeight);
     void Enter(Actor actor);
     void Update(Actor actor);

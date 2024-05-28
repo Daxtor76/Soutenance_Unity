@@ -29,6 +29,10 @@
 	o Look at player (ou un peu devant lui) -> ok
 	o Make camera rotate around character when entering a curved chunk -> ???
 - Bug: IsGrounded doesn't work 100% (raycast) -> ok
+- Refacto:
+	o Delete sneakymover, manage it in charactermover and use the currentstate to help -> ok
+	o See if update and fixedupdate in movers are ok -> ok
+- Bug: Repare enemies
 - Level Generator add rules
 	o Make an algorithm that
 - Feature: when the character gather enough patounes, he becomes in fire, goes faster and can kill enemies
@@ -42,3 +46,6 @@
 - Pass data between scenes with a singleton
 - Menu scene
 - End scene
+- Polish
+	o Coyote time
+	o Buffer jump input if character almost on the ground

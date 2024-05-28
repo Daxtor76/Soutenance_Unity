@@ -6,7 +6,7 @@ public class StrafeMover : Mover
     public StrafeMover(float pSideSpeed)
     {
         SetForwardSpeed(0.0f);
-        SetSideSpeed(pSideSpeed);
+        SetStrafeSpeed(pSideSpeed);
         SetRotationSpeed(0.0f);
         
         while(_strafeDirection == 0)
@@ -25,7 +25,7 @@ public class StrafeMover : Mover
             _strafeDirection = -1;
         
         CalculateStrafe(actor, _strafeDirection);
-        //base.Update(actor);
+        base.Update(actor);
     }
 }
 
@@ -34,7 +34,7 @@ public class ForwardMover : Mover
     public ForwardMover(float pForwardSpeed)
     {
         SetForwardSpeed(pForwardSpeed);
-        SetSideSpeed(0.0f);
+        SetStrafeSpeed(0.0f);
         SetRotationSpeed(0.0f);
     }
 }
@@ -45,7 +45,7 @@ public class ToTargetMover : Mover
     public ToTargetMover(float pForwardSpeed, float pSideSpeed, Actor pTarget)
     {
         SetForwardSpeed(pForwardSpeed);
-        SetSideSpeed(pSideSpeed);
+        SetStrafeSpeed(pSideSpeed);
         SetRotationSpeed(0.0f);
         _target = pTarget;
     }
@@ -64,7 +64,7 @@ public class CharacterMover : Mover
     public CharacterMover(float pForwardSpeed, float pSideSpeed, float pRotationSpeed)
     {
         SetForwardSpeed(pForwardSpeed);
-        SetSideSpeed(pSideSpeed);
+        SetStrafeSpeed(pSideSpeed);
         SetRotationSpeed(pRotationSpeed);
     }
 
@@ -75,44 +75,21 @@ public class CharacterMover : Mover
 
     public override void Update(Actor actor)
     {
-        if (IsGrounded(actor, out Transform hit))
+        if (IsGrounded(actor))
         {
-            if (Input.GetButtonDown(Const.JUMP_AXIS_NAME))
-                CalculateJump(Const.CHARACTER_JUMP_HEIGHT);
-            else if (Input.GetButton(Const.SNEAK_AXIS_NAME))
+            if (actor.StateController.CurrentState.GetType() == typeof(CharacterRunState))
+            {
+                if (Input.GetButtonDown(Const.JUMP_AXIS_NAME))
+                    CalculateJump(Const.CHARACTER_JUMP_HEIGHT);
+            }
+            
+            if (Input.GetButton(Const.SNEAK_AXIS_NAME))
                 actor.StateController.ChangeState(actor.StateController.sneakyState);
+            else if (Input.GetButtonUp(Const.SNEAK_AXIS_NAME))
+                actor.StateController.ChangeState(actor.StateController.runState);
         }
         CalculateStrafe(actor, Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
         base.Update(actor);
-    }
-
-    public override void Exit(Actor actor)
-    {
-        actor.CollisionController.OnCollisionWithRotator.RemoveListener(SetTargetRotation);
-    }
-}
-
-public class CharacterSneakyMover : Mover
-{
-    public CharacterSneakyMover(float pForwardSpeed, float pSideSpeed, float pRotationSpeed)
-    {
-        SetForwardSpeed(pForwardSpeed);
-        SetSideSpeed(pSideSpeed);
-        SetRotationSpeed(pRotationSpeed);
-    }
-
-    public override void Enter(Actor actor)
-    {
-        actor.CollisionController.OnCollisionWithRotator.AddListener(SetTargetRotation);
-    }
-
-    public override void Update(Actor actor)
-    {
-        CalculateStrafe(actor, Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
-        base.Update(actor);
-
-        if (Input.GetButtonUp(Const.SNEAK_AXIS_NAME))
-            actor.StateController.ChangeState(actor.StateController.runState);
     }
 
     public override void Exit(Actor actor)
