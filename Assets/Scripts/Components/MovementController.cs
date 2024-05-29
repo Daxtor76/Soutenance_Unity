@@ -12,6 +12,7 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         Actor = GetComponent<Actor>();
+        Actor.StateController.OnStateChange.AddListener(AdaptMoverOnStateChange);
     }
 
     void Update()
@@ -29,5 +30,10 @@ public class MovementController : MonoBehaviour
         CurrentMover?.Exit(Actor);
         CurrentMover = newMover;
         CurrentMover?.Enter(Actor);
+    }
+
+    void AdaptMoverOnStateChange(Actor.States state)
+    {
+        CurrentMover?.AdaptMoverOnStateChange(state);
     }
 }

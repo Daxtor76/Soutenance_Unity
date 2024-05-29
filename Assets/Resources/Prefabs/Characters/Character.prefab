@@ -95,13 +95,12 @@ GameObject:
   m_Component:
   - component: {fileID: 921088965072136365}
   - component: {fileID: 4079732372208693198}
-  - component: {fileID: -2529625965523372555}
+  - component: {fileID: 7695764195561633360}
   - component: {fileID: -7310115243431133994}
   - component: {fileID: -5906775834354726520}
-  - component: {fileID: -4327315304846398277}
   - component: {fileID: 191356792600098710}
   - component: {fileID: 98972689021471089}
-  - component: {fileID: 1570750837421414280}
+  - component: {fileID: 2887974310601057014}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -139,7 +138,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090a0a3643474cd0adb81f85f896c2fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-2529625965523372555
+  OnStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7695764195561633360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,18 +189,6 @@ MonoBehaviour:
   OnCollisionWithRotator:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &-4327315304846398277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4985428344738864338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3cb9d020c444803b25028aca2fc3206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &191356792600098710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +216,7 @@ MonoBehaviour:
   ScoreChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!54 &1570750837421414280
+--- !u!54 &2887974310601057014
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -6,11 +6,9 @@ public class EnemyMovingForward : Actor
 {
     private void Start()
     {
-        StateController.idleState = new EnemyIdleState();
-        StateController.runState = new EnemyRunState();
-        
+        StateController.ChangeState(States.run);
+
         MovementController.runMover = new ForwardMover(Const.ENEMY_FORWARD_SPEED);
-        
-        StateController?.ChangeState(StateController?.idleState);
+        MovementController.ChangeMover(MovementController.runMover);
     }
 }

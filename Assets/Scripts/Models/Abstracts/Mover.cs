@@ -3,8 +3,11 @@
 public abstract class Mover : IMover
 {
     protected float ForwardSpeed { get; private set; }
-    protected float SideSpeed { get; private set; }
+    protected float StrafeSpeed { get; private set; }
     protected float RotationSpeed { get; private set; }
+    protected float _previousForwardSpeed;
+    protected float _previousStrafeSpeed;
+    protected float _previousRotationSpeed;
     private Vector3 _runVelocity = new Vector3();
     private Vector3 _strafeVelocity = new Vector3();
     private Vector3 _jumpVelocity = new Vector3();
@@ -29,6 +32,11 @@ public abstract class Mover : IMover
 
     public virtual void Exit(Actor actor)
     {
+    }
+
+    public virtual void AdaptMoverOnStateChange(Actor.States state)
+    {
+    
     }
 
     public virtual void CalculateMovement(Actor actor)
@@ -72,10 +80,10 @@ public abstract class Mover : IMover
         switch (pDir)
         {
             case > 0:
-                _strafeVelocity = actor.transform.right * SideSpeed;
+                _strafeVelocity = actor.transform.right * StrafeSpeed;
                 break;
             case < 0:
-                _strafeVelocity = -actor.transform.right * SideSpeed;
+                _strafeVelocity = -actor.transform.right * StrafeSpeed;
                 break;
             default:
                 _strafeVelocity = Vector3.zero;
@@ -137,11 +145,26 @@ public abstract class Mover : IMover
 
     public void SetStrafeSpeed(float newSpeed)
     {
-        SideSpeed = newSpeed;
+        StrafeSpeed = newSpeed;
     }
 
     public void SetRotationSpeed(float newSpeed)
     {
         RotationSpeed = newSpeed;
+    }
+
+    public float GetForwardSpeed()
+    {
+        return ForwardSpeed;
+    }
+
+    public float GetStrafeSpeed()
+    {
+        return StrafeSpeed;
+    }
+
+    public float GetRotationSpeed()
+    {
+        return RotationSpeed;
     }
 }

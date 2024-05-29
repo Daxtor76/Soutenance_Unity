@@ -1,19 +1,24 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Actor : MonoBehaviour
 {
+    public enum States
+    {
+        idle,
+        run,
+        sneak,
+        kyubi,
+        sleep
+    }
     public AnimationController AnimationController { get; private set; }
+    public StateController StateController { get; private set; }
     public CollisionController CollisionController { get; private set; }
     public MovementController MovementController { get; private set; }
-    public StateController StateController { get; private set; }
     public ScoreController ScoreController { get; private set; }
-    public InputHandler InputHandler { get; private set; }
 
-    private void Awake()
+    public virtual void Awake()
     {
-        if (TryGetComponent(out InputHandler inputHandler))
-            InputHandler = inputHandler;
-
         if (TryGetComponent(out StateController stateController))
             StateController = stateController;
 

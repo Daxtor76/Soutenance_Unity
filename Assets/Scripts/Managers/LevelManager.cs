@@ -31,6 +31,12 @@ public class LevelManager : MonoBehaviour
         //_camera = CreateCamera();
     }
 
+    private void Update()
+    {
+        if (_character.StateController.CurrentState == Actor.States.idle && Input.GetButtonDown(Const.RUN_AXIS_NAME))
+            _character.StateController.ChangeState(Actor.States.run);
+    }
+
     private void BuildPathTile()
     {
         AddTile(PickRandomTile());
@@ -63,15 +69,6 @@ public class LevelManager : MonoBehaviour
 
         foreach (Object obj in tiles)
             _tilesModels.Add(obj as GameObject);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            AddTile(_tilesModels[Random.Range(1, _tilesModels.Count)]);
-            RemoveFirstTile();
-        }
     }
 
     private void BuildInitialTiles()

@@ -61,6 +61,8 @@ public class ToTargetMover : Mover
 
 public class CharacterMover : Mover
 {
+    private bool _canJump = true;
+    private bool _canSneak = true;
     public CharacterMover(float pForwardSpeed, float pSideSpeed, float pRotationSpeed)
     {
         SetForwardSpeed(pForwardSpeed);
@@ -77,16 +79,19 @@ public class CharacterMover : Mover
     {
         if (IsGrounded(actor))
         {
-            if (actor.StateController.CurrentState.GetType() == typeof(CharacterRunState))
+            if (_canJump)
             {
                 if (Input.GetButtonDown(Const.JUMP_AXIS_NAME))
                     CalculateJump(Const.CHARACTER_JUMP_HEIGHT);
             }
-            
-            if (Input.GetButton(Const.SNEAK_AXIS_NAME))
-                actor.StateController.ChangeState(actor.StateController.sneakyState);
-            else if (Input.GetButtonUp(Const.SNEAK_AXIS_NAME))
-                actor.StateController.ChangeState(actor.StateController.runState);
+
+            if (_canSneak)
+            {
+                if (Input.GetButton(Const.SNEAK_AXIS_NAME))
+                    actor.StateController.ChangeState(Actor.States.sneak);
+                else if (Input.GetButtonUp(Const.SNEAK_AXIS_NAME))
+                    actor.StateController.ChangeState(Actor.States.run);
+            }
         }
         CalculateStrafe(actor, Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
         base.UpdateMover(actor);
@@ -95,5 +100,34 @@ public class CharacterMover : Mover
     public override void Exit(Actor actor)
     {
         actor.CollisionController.OnCollisionWithRotator.RemoveListener(SetTargetRotation);
+    }
+
+    public override void AdaptMoverOnStateChange(Actor.States state)
+    {
+        _previousForwardSpeed = ForwardSpeed;
+        _previousStrafeSpeed = StrafeSpeed;
+        _previousRotationSpeed = RotationSpeed;
+
+        if (state == Actor.States.sneak)
+        {
+            _canJump = false;
+            _canSneak = true;
+        }
+        else if (state == Actor.States.run)
+        {
+            _canJump = true;
+            _canSneak = true;
+            
+        }
+        else if (state == Actor.States.kyubi)
+        {
+            _canJump = true;
+            _canSneak = false;
+
+            float increaseFactor = 1.2f;
+            SetForwardSpeed(_previousForwardSpeed * increaseFactor);
+            SetStrafeSpeed(_previousStrafeSpeed * increaseFactor);
+            SetRotationSpeed(_previousRotationSpeed * increaseFactor);
+        }
     }
 }

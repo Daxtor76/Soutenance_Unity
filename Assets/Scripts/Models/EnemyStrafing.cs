@@ -6,11 +6,9 @@ public class EnemyStrafing : Actor
 {
     private void Start()
     {
-        StateController.idleState = new EnemyIdleState();
-        StateController.runState = new EnemyRunState();
-        
+        StateController.ChangeState(States.run);
+
         MovementController.runMover = new StrafeMover(Const.ENEMY_SIDE_SPEED);
-        
-        StateController?.ChangeState(StateController.idleState);
+        MovementController.ChangeMover(MovementController.runMover);
     }
 }
