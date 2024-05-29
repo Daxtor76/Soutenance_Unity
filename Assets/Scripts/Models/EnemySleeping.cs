@@ -11,15 +11,18 @@ public class EnemySleeping : Actor
     {
         target = GameObject.Find("Character").GetComponent<Actor>();
 
-        StateController.ChangeState(States.sleep);
+        StateController?.ChangeState(States.sleep);
 
         MovementController.runMover = new ToTargetMover(Const.ENEMY_FORWARD_SPEED, Const.ENEMY_SIDE_SPEED, target);
     }
 
     private void Update()
     {
-        if (!IsCharacterSneaky() && IsCharacterTooClose(target.transform.position, 5.0f))
-            StateController.ChangeState(States.run);
+        if (GameManager.Instance.CurrentState == GameManager.GameStates.Playing && 
+            StateController.CurrentState == States.sleep &&
+            !IsCharacterSneaky() && 
+            IsCharacterTooClose(target.transform.position, 5.0f))
+            StateController?.ChangeState(States.run);
     }
 
     bool IsCharacterSneaky()

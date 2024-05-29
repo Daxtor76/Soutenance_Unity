@@ -9,7 +9,8 @@ public abstract class Actor : MonoBehaviour
         run,
         sneak,
         kyubi,
-        sleep
+        sleep,
+        dead
     }
     public AnimationController AnimationController { get; private set; }
     public StateController StateController { get; private set; }

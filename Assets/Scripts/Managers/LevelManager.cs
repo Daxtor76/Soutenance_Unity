@@ -20,21 +20,19 @@ public class LevelManager : MonoBehaviour
     {
         LoadTiles();
         _tilesContainer = GetTilesContainer();
+        GameManager.Instance.OnGameStateChange.AddListener(OnGameStateChange);
     }
 
-    private void Start()
+    private void OnGameStateChange(GameManager.GameStates state)
     {
-        BuildInitialTiles();
-        _character = CreateCharacter();
-        _character.CollisionController.OnCollisionWithTileSpawner.AddListener(BuildPathTile);
+        if (state == GameManager.GameStates.MainMenu)
+        {
+            BuildInitialTiles();
+            _character = CreateCharacter();
+            _character.CollisionController.OnCollisionWithTileSpawner.AddListener(BuildPathTile);
 
-        //_camera = CreateCamera();
-    }
-
-    private void Update()
-    {
-        if (_character.StateController.CurrentState == Actor.States.idle && Input.GetButtonDown(Const.RUN_AXIS_NAME))
-            _character.StateController.ChangeState(Actor.States.run);
+            //_camera = CreateCamera();
+        }
     }
 
     private void BuildPathTile()

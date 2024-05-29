@@ -73,6 +73,10 @@ public class CharacterMover : Mover
     public override void Enter(Actor actor)
     {
         actor.CollisionController.OnCollisionWithRotator.AddListener(SetTargetRotation);
+
+        _previousForwardSpeed = ForwardSpeed;
+        _previousStrafeSpeed = StrafeSpeed;
+        _previousRotationSpeed = RotationSpeed;
     }
 
     public override void UpdateMover(Actor actor)
@@ -87,9 +91,9 @@ public class CharacterMover : Mover
 
             if (_canSneak)
             {
-                if (Input.GetButton(Const.SNEAK_AXIS_NAME))
+                if (Input.GetButton(Const.SNEAK_AXIS_NAME) && actor.StateController.CurrentState != Actor.States.sneak)
                     actor.StateController.ChangeState(Actor.States.sneak);
-                else if (Input.GetButtonUp(Const.SNEAK_AXIS_NAME))
+                else if (Input.GetButtonUp(Const.SNEAK_AXIS_NAME) && actor.StateController.CurrentState != Actor.States.run)
                     actor.StateController.ChangeState(Actor.States.run);
             }
         }
@@ -112,22 +116,30 @@ public class CharacterMover : Mover
         {
             _canJump = false;
             _canSneak = true;
+
+            SetForwardSpeed(Const.CHARACTER_SNEAKY_FORWARD_SPEED);
+            SetStrafeSpeed(Const.CHARACTER_SNEAKY_STRAFE_SPEED);
+            SetRotationSpeed(Const.CHARACTER_ROTATION_SPEED);
         }
         else if (state == Actor.States.run)
         {
             _canJump = true;
             _canSneak = true;
-            
+
+            SetForwardSpeed(Const.CHARACTER_FORWARD_SPEED);
+            SetStrafeSpeed(Const.CHARACTER_STRAFE_SPEED);
+            SetRotationSpeed(Const.CHARACTER_ROTATION_SPEED);
         }
         else if (state == Actor.States.kyubi)
         {
             _canJump = true;
             _canSneak = false;
 
-            float increaseFactor = 1.2f;
-            SetForwardSpeed(_previousForwardSpeed * increaseFactor);
-            SetStrafeSpeed(_previousStrafeSpeed * increaseFactor);
-            SetRotationSpeed(_previousRotationSpeed * increaseFactor);
+            float speedFactor = 1.2f;
+
+            SetForwardSpeed(Const.CHARACTER_FORWARD_SPEED * speedFactor);
+            SetStrafeSpeed(Const.CHARACTER_STRAFE_SPEED * speedFactor);
+            SetRotationSpeed(Const.CHARACTER_ROTATION_SPEED * speedFactor);
         }
     }
 }

@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 3920423519590658992}
   m_Layer: 0
   m_Name: Enemy_MovingForward
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,6 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1a552c916645c1bbf13742c406a345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnStateChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-8232455804756641608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,9 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd5fd4754f8854418f21be03026e13e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnStateChange:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &2773442150355402792
 MonoBehaviour:
   m_ObjectHideFlags: 0

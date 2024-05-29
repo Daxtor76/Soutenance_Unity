@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class MovementController : MonoBehaviour
 {
@@ -34,6 +35,20 @@ public class MovementController : MonoBehaviour
 
     void AdaptMoverOnStateChange(Actor.States state)
     {
-        CurrentMover?.AdaptMoverOnStateChange(state);
+        if (state == Actor.States.idle || state == Actor.States.sleep || state == Actor.States.dead)
+        {
+            ChangeMover(null);
+            return;
+        }
+        else
+        {
+            if (CurrentMover == null)
+            {
+                ChangeMover(runMover);
+                return;
+            }
+            CurrentMover?.AdaptMoverOnStateChange(state);
+        }
+
     }
 }
