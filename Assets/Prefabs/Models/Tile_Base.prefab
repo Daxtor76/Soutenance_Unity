@@ -392,7 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 133b25ec055189546a76d8b4db6de1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 0, y: 0, z: 0}
+  spawnChance: 0
 --- !u!1 &6284658798268087582
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,6 +465,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8058757235186682038}
+  - component: {fileID: 5652620490263791380}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
@@ -481,7 +482,7 @@ Transform:
   m_GameObject: {fileID: 6945635780845453531}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.22, z: 0}
+  m_LocalPosition: {x: 0, y: -0.243, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -997,6 +998,18 @@ Transform:
   - {fileID: 3864197242130680032}
   m_Father: {fileID: 1773944470311069283}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5652620490263791380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6945635780845453531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e02f6e130b78d4da76d80b09ef0f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7693282279767895798
 GameObject:
   m_ObjectHideFlags: 0

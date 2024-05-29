@@ -40,7 +40,7 @@
 - Bug
 	o Strafing enemy doesn't take rotation of the world in account -> ok
 - Make StateController difuse events and other controllers to react to it
-	o Maybe delete StateController and make it an enum in Actor
+	o Maybe delete StateController and make it an enum in Actor -> ok
 - Feature: when the character gather enough patounes, he becomes in fire, goes faster and can kill enemies
 	o Gather enough patounes
 	o RunInvincibleState

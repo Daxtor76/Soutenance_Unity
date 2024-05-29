@@ -30,8 +30,8 @@ public class EnemySleeping : Actor
         return target.StateController.CurrentState == States.sneak;
     }
 
-    bool IsCharacterTooClose(Vector3 actorPos, float distance)
+    bool IsCharacterTooClose(Vector3 targetPos, float distance)
     {
-        return Vector3.Distance(actorPos, target.transform.position) < distance;
+        return Vector3.Distance(transform.position, targetPos) < distance;
     }
 }
