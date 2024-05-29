@@ -37,21 +37,44 @@
 	o Make a cool algorithm -> ok
 - Integrate assets
 	o Ghosts -> ok
+- Bug
+	o Strafing enemy doesn't take rotation of the world in account -> ok
 - Feature: when the character gather enough patounes, he becomes in fire, goes faster and can kill enemies
+	o Gather enough patounes
+	o RunInvincibleState
+	o Death system
 - Actors animation clean
 	- Use blend tree in animator
+	o Don't forget to switch mesh from sleeping enemy
+	o Dog cool idle blend
+	o Dog run
+	o Dog jump
+	o Dog strafe
+	o Dog sneak
+	o Ghost idle
+	o Ghost run
+	o Ghost strafe (dance ?)
+	o Ghost sleep
+	o Ghost waking up
+	o Ghost follow dog
 - Camera
 	o Strafing effect (rotate on z)
 	o Acceleration effect (fov ?)
 	o Curved chunk anim (???)
-- Defeat
+- End scene
+	o Defeat system
+	o Stats
+		- Distance
+		- Enemies killed
+		- Patoune score
+	o Pass data between scenes with a singleton
 - Main menu (no scene switch to game)
+	o Camera
+	o Cool dog idle
 - Tutorial
 	o Pause game when new enemy
 	o Description display
 	o Space to close
-- Pass data between scenes with a singleton
-- End scene
 - Polish
 	o Coyote time
 	o Buffer jump input if character almost on the ground

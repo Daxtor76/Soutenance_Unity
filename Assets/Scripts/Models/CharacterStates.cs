@@ -7,7 +7,7 @@ public class CharacterIdleState : State
         actor.MovementController.ChangeMover(null);
     }
 
-    public override void Update(Actor actor)
+    public override void UpdateState(Actor actor)
     {
         if (Input.GetButtonDown(Const.RUN_AXIS_NAME))
         {

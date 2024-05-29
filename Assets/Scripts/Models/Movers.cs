@@ -13,17 +13,17 @@ public class StrafeMover : Mover
             _strafeDirection = Random.Range(-1, 2);
     }
 
-    public override void Update(Actor actor)
+    public override void UpdateMover(Actor actor)
     {
         CalculateStrafe(actor, GetStrafeDirection(actor));
-        base.Update(actor);
+        base.UpdateMover(actor);
     }
 
     private int GetStrafeDirection(Actor actor)
     {
-        if (actor.transform.position.x >= 4.0f)
+        if (actor.transform.localPosition.x >= 4.0f)
             _strafeDirection = 1;
-        else if (actor.transform.position.x <= -4.0f)
+        else if (actor.transform.localPosition.x <= -4.0f)
             _strafeDirection = -1;
         return _strafeDirection;
     }
@@ -73,7 +73,7 @@ public class CharacterMover : Mover
         actor.CollisionController.OnCollisionWithRotator.AddListener(SetTargetRotation);
     }
 
-    public override void Update(Actor actor)
+    public override void UpdateMover(Actor actor)
     {
         if (IsGrounded(actor))
         {
@@ -89,7 +89,7 @@ public class CharacterMover : Mover
                 actor.StateController.ChangeState(actor.StateController.runState);
         }
         CalculateStrafe(actor, Input.GetAxisRaw(Const.STRAFE_AXIS_NAME));
-        base.Update(actor);
+        base.UpdateMover(actor);
     }
 
     public override void Exit(Actor actor)

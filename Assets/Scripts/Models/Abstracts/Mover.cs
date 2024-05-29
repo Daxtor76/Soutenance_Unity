@@ -17,12 +17,12 @@ public abstract class Mover : IMover
         _targetRotation = _currentRotation;
     }
 
-    public virtual void Update(Actor actor)
+    public virtual void UpdateMover(Actor actor)
     {
         CalculateMovement(actor);
     }
 
-    public virtual void FixedUpdate(Actor actor)
+    public virtual void FixedUpdateMover(Actor actor)
     {
         ApplyMovement(actor);
     }

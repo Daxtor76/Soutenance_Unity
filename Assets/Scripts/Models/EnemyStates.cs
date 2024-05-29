@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyIdleState : State
 {
-    public override void Update(Actor actor)
+    public override void UpdateState(Actor actor)
     {
         actor.StateController.ChangeState(actor.StateController.runState);
     }
@@ -25,7 +25,7 @@ public class EnemySleepState : State
         _character = GameObject.Find("Character").GetComponent<Character>();
     }
 
-    public override void Update(Actor actor)
+    public override void UpdateState(Actor actor)
     {
         if (!IsCharacterSneaky() && IsCharacterTooClose(actor.transform.position, 5.0f))
             actor.MovementController.ChangeMover(actor.MovementController.runMover);

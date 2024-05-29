@@ -11,7 +11,7 @@ public interface IMover
     public bool IsGrounded(Actor actor);
     void CalculateJump(float jumpHeight);
     void Enter(Actor actor);
-    void Update(Actor actor);
-    void FixedUpdate(Actor actor);
+    void UpdateMover(Actor actor);
+    void FixedUpdateMover(Actor actor);
     void Exit(Actor actor);
 }

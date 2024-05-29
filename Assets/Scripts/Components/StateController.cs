@@ -20,7 +20,7 @@ public class StateController : MonoBehaviour
 
     private void Update()
     {
-        CurrentState?.Update(Actor);
+        CurrentState?.UpdateState(Actor);
     }
 
     private void OnObstacleHit(GameObject other)

@@ -16,12 +16,12 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
-        CurrentMover?.Update(Actor);
+        CurrentMover?.UpdateMover(Actor);
     }
 
     private void FixedUpdate()
     {
-        CurrentMover?.FixedUpdate(Actor);
+        CurrentMover?.FixedUpdateMover(Actor);
     }
 
     public void ChangeMover(IMover newMover)

@@ -6,7 +6,7 @@ public abstract class State : IState
     {
     }
 
-    public virtual void Update(Actor actor)
+    public virtual void UpdateState(Actor actor)
     {
     }
 
