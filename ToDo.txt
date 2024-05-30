@@ -62,7 +62,7 @@
 	o Ghost follow dog
 - Camera
 	o Running effect (bouncing)
-	o Strafing effect (rotate on z)
+	o Strafing effect (rotate on z) -> ok
 	o Acceleration effect (fov ?) -> ok
 	o Curved chunk anim (???)
 - End scene
