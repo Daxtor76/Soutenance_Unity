@@ -33,8 +33,8 @@ public static class Const
     public const string PATH_TO_TILES_FOLDER = "Prefabs/Tiles/";
     public const string INITIAL_TILE_NAME = "Tile_Beginning";
     public const string COMMON_TILE_NAME = "Tile";
-    public const string PATH_TO_CONTROLLERS_FOLDER = "Prefabs/Controllers/";
-    public const string LEVEL_CONTROLLER_NAME = "LevelController";
+    public const string PATH_TO_MANAGERS_FOLDER = "Prefabs/Managers/";
+    public const string LEVEL_MANAGER_NAME = "LevelManager";
 
     public const string CHARACTER_CAMERA_DUMMY = "CameraDummy";
     public const string TILE_NEXT_SPAWN_DUMMY = "NextSpawnDummy";

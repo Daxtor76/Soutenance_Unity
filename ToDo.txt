@@ -45,7 +45,11 @@
 	o Gather enough patounes -> ok
 	o Activate kyubi state -> ok
 	o Death system for enemies -> ok
-	o Graphics (orbs)
+	o Graphics
+		o orbs: add MeshFX_Golden
+		o dog: try MeshFX_Dark, MeshFX_Shock_Blue
+		o Make previous effects spawn
+		o Dog : add a wind trail in kyubi mode
 - Actors animation clean
 	- Use blend tree in animator
 	o Don't forget to switch mesh from sleeping enemy
