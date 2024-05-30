@@ -16,7 +16,7 @@ public class ScoreController : MonoBehaviour
         actor = GetComponent<Actor>();
         _currentPatounesCount = 0;
         TotalPatounesCount = 0;
-        _patouneThreshold = 3;
+        _patouneThreshold = 1;
         actor.CollisionController?.OnCollisionWithPatoune?.AddListener(OnHitPatoune);
     }
 

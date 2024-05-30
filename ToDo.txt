@@ -61,8 +61,9 @@
 	o Ghost waking up
 	o Ghost follow dog
 - Camera
+	o Running effect (bouncing)
 	o Strafing effect (rotate on z)
-	o Acceleration effect (fov ?)
+	o Acceleration effect (fov ?) -> ok
 	o Curved chunk anim (???)
 - End scene
 	o Defeat system
