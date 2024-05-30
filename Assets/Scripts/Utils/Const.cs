@@ -40,4 +40,7 @@ public static class Const
     
     // UI
     public const string SCORING_TEXT_NAME = "ScoringText";
+
+    // LayerMasks
+    public const string LAYERMASK_GROUND_NAME = "Ground";
 }

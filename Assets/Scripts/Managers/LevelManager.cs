@@ -16,7 +16,8 @@ public class LevelManager : MonoBehaviour
     private List<GameObject> _tilesModels = new List<GameObject>();
     [SerializeField]private List<GameObject> spawnedTiles = new List<GameObject>();
     private string _previousTileTag = "";
-    private void Awake()
+
+    private void Start()
     {
         LoadTiles();
         _tilesContainer = GetTilesContainer();

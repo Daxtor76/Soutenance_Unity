@@ -7,7 +7,9 @@ public class ScoreController : MonoBehaviour
 {
     private Actor actor;
     public int Points { get; private set; }
-    public UnityEvent<int> ScoreChanged = new UnityEvent<int>();
+    public int scoreThreshold = 5;
+    public UnityEvent<int> OnScoreChange = new UnityEvent<int>();
+    public UnityEvent OnScoreThresholdReached = new UnityEvent();
     private void Awake()
     {
         actor = GetComponent<Actor>();
@@ -21,9 +23,22 @@ public class ScoreController : MonoBehaviour
         Destroy(other);
     }
 
+    private bool IsScoreThresholdReached()
+    {
+        if (Points >= scoreThreshold)
+        {
+            scoreThreshold *= 2;
+            return true;
+        }
+        return false;
+    }
+
     private void WinPoints(int value)
     {
         Points += value;
-        ScoreChanged.Invoke(Points);
+        OnScoreChange.Invoke(Points);
+
+        if (IsScoreThresholdReached())
+            OnScoreThresholdReached.Invoke();
     }
 }

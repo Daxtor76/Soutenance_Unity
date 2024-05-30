@@ -129,7 +129,7 @@ public abstract class Mover : IMover
     public bool IsGrounded(Actor actor)
     {
         Vector3 startPosition = actor.transform.position + Vector3.up;
-        Physics.Raycast(startPosition, Vector3.down, out RaycastHit hit, 1.5f, LayerMask.GetMask("Ground"));
+        Physics.Raycast(startPosition, Vector3.down, out RaycastHit hit, 1.5f, LayerMask.GetMask(Const.LAYERMASK_GROUND_NAME));
 
         if (!hit.transform)
             return false;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,6 @@ public class StateController : MonoBehaviour
     {
         CurrentState = newstate;
         OnStateChange?.Invoke(CurrentState);
-        Debug.Log($"{transform.gameObject.name} has changed state to {CurrentState}");
+        Debug.Log($"{transform.gameObject.name} has changed to {CurrentState} state");
     }
 }

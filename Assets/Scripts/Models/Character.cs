@@ -2,6 +2,10 @@
 using UnityEngine;
 public class Character : Actor
 {
+    public float kyubiTimer = 10.0f;
+    public float initKyubiTime;
+    private float _currentTimer;
+
     private void Start()
     {
         StateController?.ChangeState(States.idle);
@@ -12,23 +16,38 @@ public class Character : Actor
             Const.CHARACTER_ROTATION_SPEED
         );
 
-        CollisionController?.OnCollisionWithObstacle.AddListener(OnObstacleHit);
+        CollisionController?.OnCollisionWithObstacle?.AddListener(OnObstacleHit);
+        ScoreController?.OnScoreThresholdReached?.AddListener(GoKyubi);
     }
 
     private void Update()
     {
+        // ????
         if (GameManager.Instance.CurrentState == GameManager.GameStates.Playing && StateController.CurrentState == States.idle)
             StateController.ChangeState(States.run);
 
-        if (Input.GetKeyDown(KeyCode.K) && StateController.CurrentState != States.kyubi)
-            StateController.ChangeState(States.kyubi);
+        // DEBUG : TO REMOVE
+        if (Input.GetButtonDown(Const.RUN_AXIS_NAME) && StateController?.CurrentState == States.dead)
+            StateController?.ChangeState(States.run);
 
-        if (Input.GetButtonDown(Const.RUN_AXIS_NAME) && StateController.CurrentState == States.dead)
-            StateController.ChangeState(States.run);
+        if (StateController?.CurrentState == States.kyubi)
+        {
+            _currentTimer = Time.time;
+            Debug.Log(_currentTimer - initKyubiTime);
+            if (_currentTimer - initKyubiTime > kyubiTimer)
+                StateController?.ChangeState(States.run);
+        }
     }
 
-    public virtual void OnObstacleHit(GameObject other)
+    void GoKyubi()
     {
-        StateController.ChangeState(States.dead);
+        StateController?.ChangeState(States.kyubi);
+        initKyubiTime = Time.time;
+    }
+
+    void OnObstacleHit(GameObject other)
+    {
+        if (StateController?.CurrentState != States.kyubi)
+            StateController?.ChangeState(States.dead);
     }
 }

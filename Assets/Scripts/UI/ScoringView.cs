@@ -14,7 +14,7 @@ public class ScoringView : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<ScoreController>()?.ScoreChanged.AddListener(OnScoreChange);
+        FindObjectOfType<ScoreController>()?.OnScoreChange.AddListener(OnScoreChange);
         scoringText.text = 0.ToString();
     }
 

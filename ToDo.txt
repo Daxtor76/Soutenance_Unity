@@ -42,8 +42,8 @@
 - Make StateController difuse events and other controllers to react to it
 	o Maybe delete StateController and make it an enum in Actor -> ok
 - Feature: when the character gather enough patounes, he becomes in fire, goes faster and can kill enemies
-	o Gather enough patounes
-	o RunInvincibleState
+	o Gather enough patounes -> ok
+	o Activate kyubi state
 	o Death system
 - Actors animation clean
 	- Use blend tree in animator

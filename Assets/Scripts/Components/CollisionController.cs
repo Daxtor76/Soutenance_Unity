@@ -12,7 +12,7 @@ public class CollisionController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"{gameObject.name} collided with {other.gameObject.name} of tag {other.gameObject.tag}");
+        //Debug.Log($"{gameObject.name} collided with {other.gameObject.name} of tag {other.gameObject.tag}");
         if (other.gameObject.CompareTag(Const.OBSTACLE_TAG_NAME))
         {
             OnCollisionWithObstacle?.Invoke(other.gameObject);
