@@ -6,14 +6,17 @@ using UnityEngine.Serialization;
 public class ScoreController : MonoBehaviour
 {
     private Actor actor;
-    public int Points { get; private set; }
-    public int scoreThreshold = 5;
+    public int TotalPatounesCount { get; private set; }
+    private int _currentPatounesCount;
+    private int _patouneThreshold;
     public UnityEvent<int> OnScoreChange = new UnityEvent<int>();
     public UnityEvent OnScoreThresholdReached = new UnityEvent();
     private void Awake()
     {
         actor = GetComponent<Actor>();
-        Points = 0;
+        _currentPatounesCount = 0;
+        TotalPatounesCount = 0;
+        _patouneThreshold = 3;
         actor.CollisionController?.OnCollisionWithPatoune?.AddListener(OnHitPatoune);
     }
 
@@ -25,20 +28,19 @@ public class ScoreController : MonoBehaviour
 
     private bool IsScoreThresholdReached()
     {
-        if (Points >= scoreThreshold)
-        {
-            scoreThreshold *= 2;
-            return true;
-        }
-        return false;
+        return _currentPatounesCount >= _patouneThreshold;
     }
 
     private void WinPoints(int value)
     {
-        Points += value;
-        OnScoreChange.Invoke(Points);
+        _currentPatounesCount += 1;
+        TotalPatounesCount += value;
+        OnScoreChange.Invoke(TotalPatounesCount);
 
         if (IsScoreThresholdReached())
+        {
+            _currentPatounesCount = 0;
             OnScoreThresholdReached.Invoke();
+        }
     }
 }

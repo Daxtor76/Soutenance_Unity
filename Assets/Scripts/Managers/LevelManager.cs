@@ -36,10 +36,23 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void ActivateAllPatounes(bool value)
+    {
+        foreach (GameObject tile in spawnedTiles)
+        {
+            tile.transform.Find(Const.TILE_PATOUNES_DUMMY).gameObject.SetActive(value);
+        }
+    }
+
     private void BuildPathTile()
     {
         AddTile(PickRandomTile());
         RemoveFirstTile();
+
+        if (_character.StateController.CurrentState != Actor.States.kyubi)
+            ActivateAllPatounes(true);
+        else
+            ActivateAllPatounes(false);
     }
 
     private Character CreateCharacter()

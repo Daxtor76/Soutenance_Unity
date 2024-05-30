@@ -43,8 +43,9 @@
 	o Maybe delete StateController and make it an enum in Actor -> ok
 - Feature: when the character gather enough patounes, he becomes in fire, goes faster and can kill enemies
 	o Gather enough patounes -> ok
-	o Activate kyubi state
-	o Death system
+	o Activate kyubi state -> ok
+	o Death system for enemies -> ok
+	o Graphics (orbs)
 - Actors animation clean
 	- Use blend tree in animator
 	o Don't forget to switch mesh from sleeping enemy

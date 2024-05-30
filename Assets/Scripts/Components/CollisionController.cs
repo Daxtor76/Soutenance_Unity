@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 public class CollisionController : MonoBehaviour
 {
     public UnityEvent<GameObject> OnCollisionWithObstacle = new UnityEvent<GameObject>();
+    public UnityEvent<GameObject> OnCollisionWithEnemy = new UnityEvent<GameObject>();
     public UnityEvent<GameObject> OnCollisionWithPatoune = new UnityEvent<GameObject>();
     public UnityEvent OnCollisionWithTileSpawner = new UnityEvent();
     public UnityEvent<int> OnCollisionWithRotator = new UnityEvent<int>();
@@ -16,6 +17,10 @@ public class CollisionController : MonoBehaviour
         if (other.gameObject.CompareTag(Const.OBSTACLE_TAG_NAME))
         {
             OnCollisionWithObstacle?.Invoke(other.gameObject);
+        }
+        else if (other.gameObject.CompareTag(Const.ENEMY_TAG_NAME))
+        {
+            OnCollisionWithEnemy?.Invoke(other.gameObject);
         }
         else if (other.gameObject.CompareTag(Const.PATOUNE_TAG_NAME))
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 public class Character : Actor
 {
     public float kyubiTimer = 10.0f;
@@ -17,6 +18,7 @@ public class Character : Actor
         );
 
         CollisionController?.OnCollisionWithObstacle?.AddListener(OnObstacleHit);
+        CollisionController?.OnCollisionWithEnemy?.AddListener(OnEnemyHit);
         ScoreController?.OnScoreThresholdReached?.AddListener(GoKyubi);
     }
 
@@ -26,14 +28,14 @@ public class Character : Actor
         if (GameManager.Instance.CurrentState == GameManager.GameStates.Playing && StateController.CurrentState == States.idle)
             StateController.ChangeState(States.run);
 
-        // DEBUG : TO REMOVE
+        // TODO : TO REMOVE
         if (Input.GetButtonDown(Const.RUN_AXIS_NAME) && StateController?.CurrentState == States.dead)
             StateController?.ChangeState(States.run);
 
         if (StateController?.CurrentState == States.kyubi)
         {
             _currentTimer = Time.time;
-            Debug.Log(_currentTimer - initKyubiTime);
+            //Debug.Log(_currentTimer - initKyubiTime);
             if (_currentTimer - initKyubiTime > kyubiTimer)
                 StateController?.ChangeState(States.run);
         }
@@ -43,6 +45,17 @@ public class Character : Actor
     {
         StateController?.ChangeState(States.kyubi);
         initKyubiTime = Time.time;
+    }
+
+    private void OnEnemyHit(GameObject other)
+    {
+        if (StateController?.CurrentState != States.kyubi)
+            StateController?.ChangeState(States.dead);
+        else
+        {
+            // Increase data here for final score calculation
+            Destroy(other);
+        }
     }
 
     void OnObstacleHit(GameObject other)

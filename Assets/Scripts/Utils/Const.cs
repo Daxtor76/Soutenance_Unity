@@ -17,6 +17,7 @@ public static class Const
     public const string TILESPAWNER_TAG_NAME = "TileSpawner";
     public const string LEFT_ROTATOR_TAG_NAME = "LeftRotator";
     public const string RIGHT_ROTATOR_TAG_NAME = "RightRotator";
+    public const string ENEMY_TAG_NAME = "Enemy";
     
     // Controls
     public const string STRAFE_AXIS_NAME = "Strafe";
@@ -37,6 +38,7 @@ public static class Const
 
     public const string CHARACTER_CAMERA_DUMMY = "CameraDummy";
     public const string TILE_NEXT_SPAWN_DUMMY = "NextSpawnDummy";
+    public const string TILE_PATOUNES_DUMMY = "Patounes";
     
     // UI
     public const string SCORING_TEXT_NAME = "ScoringText";
