@@ -15,8 +15,8 @@ public class CameraController : MonoBehaviour
 
     private bool _canInterpolateFOV = false;
     private float _kyubiFOVTransitionSpeed = 3f;
-    private int _kyubiFOVTransitionSign = 1;
-    private float _cameraInitialFOV = 60.0f;
+    private int _kyubiFOVTransitionSign = -1;
+    private float _cameraMinFOV = 60.0f;
     private float _cameraMaxFOV = 70.0f;
     private float _FOVInterpolator = 0.0f;
 
@@ -34,27 +34,34 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         LookAtCharacter();
-        //FollowTarget(_target);
 
         // Increase FOV when in kyubi state
-        _camera.fieldOfView = Mathf.Lerp(_cameraInitialFOV, _cameraMaxFOV, _FOVInterpolator);
         if (_canInterpolateFOV)
         {
             _FOVInterpolator += _kyubiFOVTransitionSpeed * Time.deltaTime * _kyubiFOVTransitionSign;
             _FOVInterpolator = Mathf.Clamp(_FOVInterpolator, 0.0f, 1.0f);
+            _camera.fieldOfView = Mathf.Lerp(_cameraMinFOV, _cameraMaxFOV, _FOVInterpolator);
+
+            if (_camera.fieldOfView == _cameraMinFOV || _camera.fieldOfView == _cameraMaxFOV)
+                _canInterpolateFOV = false;
         }
+    }
+
+    private void LateUpdate()
+    {
     }
 
     private void AdaptFromStateChange(Actor.States newState)
     {
         if (newState == Actor.States.kyubi)
         {
-            _canInterpolateFOV = true;
             _kyubiFOVTransitionSign = 1;
+            _canInterpolateFOV = true;
         }
         else
         {
             _kyubiFOVTransitionSign = -1;
+            _canInterpolateFOV = true;
         }
     }
 
