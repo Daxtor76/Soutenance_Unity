@@ -59,36 +59,14 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         LookAtTargetDummy();
+        ApplyFOVEffect();
+        ApplyCameraPositioning();
+        ApplyBobbingEffect();
+        RotateOnStrafe();
+    }
 
-        // Increase FOV when in kyubi state
-        if (_canInterpolateFOV)
-        {
-            _FOVInterpolator += _kyubiFOVTransitionSpeed * Time.deltaTime * _kyubiFOVTransitionSign;
-            _FOVInterpolator = Mathf.Clamp(_FOVInterpolator, 0.0f, 1.0f);
-            _camera.fieldOfView = Mathf.Lerp(_cameraMinFOV, _cameraMaxFOV, _FOVInterpolator);
-
-            if (_camera.fieldOfView == _cameraMinFOV || _camera.fieldOfView == _cameraMaxFOV)
-                _canInterpolateFOV = false;
-        }
-        // Change position when in kyubi state
-        Vector3 newPosition = Vector3.SmoothDamp(transform.parent.position, _destination.position, ref _currentVelocity, _kyubiPosTransitionSpeed);
-        transform.parent.position = newPosition;
-
-        // Bobbing effect when running
-        if (_canInterpolatePosition)
-        {
-            _interpolator += _cameraMovementSpeed * Time.deltaTime * _interpolationSign;
-            transform.parent.localPosition = new Vector3(
-                transform.parent.localPosition.x,
-                transform.parent.localPosition.y + _interpolator,
-                transform.parent.localPosition.z);
-
-            if (_interpolator >= _maxPositionOffset)
-                _interpolationSign = -1;
-            else if (_interpolator <= 0.0f)
-                _interpolationSign = 1;
-        }
-
+    private void RotateOnStrafe()
+    {
         // Rotate when strafe
         if (_character.StateController.CurrentState != Actor.States.idle && _character.StateController.CurrentState != Actor.States.dead)
         {
@@ -104,6 +82,45 @@ public class CameraController : MonoBehaviour
                     _rotator = 0.0f;
             }
             transform.parent.rotation *= Quaternion.Euler(0.0f, 0.0f, _rotator);
+        }
+    }
+
+    private void ApplyBobbingEffect()
+    {
+        // Bobbing effect when running
+        if (_canInterpolatePosition)
+        {
+            _interpolator += _cameraMovementSpeed * Time.deltaTime * _interpolationSign;
+            transform.parent.localPosition = new Vector3(
+                transform.parent.localPosition.x,
+                transform.parent.localPosition.y + _interpolator,
+                transform.parent.localPosition.z);
+
+            if (_interpolator >= _maxPositionOffset)
+                _interpolationSign = -1;
+            else if (_interpolator <= 0.0f)
+                _interpolationSign = 1;
+        }
+    }
+
+    private void ApplyCameraPositioning()
+    {
+        // Change position when in kyubi state
+        Vector3 newPosition = Vector3.SmoothDamp(transform.parent.position, _destination.position, ref _currentVelocity, _kyubiPosTransitionSpeed);
+        transform.parent.position = newPosition;
+    }
+
+    private void ApplyFOVEffect()
+    {
+        // Increase FOV when in kyubi state
+        if (_canInterpolateFOV)
+        {
+            _FOVInterpolator += _kyubiFOVTransitionSpeed * Time.deltaTime * _kyubiFOVTransitionSign;
+            _FOVInterpolator = Mathf.Clamp(_FOVInterpolator, 0.0f, 1.0f);
+            _camera.fieldOfView = Mathf.Lerp(_cameraMinFOV, _cameraMaxFOV, _FOVInterpolator);
+
+            if (_camera.fieldOfView == _cameraMinFOV || _camera.fieldOfView == _cameraMaxFOV)
+                _canInterpolateFOV = false;
         }
     }
 
