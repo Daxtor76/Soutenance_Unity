@@ -49,15 +49,15 @@
 		o orbs: add MeshFX_Golden -> ok
 		o dog: try MeshFX_Dark, MeshFX_Shock_Blue -> ok
 		o Dog : add a wind trail in kyubi mode -> ok
-		o Make previous effects spawn
+		o orbs spawn and disappear -> ok
 - FX :
 	o Hit patoune -> ok
 	o Hit by enemy
 	o Hit by obstacle
 	o Hit enemy -> ok
+	o Don't forget to switch mesh from sleeping enemy
 - Actors animation clean
 	- Use blend tree in animator
-	o Don't forget to switch mesh from sleeping enemy
 	o Dog cool idle blend
 	o Dog run
 	o Dog jump
