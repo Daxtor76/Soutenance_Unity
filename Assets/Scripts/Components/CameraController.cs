@@ -23,7 +23,6 @@ public class CameraController : MonoBehaviour
 
     // Rotation Strafe effect
     float rotator = 0.0f;
-    private bool _canRotate = false;
     private float _minRotation = -2.5f;
     private float _maxRotation = 2.5f;
     private float _rotationSpeed = 5.0f;
@@ -56,18 +55,21 @@ public class CameraController : MonoBehaviour
         }
 
         // Rotate when strafe
-        rotator += _rotationSpeed * Time.deltaTime * -Input.GetAxisRaw(Const.STRAFE_AXIS_NAME);
-        rotator = Mathf.Clamp(rotator, _minRotation, _maxRotation);
-        if (Input.GetAxisRaw(Const.STRAFE_AXIS_NAME) == 0.0f)
+        if (_character.StateController.CurrentState != Actor.States.idle && _character.StateController.CurrentState != Actor.States.dead)
         {
-            if (rotator < 0.0f)
-                rotator += _backRotationSpeed * Time.deltaTime;
-            else if (rotator > 0.0f)
-                rotator -= _backRotationSpeed * Time.deltaTime;
-            else
-                rotator = 0.0f;
+            rotator += _rotationSpeed * Time.deltaTime * -Input.GetAxisRaw(Const.STRAFE_AXIS_NAME);
+            rotator = Mathf.Clamp(rotator, _minRotation, _maxRotation);
+            if (Input.GetAxisRaw(Const.STRAFE_AXIS_NAME) == 0.0f)
+            {
+                if (rotator < 0.0f)
+                    rotator += _backRotationSpeed * Time.deltaTime;
+                else if (rotator > 0.0f)
+                    rotator -= _backRotationSpeed * Time.deltaTime;
+                else
+                    rotator = 0.0f;
+            }
+            transform.parent.rotation *= Quaternion.Euler(0.0f, 0.0f, rotator);
         }
-        transform.parent.rotation *= Quaternion.Euler(0.0f, 0.0f, rotator);
     }
 
     private void AdaptFromStateChange(Actor.States newState)

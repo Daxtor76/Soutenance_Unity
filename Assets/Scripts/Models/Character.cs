@@ -20,14 +20,17 @@ public class Character : Actor
         CollisionController?.OnCollisionWithObstacle?.AddListener(OnObstacleHit);
         CollisionController?.OnCollisionWithEnemy?.AddListener(OnEnemyHit);
         ScoreController?.OnScoreThresholdReached?.AddListener(GoKyubi);
+        GameManager.Instance.OnGameStateChange?.AddListener(OnGameStateChange);
+    }
+
+    private void OnGameStateChange(GameManager.GameStates state)
+    {
+        if (state == GameManager.GameStates.Playing)
+            StateController.ChangeState(States.run);
     }
 
     private void Update()
     {
-        // ????
-        if (GameManager.Instance.CurrentState == GameManager.GameStates.Playing && StateController.CurrentState == States.idle)
-            StateController.ChangeState(States.run);
-
         // TODO : TO REMOVE
         if (Input.GetButtonDown(Const.RUN_AXIS_NAME) && StateController?.CurrentState == States.dead)
             StateController?.ChangeState(States.run);
