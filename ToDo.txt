@@ -72,11 +72,11 @@
 	o Ghost follow dog
 	o Ghost death
 - Camera
-	o Running effect (bouncing)
+	o Running effect (bouncing) -> ok
 	o Strafing effect (rotate on z) -> ok
 	o Acceleration effect (fov ?) -> ok
 	o Acceleration effect (increase distance between camera and character) -> ok
-	o Curved chunk anim (???)
+	o Curved chunk anim (???) -> NO
 - End scene
 	o Defeat system
 	o Stats

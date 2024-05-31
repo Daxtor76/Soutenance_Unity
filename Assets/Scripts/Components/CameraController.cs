@@ -27,12 +27,19 @@ public class CameraController : MonoBehaviour
     private float _kyubiPosTransitionSpeed = 0.3f;
 
     // Rotation Strafe effect
-    float rotator = 0.0f;
+    private float _rotator = 0.0f;
     private float _minRotation = -2.5f;
     private float _maxRotation = 2.5f;
     private float _rotationSpeed = 5.0f;
     private float _backRotationSpeed = 15.0f;
     private Transform _destination;
+
+    // Position running effect
+    private bool _canInterpolatePosition = false;
+    private float _interpolator = 0.0f;
+    private float _maxPositionOffset = 0.01f;
+    private float _cameraMovementSpeed;
+    private int _interpolationSign = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -67,26 +74,49 @@ public class CameraController : MonoBehaviour
         Vector3 newPosition = Vector3.SmoothDamp(transform.parent.position, _destination.position, ref _currentVelocity, _kyubiPosTransitionSpeed);
         transform.parent.position = newPosition;
 
+        // Bobbing effect when running
+        if (_canInterpolatePosition)
+        {
+            _interpolator += _cameraMovementSpeed * Time.deltaTime * _interpolationSign;
+            transform.parent.localPosition = new Vector3(
+                transform.parent.localPosition.x,
+                transform.parent.localPosition.y + _interpolator,
+                transform.parent.localPosition.z);
+
+            if (_interpolator >= _maxPositionOffset)
+                _interpolationSign = -1;
+            else if (_interpolator <= 0.0f)
+                _interpolationSign = 1;
+        }
+
         // Rotate when strafe
         if (_character.StateController.CurrentState != Actor.States.idle && _character.StateController.CurrentState != Actor.States.dead)
         {
-            rotator += _rotationSpeed * Time.deltaTime * -Input.GetAxisRaw(Const.STRAFE_AXIS_NAME);
-            rotator = Mathf.Clamp(rotator, _minRotation, _maxRotation);
+            _rotator += _rotationSpeed * Time.deltaTime * -Input.GetAxisRaw(Const.STRAFE_AXIS_NAME);
+            _rotator = Mathf.Clamp(_rotator, _minRotation, _maxRotation);
             if (Input.GetAxisRaw(Const.STRAFE_AXIS_NAME) == 0.0f)
             {
-                if (rotator < 0.0f)
-                    rotator += _backRotationSpeed * Time.deltaTime;
-                else if (rotator > 0.0f)
-                    rotator -= _backRotationSpeed * Time.deltaTime;
+                if (_rotator < 0.0f)
+                    _rotator += _backRotationSpeed * Time.deltaTime;
+                else if (_rotator > 0.0f)
+                    _rotator -= _backRotationSpeed * Time.deltaTime;
                 else
-                    rotator = 0.0f;
+                    _rotator = 0.0f;
             }
-            transform.parent.rotation *= Quaternion.Euler(0.0f, 0.0f, rotator);
+            transform.parent.rotation *= Quaternion.Euler(0.0f, 0.0f, _rotator);
         }
     }
 
     private void AdaptFromStateChange(Actor.States newState)
     {
+        if (newState != Actor.States.idle && newState != Actor.States.sleep && newState != Actor.States.dead)
+        {
+            _cameraMovementSpeed = _character.MovementController.CurrentMover.GetForwardSpeed() * 0.02f;
+            _canInterpolatePosition = true;
+        }
+        else
+            _canInterpolatePosition = false;
+
         if (newState == Actor.States.kyubi)
         {
             _kyubiFOVTransitionSign = 1;
