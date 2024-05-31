@@ -3,23 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class CameraController : MonoBehaviour
 {
     private Transform _target;
     private Actor _character;
     private Camera _camera;
-    private Vector3 _posFromTarget;
 
     private Vector3 _currentVelocity;
 
     // FOV acceleration effect
     private bool _canInterpolateFOV = false;
-    private float _kyubiFOVTransitionSpeed = 3f;
+    private float _kyubiFOVTransitionSpeed = 3.0f;
     private int _kyubiFOVTransitionSign = -1;
     private float _cameraMinFOV = 60.0f;
     private float _cameraMaxFOV = 70.0f;
     private float _FOVInterpolator = 0.0f;
+
+    // Position acceleration effect
+    private Transform _normalDummy;
+    private Transform _kyubiDummy;
+    private float _kyubiPosTransitionSpeed = 0.3f;
 
     // Rotation Strafe effect
     float rotator = 0.0f;
@@ -27,21 +32,26 @@ public class CameraController : MonoBehaviour
     private float _maxRotation = 2.5f;
     private float _rotationSpeed = 5.0f;
     private float _backRotationSpeed = 15.0f;
+    private Transform _destination;
 
     // Start is called before the first frame update
     void Start()
     {
-        _target = GameObject.Find(Const.CHARACTER_NAME).transform.Find(Const.CHARACTER_CAMERA_DUMMY);
-        _character = transform.parent.transform.parent.gameObject.GetComponent<Actor>();
         _camera = GetComponent<Camera>();
-        _posFromTarget = transform.position - _target.position;
+        _character = transform.parent.transform.parent.gameObject.GetComponent<Actor>();
+        _target = _character.transform.Find(Const.CAMERA_TARGET_DUMMY);
+        _normalDummy = _character.transform.Find(Const.CAMERA_NORMAL_DUMMY);
+        _kyubiDummy = _character.transform.Find(Const.CAMERA_KYUBI_DUMMY);
+
+        transform.parent.position = _normalDummy.position;
+
         _character.StateController.OnStateChange.AddListener(AdaptFromStateChange);
     }
 
     // Update is called once per frame
     void Update()
     {
-        LookAtCharacter();
+        LookAtTargetDummy();
 
         // Increase FOV when in kyubi state
         if (_canInterpolateFOV)
@@ -53,6 +63,9 @@ public class CameraController : MonoBehaviour
             if (_camera.fieldOfView == _cameraMinFOV || _camera.fieldOfView == _cameraMaxFOV)
                 _canInterpolateFOV = false;
         }
+        // Change position when in kyubi state
+        Vector3 newPosition = Vector3.SmoothDamp(transform.parent.position, _destination.position, ref _currentVelocity, _kyubiPosTransitionSpeed);
+        transform.parent.position = newPosition;
 
         // Rotate when strafe
         if (_character.StateController.CurrentState != Actor.States.idle && _character.StateController.CurrentState != Actor.States.dead)
@@ -78,21 +91,17 @@ public class CameraController : MonoBehaviour
         {
             _kyubiFOVTransitionSign = 1;
             _canInterpolateFOV = true;
+            _destination = _kyubiDummy;
         }
         else
         {
             _kyubiFOVTransitionSign = -1;
             _canInterpolateFOV = true;
+            _destination = _normalDummy;
         }
     }
 
-    private void FollowTarget(Transform target)
-    {
-        Vector3 newPosition = Vector3.SmoothDamp(transform.position, target.position + _posFromTarget, ref _currentVelocity, 0.15f);
-        transform.position = newPosition;
-    }
-
-    private void LookAtCharacter()
+    private void LookAtTargetDummy()
     {
         transform.LookAt(_target);
     }

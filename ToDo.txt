@@ -53,6 +53,7 @@
 - FX :
 	o Hit patoune
 	o Hit by enemy
+	o Hit by obstacle
 	o Hit enemy
 - Actors animation clean
 	- Use blend tree in animator
@@ -62,16 +63,19 @@
 	o Dog jump
 	o Dog strafe
 	o Dog sneak
+	o Dog death
 	o Ghost idle
 	o Ghost run
 	o Ghost strafe (dance ?)
 	o Ghost sleep
 	o Ghost waking up
 	o Ghost follow dog
+	o Ghost death
 - Camera
 	o Running effect (bouncing)
 	o Strafing effect (rotate on z) -> ok
 	o Acceleration effect (fov ?) -> ok
+	o Acceleration effect (increase distance between camera and character) -> ok
 	o Curved chunk anim (???)
 - End scene
 	o Defeat system

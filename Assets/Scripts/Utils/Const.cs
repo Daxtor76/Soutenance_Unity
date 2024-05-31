@@ -36,7 +36,9 @@ public static class Const
     public const string PATH_TO_MANAGERS_FOLDER = "Prefabs/Managers/";
     public const string LEVEL_MANAGER_NAME = "LevelManager";
 
-    public const string CHARACTER_CAMERA_DUMMY = "CameraDummy";
+    public const string CAMERA_TARGET_DUMMY = "CameraTargetDummy";
+    public const string CAMERA_NORMAL_DUMMY = "CameraNormalDummy";
+    public const string CAMERA_KYUBI_DUMMY = "CameraKyubiDummy";
     public const string TILE_NEXT_SPAWN_DUMMY = "NextSpawnDummy";
     public const string TILE_PATOUNES_DUMMY = "Patounes";
     
