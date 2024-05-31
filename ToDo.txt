@@ -51,10 +51,10 @@
 		o Dog : add a wind trail in kyubi mode -> ok
 		o Make previous effects spawn
 - FX :
-	o Hit patoune
+	o Hit patoune -> ok
 	o Hit by enemy
 	o Hit by obstacle
-	o Hit enemy
+	o Hit enemy -> ok
 - Actors animation clean
 	- Use blend tree in animator
 	o Don't forget to switch mesh from sleeping enemy

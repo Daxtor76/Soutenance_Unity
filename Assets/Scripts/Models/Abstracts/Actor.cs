@@ -39,4 +39,9 @@ public abstract class Actor : MonoBehaviour
         if (TryGetComponent(out SpecialFXController specialFXController))
             SpecialFXController = specialFXController;
     }
+
+    public GameObject GetMesh()
+    {
+        return transform.Find("Mesh").gameObject;
+    }
 }

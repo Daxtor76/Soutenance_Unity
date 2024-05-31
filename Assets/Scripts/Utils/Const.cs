@@ -18,6 +18,7 @@ public static class Const
     public const string LEFT_ROTATOR_TAG_NAME = "LeftRotator";
     public const string RIGHT_ROTATOR_TAG_NAME = "RightRotator";
     public const string ENEMY_TAG_NAME = "Enemy";
+    public const string CHARACTER_TAG_NAME = "Character";
     
     // Controls
     public const string STRAFE_AXIS_NAME = "Strafe";

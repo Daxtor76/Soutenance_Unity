@@ -340,6 +340,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8179850747392577604}
     m_Modifications:
+    - target: {fileID: 1733363689929356789, guid: 3c43bd9edf2be934d8fffd00212b737e, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4911902327936415331, guid: 3c43bd9edf2be934d8fffd00212b737e, type: 3}
       propertyPath: m_Name
       value: Patoune
@@ -350,7 +354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6820068723482740852, guid: 3c43bd9edf2be934d8fffd00212b737e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.95
+      value: 0.89
       objectReference: {fileID: 0}
     - target: {fileID: 6820068723482740852, guid: 3c43bd9edf2be934d8fffd00212b737e, type: 3}
       propertyPath: m_LocalPosition.z

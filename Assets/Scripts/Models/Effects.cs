@@ -34,11 +34,13 @@ public class DeathFX : IEffect
 
     public void Trigger()
     {
-        effectObject.SetActive(true);
+        foreach (Transform obj in effectObject.GetComponentInChildren<Transform>(true))
+            obj.gameObject.SetActive(true);
     }
 
     public void Disable()
     {
-        effectObject.SetActive(false);
+        foreach (Transform obj in effectObject.GetComponentInChildren<Transform>(true))
+            obj.gameObject.SetActive(false);
     }
 }

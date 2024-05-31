@@ -7,6 +7,8 @@ public class Character : Actor
     public float initKyubiTime;
     private float _currentTimer;
 
+    public UnityEvent OnCharacterHit = new UnityEvent();
+
     private void Start()
     {
         SpecialFXController.PopulateCharacterFXBank();
@@ -40,7 +42,6 @@ public class Character : Actor
         if (StateController?.CurrentState == States.kyubi)
         {
             _currentTimer = Time.time;
-            //Debug.Log(_currentTimer - initKyubiTime);
             if (_currentTimer - initKyubiTime > kyubiTimer)
                 StateController?.ChangeState(States.run);
         }
@@ -52,15 +53,10 @@ public class Character : Actor
         initKyubiTime = Time.time;
     }
 
-    private void OnEnemyHit(GameObject other)
+    void OnEnemyHit(Actor other)
     {
         if (StateController?.CurrentState != States.kyubi)
             StateController?.ChangeState(States.dead);
-        else
-        {
-            // Increase data here for final score calculation
-            Destroy(other);
-        }
     }
 
     void OnObstacleHit(GameObject other)

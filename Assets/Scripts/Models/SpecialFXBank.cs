@@ -12,13 +12,16 @@ public class SpecialFXBank
         _specialEffects.Add(fx.GetType(), fx);
     }
 
+    public Dictionary<Type, IEffect> GetEffects()
+    {
+        return _specialEffects;
+    }
+
     public IEffect GetEffectOfType<T>()
     {
-        IEffect effect = _specialEffects[typeof(T)];
+        if (_specialEffects.ContainsKey(typeof(T)))
+            return _specialEffects[typeof(T)];
 
-        if (effect != null)
-            return effect;
-        else
-            return null;
+        return null;
     }
 }

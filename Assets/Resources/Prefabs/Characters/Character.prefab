@@ -74,7 +74,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2302521168894205150}
-  - component: {fileID: 1294175470169267032}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -98,27 +97,6 @@ Transform:
   - {fileID: 7474166438649723189}
   m_Father: {fileID: 921088965072136365}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1294175470169267032
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2475270805305299323}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.3, z: 0.3}
-  m_Center: {x: 0, y: 0.25, z: 0.25}
 --- !u!1 &4441783102934260767
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,9 +178,10 @@ GameObject:
   - component: {fileID: 98972689021471089}
   - component: {fileID: -2062490817906243159}
   - component: {fileID: 2887974310601057014}
+  - component: {fileID: 7748276273546183789}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,6 +221,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kyubiTimer: 10
   initKyubiTime: 0
+  OnCharacterHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7695764195561633360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +267,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnCollisionWithEnemy:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCollisionWithCharacter:
     m_PersistentCalls:
       m_Calls: []
   OnCollisionWithPatoune:
@@ -365,6 +350,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &7748276273546183789
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4985428344738864338}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.3, z: 0.3}
+  m_Center: {x: 0, y: 0.25, z: 0.25}
 --- !u!1 &8265709090252124925
 GameObject:
   m_ObjectHideFlags: 0

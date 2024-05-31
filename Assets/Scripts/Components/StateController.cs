@@ -16,6 +16,6 @@ public class StateController : MonoBehaviour
         PreviousState = CurrentState;
         CurrentState = newstate;
         OnStateChange?.Invoke(CurrentState);
-        Debug.Log($"{transform.gameObject.name} has changed from {PreviousState} to {CurrentState} state");
+        //Debug.Log($"{transform.gameObject.name} has changed from {PreviousState} to {CurrentState} state");
     }
 }
