@@ -9,6 +9,8 @@ public class Character : Actor
 
     private void Start()
     {
+        SpecialFXController.PopulateCharacterFXBank();
+
         StateController?.ChangeState(States.idle);
 
         MovementController.runMover = new CharacterMover(

@@ -43,7 +43,7 @@ public class CameraController : MonoBehaviour
         _normalDummy = _character.transform.Find(Const.CAMERA_NORMAL_DUMMY);
         _kyubiDummy = _character.transform.Find(Const.CAMERA_KYUBI_DUMMY);
 
-        transform.parent.position = _normalDummy.position;
+        _destination = _normalDummy;
 
         _character.StateController.OnStateChange.AddListener(AdaptFromStateChange);
     }

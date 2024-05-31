@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7257115210456631752
 Transform:
   m_ObjectHideFlags: 0
@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: -5906775834354726520}
   - component: {fileID: 191356792600098710}
   - component: {fileID: 98972689021471089}
+  - component: {fileID: -2062490817906243159}
   - component: {fileID: 2887974310601057014}
   m_Layer: 0
   m_Name: Character
@@ -325,6 +326,18 @@ MonoBehaviour:
   OnScoreThresholdReached:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-2062490817906243159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4985428344738864338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea7b218244b6404fa9e85aa3251132b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &2887974310601057014
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -500,7 +513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3696007233179127096, guid: e0e57c59bf66714418816c1796e67ffa, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3696007233179127097, guid: e0e57c59bf66714418816c1796e67ffa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -660,7 +673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3199540439946060812, guid: bfa5e1ad8aae47f4b9f353e36ebdf7aa, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3199540439946060815, guid: bfa5e1ad8aae47f4b9f353e36ebdf7aa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -846,7 +859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3951614152475905818, guid: f94f9185192a5d749b8a65f7729fde51, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3951614152475905823, guid: f94f9185192a5d749b8a65f7729fde51, type: 3}
       propertyPath: scalingMode
