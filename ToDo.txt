@@ -62,8 +62,10 @@
 	o Hit by enemy
 	o Hit by obstacle
 	o Don't forget to switch mesh from sleeping enemy
+- AnimationController
+	o Do it like Movers and MovementController
+	o Create ActorAnimator for character and ActorAnimator for enemies
 - Actors animation clean
-	- Use blend tree in animator
 	o Dog cool idle blend
 	o Dog run
 	o Dog jump
