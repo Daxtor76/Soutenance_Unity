@@ -86,7 +86,11 @@ public class CharacterMover : Mover
             if (_canJump)
             {
                 if (Input.GetButtonDown(Const.JUMP_AXIS_NAME))
+                {
                     CalculateJump(Const.CHARACTER_JUMP_HEIGHT);
+                    // TO DO : put it in animationcontroller
+                    actor.AnimationController.Animator.SetTrigger("Jump");
+                }
             }
 
             if (_canSneak)

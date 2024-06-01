@@ -50,11 +50,17 @@
 		o dog: try MeshFX_Dark, MeshFX_Shock_Blue -> ok
 		o Dog : add a wind trail in kyubi mode -> ok
 		o orbs spawn and disappear -> ok
+- Camera
+	o Running effect (bouncing) -> ok
+	o Strafing effect (rotate on z) -> ok
+	o Acceleration effect (fov ?) -> ok
+	o Acceleration effect (increase distance between camera and character) -> ok
+	o Curved chunk anim (???) -> NO
 - FX :
 	o Hit patoune -> ok
+	o Hit enemy -> ok
 	o Hit by enemy
 	o Hit by obstacle
-	o Hit enemy -> ok
 	o Don't forget to switch mesh from sleeping enemy
 - Actors animation clean
 	- Use blend tree in animator
@@ -64,6 +70,7 @@
 	o Dog strafe
 	o Dog sneak
 	o Dog death
+	o Dog hit enemy
 	o Ghost idle
 	o Ghost run
 	o Ghost strafe (dance ?)
@@ -71,12 +78,10 @@
 	o Ghost waking up
 	o Ghost follow dog
 	o Ghost death
-- Camera
-	o Running effect (bouncing) -> ok
-	o Strafing effect (rotate on z) -> ok
-	o Acceleration effect (fov ?) -> ok
-	o Acceleration effect (increase distance between camera and character) -> ok
-	o Curved chunk anim (???) -> NO
+- Bug camera
+	o Constant SmoothDamp make the camera flick a little when running and camera is almost placed
+- MovementSpeed
+	o Manage Speed permanent increasing when going kyubi
 - End scene
 	o Defeat system
 	o Stats
