@@ -86,9 +86,7 @@ public class CharacterMover : Mover
             if (_canJump)
             {
                 if (Input.GetButtonDown(Const.JUMP_AXIS_NAME))
-                {
                     CalculateJump(Const.CHARACTER_JUMP_HEIGHT);
-                }
             }
 
             if (_canSneak)
@@ -110,27 +108,25 @@ public class CharacterMover : Mover
 
     public override void AdaptMoverOnStateChange(Actor.States state)
     {
-        _previousForwardSpeed = ForwardSpeed;
-        _previousStrafeSpeed = StrafeSpeed;
-        _previousRotationSpeed = RotationSpeed;
-
         if (state == Actor.States.sneak)
         {
             _canJump = false;
             _canSneak = true;
 
-            SetForwardSpeed(Const.CHARACTER_SNEAKY_FORWARD_SPEED);
-            SetStrafeSpeed(Const.CHARACTER_SNEAKY_STRAFE_SPEED);
-            SetRotationSpeed(Const.CHARACTER_ROTATION_SPEED);
+            float speedFactor = 0.8f;
+
+            SetForwardSpeed(_previousForwardSpeed * speedFactor);
+            SetStrafeSpeed(_previousStrafeSpeed * speedFactor);
+            SetRotationSpeed(_previousRotationSpeed * speedFactor);
         }
         else if (state == Actor.States.run)
         {
             _canJump = true;
             _canSneak = true;
 
-            SetForwardSpeed(Const.CHARACTER_FORWARD_SPEED);
-            SetStrafeSpeed(Const.CHARACTER_STRAFE_SPEED);
-            SetRotationSpeed(Const.CHARACTER_ROTATION_SPEED);
+            SetForwardSpeed(_previousForwardSpeed);
+            SetStrafeSpeed(_previousStrafeSpeed);
+            SetRotationSpeed(_previousRotationSpeed);
         }
         else if (state == Actor.States.kyubi)
         {
@@ -139,9 +135,13 @@ public class CharacterMover : Mover
 
             float speedFactor = 1.2f;
 
-            SetForwardSpeed(Const.CHARACTER_FORWARD_SPEED * speedFactor);
-            SetStrafeSpeed(Const.CHARACTER_STRAFE_SPEED * speedFactor);
-            SetRotationSpeed(Const.CHARACTER_ROTATION_SPEED * speedFactor);
+            SetForwardSpeed(_previousForwardSpeed * speedFactor);
+            SetStrafeSpeed(_previousStrafeSpeed * speedFactor);
+            SetRotationSpeed(_previousRotationSpeed * speedFactor);
+
+            _previousForwardSpeed = ForwardSpeed;
+            _previousStrafeSpeed = StrafeSpeed;
+            _previousRotationSpeed = RotationSpeed;
         }
     }
 }

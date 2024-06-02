@@ -78,7 +78,7 @@
 	o Dog death -> ok
 	o Dog hit enemy -> ok
 - MovementSpeed
-	o Manage Speed permanent increasing when going kyubi
+	o Manage Speed permanent increasing when going kyubi -> ok
 - Bug camera
 	o Constant SmoothDamp make the camera flick a little when running and camera is almost placed
 - End scene
