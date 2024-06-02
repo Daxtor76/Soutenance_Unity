@@ -25,6 +25,8 @@ public class Character : Actor
         CollisionController?.OnCollisionWithEnemy?.AddListener(OnEnemyHit);
         ScoreController?.OnScoreThresholdReached?.AddListener(GoKyubi);
         GameManager.Instance.OnGameStateChange?.AddListener(OnGameStateChange);
+
+        AnimationController?.SetActorAnimator(new CharacterAnimator());
     }
 
     private void OnGameStateChange(GameManager.GameStates state)

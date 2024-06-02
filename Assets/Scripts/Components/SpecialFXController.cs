@@ -14,7 +14,14 @@ public class SpecialFXController : MonoBehaviour
     {
         Actor = GetComponent<Actor>();
         bank = new SpecialFXBank();
-        Actor.StateController.OnStateChange.AddListener(OnStateChange);
+        Actor?.StateController?.OnStateChange?.AddListener(OnStateChange);
+        Actor?.CollisionController?.OnCollisionWithEnemy?.AddListener(OnCharacterAttack);
+    }
+
+    private void OnCharacterAttack(Actor other)
+    {
+        if (Actor.StateController.CurrentState == Actor.States.kyubi)
+            TriggerFX(bank.GetEffectOfType<AttackFX>());
     }
 
     private void OnStateChange(Actor.States state)
@@ -45,8 +52,12 @@ public class SpecialFXController : MonoBehaviour
     {
         Transform actorFX = Actor.transform.Find("FX");
         KyubiFX kyubiFX = new KyubiFX(actorFX.Find("Kyubi").gameObject);
+        AttackFX attackFX = new AttackFX(actorFX.Find("Attack").gameObject);
+        DeathFX deathFX = new DeathFX(actorFX.Find("Death").gameObject);
 
         bank.AddEffect(kyubiFX);
+        bank.AddEffect(attackFX);
+        bank.AddEffect(deathFX);
     }
 
     public void TriggerFX(IEffect fx)

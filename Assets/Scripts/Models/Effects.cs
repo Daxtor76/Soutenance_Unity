@@ -23,6 +23,27 @@ public class KyubiFX : IEffect
             obj.gameObject.SetActive(false);
     }
 }
+public class AttackFX : IEffect
+{
+    GameObject effectObject;
+
+    public AttackFX(GameObject fxObj)
+    {
+        effectObject = fxObj;
+    }
+
+    public void Trigger()
+    {
+        foreach (Transform obj in effectObject.GetComponentInChildren<Transform>(true))
+            obj.gameObject.SetActive(true);
+    }
+
+    public void Disable()
+    {
+        foreach (Transform obj in effectObject.GetComponentInChildren<Transform>(true))
+            obj.gameObject.SetActive(false);
+    }
+}
 public class DeathFX : IEffect
 {
     GameObject effectObject;
