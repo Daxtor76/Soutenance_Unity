@@ -34,6 +34,16 @@ public class SpecialFXController : MonoBehaviour
         {
             TriggerFX(bank.GetEffectOfType<DeathFX>());
         }
+        else if (state == Actor.States.run)
+        {
+            TriggerFX(bank.GetEffectOfType<RunFX>());
+
+            if (Actor.GetType() == typeof(EnemySleeping))
+            {
+                foreach (Transform fx in Actor.GetMesh().transform)
+                    fx.gameObject.SetActive(false);
+            }
+        }
         else
         {
             DisableFX(bank.GetEffectOfType<KyubiFX>());
@@ -44,8 +54,10 @@ public class SpecialFXController : MonoBehaviour
     {
         Transform actorFX = Actor.transform.Find("FX");
         DeathFX deathFX = new DeathFX(actorFX.Find("Death").gameObject);
+        RunFX runFX = new RunFX(actorFX.Find("WakeUp").gameObject);
 
         bank.AddEffect(deathFX);
+        bank.AddEffect(runFX);
     }
 
     public void PopulateCharacterFXBank()

@@ -2,6 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class RunFX : IEffect
+{
+    GameObject effectObject;
+
+    public RunFX(GameObject fxObj)
+    {
+        effectObject = fxObj;
+    }
+
+    public void Trigger()
+    {
+        foreach (Transform obj in effectObject.GetComponentInChildren<Transform>(true))
+            obj.gameObject.SetActive(true);
+    }
+
+    public void Disable()
+    {
+        foreach (Transform obj in effectObject.GetComponentInChildren<Transform>(true))
+            obj.gameObject.SetActive(false);
+    }
+}
 public class KyubiFX : IEffect
 {
     GameObject effectObject;

@@ -61,9 +61,9 @@
 	o Hit enemy -> ok
 	o Hit by enemy -> ok
 	o Hit by obstacle -> ok
-	o Sleeping enemy waking up
-		o Switch mesh
-		o Wake up effect
+	o Sleeping enemy waking up -> ok
+		o Switch mesh -> ok
+		o Wake up effect -> ok
 - AnimationController
 	o Do it like Movers and MovementController -> ok
 	o Create ActorAnimator for character -> ok
