@@ -108,7 +108,7 @@ public class CameraController : MonoBehaviour
         // Change position when in kyubi state
         Vector3 newPosition;
 
-        if (Vector3.Distance(transform.parent.position, _destination.position) > 0.1f)
+        if (Vector3.Distance(transform.parent.position, _destination.position) > 0.05f)
             newPosition = Vector3.SmoothDamp(transform.parent.position, _destination.position, ref _currentVelocity, _kyubiPosTransitionSpeed);
         else
             newPosition = _destination.position;
