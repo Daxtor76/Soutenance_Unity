@@ -80,7 +80,7 @@
 - MovementSpeed
 	o Manage Speed permanent increasing when going kyubi -> ok
 - Bug camera
-	o Constant SmoothDamp make the camera flick a little when running and camera is almost placed
+	o Constant SmoothDamp make the camera flick a little when running and camera is almost placed -> ok
 - End scene
 	o Defeat system
 	o Stats

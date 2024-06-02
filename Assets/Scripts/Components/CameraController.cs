@@ -37,7 +37,7 @@ public class CameraController : MonoBehaviour
     // Position running effect
     private bool _canInterpolatePosition = false;
     private float _interpolator = 0.0f;
-    private float _maxPositionOffset = 0.01f;
+    private float _maxPositionOffset = 0.005f;
     private float _cameraMovementSpeed;
     private int _interpolationSign = 1;
 
@@ -61,7 +61,7 @@ public class CameraController : MonoBehaviour
         LookAtTargetDummy();
         ApplyFOVEffect();
         ApplyCameraPositioning();
-        ApplyBobbingEffect();
+        ApplyBobbingEffect(_character);
         RotateOnStrafe();
     }
 
@@ -85,20 +85,20 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void ApplyBobbingEffect()
+    private void ApplyBobbingEffect(Actor actor)
     {
         // Bobbing effect when running
-        if (_canInterpolatePosition)
+        if (_canInterpolatePosition && actor.MovementController.CurrentMover.IsGrounded(actor))
         {
             _interpolator += _cameraMovementSpeed * Time.deltaTime * _interpolationSign;
-            transform.parent.localPosition = new Vector3(
-                transform.parent.localPosition.x,
-                transform.parent.localPosition.y + _interpolator,
-                transform.parent.localPosition.z);
+            _target.position = new Vector3(
+                _target.position.x,
+                _target.position.y + _interpolator,
+                _target.position.z);
 
             if (_interpolator >= _maxPositionOffset)
                 _interpolationSign = -1;
-            else if (_interpolator <= 0.0f)
+            else if (_interpolator <= -_maxPositionOffset)
                 _interpolationSign = 1;
         }
     }
@@ -106,7 +106,13 @@ public class CameraController : MonoBehaviour
     private void ApplyCameraPositioning()
     {
         // Change position when in kyubi state
-        Vector3 newPosition = Vector3.SmoothDamp(transform.parent.position, _destination.position, ref _currentVelocity, _kyubiPosTransitionSpeed);
+        Vector3 newPosition;
+
+        if (Vector3.Distance(transform.parent.position, _destination.position) > 0.1f)
+            newPosition = Vector3.SmoothDamp(transform.parent.position, _destination.position, ref _currentVelocity, _kyubiPosTransitionSpeed);
+        else
+            newPosition = _destination.position;
+
         transform.parent.position = newPosition;
     }
 
