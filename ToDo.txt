@@ -67,24 +67,16 @@
 - AnimationController
 	o Do it like Movers and MovementController -> ok
 	o Create ActorAnimator for character -> ok
-	o Create ActorAnimator for strafing enemy
-	o Create ActorAnimator for forward enemy
+	o Create ActorAnimator for strafing enemy -> ok
+	o Create ActorAnimator for forward enemy -> ok
 	o Create ActorAnimator for sleeping enemy
-- Actors animation clean
-	o Dog cool idle blend
+- Actors animation clean -> ok
 	o Dog run -> ok
 	o Dog jump -> ok
 	o Dog strafe -> ok
 	o Dog sneak -> ok
 	o Dog death -> ok
 	o Dog hit enemy -> ok
-	o Ghost idle
-	o Ghost run
-	o Ghost strafe (dance ?)
-	o Ghost sleep
-	o Ghost waking up
-	o Ghost follow dog
-	o Ghost death
 - Bug camera
 	o Constant SmoothDamp make the camera flick a little when running and camera is almost placed
 - MovementSpeed
@@ -97,8 +89,8 @@
 		- Patoune score
 	o Pass data between scenes with a singleton
 - Main menu (no scene switch to game)
-	o Camera
-	o Cool dog idle
+	o Camera rotation
+	o Cool dog idle blend
 - Upload on itch.io
 
 

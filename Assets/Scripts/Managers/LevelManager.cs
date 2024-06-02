@@ -87,11 +87,11 @@ public class LevelManager : MonoBehaviour
     {
         AddTile(_tilesModels[0]);
         // TODO: remove this debug
-        /*AddTile(_tilesModels[7]);
         AddTile(_tilesModels[7]);
         AddTile(_tilesModels[7]);
         AddTile(_tilesModels[7]);
-        AddTile(_tilesModels[7]);*/
+        AddTile(_tilesModels[7]);
+        AddTile(_tilesModels[7]);
         AddTile(PickRandomTile());
         AddTile(PickRandomTile());
         AddTile(PickRandomTile());
