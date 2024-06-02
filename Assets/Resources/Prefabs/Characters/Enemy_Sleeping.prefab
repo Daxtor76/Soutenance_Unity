@@ -30,6 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9002104966243356999}
+  - {fileID: 7759590804445248987}
   m_Father: {fileID: 8133891195061249520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1160007050169631547
@@ -133,6 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  _meshes: []
 --- !u!114 &2773442150355402792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +314,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8952014378328810301}
-  - {fileID: 7759590804445248987}
   m_Father: {fileID: 5358452882832369026}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7267420404457970350
@@ -355,23 +356,27 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 744564650969715740}
+    m_TransformParent: {fileID: 457916893472888989}
     m_Modifications:
     - target: {fileID: 2677912534179458801, guid: 3dcc94ecf63963d4eb95ff088493999b, type: 3}
       propertyPath: m_Name
-      value: Litle_Ghost (3)
+      value: RunningMesh
       objectReference: {fileID: 0}
     - target: {fileID: 2677912534179458801, guid: 3dcc94ecf63963d4eb95ff088493999b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3019859895107720098, guid: 3dcc94ecf63963d4eb95ff088493999b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 397ef1fce4ebeeb4296bf13ed796e591, type: 2}
     - target: {fileID: 3342246991934878795, guid: 3dcc94ecf63963d4eb95ff088493999b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3342246991934878795, guid: 3dcc94ecf63963d4eb95ff088493999b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3342246991934878795, guid: 3dcc94ecf63963d4eb95ff088493999b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -405,7 +410,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3019859895107720100, guid: 3dcc94ecf63963d4eb95ff088493999b, type: 3}
+    - {fileID: 3019859895107720099, guid: 3dcc94ecf63963d4eb95ff088493999b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -425,7 +432,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1209366485020444027, guid: db8cfe09f34d380458a323dab8cb3f4a, type: 3}
       propertyPath: m_Name
-      value: Litle_Ghost (2)
+      value: SleepingMesh
       objectReference: {fileID: 0}
     - target: {fileID: 1209366485020444027, guid: db8cfe09f34d380458a323dab8cb3f4a, type: 3}
       propertyPath: m_IsActive
@@ -474,7 +481,7 @@ PrefabInstance:
     - target: {fileID: 2020394092451936300, guid: db8cfe09f34d380458a323dab8cb3f4a, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 49e6576b40a1c654ca47fe7c578f63e9, type: 2}
+      objectReference: {fileID: 9100000, guid: 17119f1ccec1edc489af7d7afc66d2f6, type: 2}
     - target: {fileID: 2020394092451936302, guid: db8cfe09f34d380458a323dab8cb3f4a, type: 3}
       propertyPath: m_IsKinematic
       value: 1

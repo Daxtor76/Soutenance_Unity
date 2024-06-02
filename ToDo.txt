@@ -69,7 +69,7 @@
 	o Create ActorAnimator for character -> ok
 	o Create ActorAnimator for strafing enemy -> ok
 	o Create ActorAnimator for forward enemy -> ok
-	o Create ActorAnimator for sleeping enemy
+	o Create ActorAnimator for sleeping enemy -> ok
 - Actors animation clean -> ok
 	o Dog run -> ok
 	o Dog jump -> ok
@@ -77,10 +77,10 @@
 	o Dog sneak -> ok
 	o Dog death -> ok
 	o Dog hit enemy -> ok
-- Bug camera
-	o Constant SmoothDamp make the camera flick a little when running and camera is almost placed
 - MovementSpeed
 	o Manage Speed permanent increasing when going kyubi
+- Bug camera
+	o Constant SmoothDamp make the camera flick a little when running and camera is almost placed
 - End scene
 	o Defeat system
 	o Stats
@@ -91,6 +91,8 @@
 - Main menu (no scene switch to game)
 	o Camera rotation
 	o Cool dog idle blend
+- Polish
+- New chunks
 - Upload on itch.io
 
 

@@ -3,16 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 
-public class EnemyStrafingAnimator : ActorAnimator
-{
-    public override void AdaptOnStateChange(Actor actor, Actor.States state)
-    {
-        if (state == Actor.States.run)
-            actor.AnimationController?.Animator.SetTrigger("LaunchGame");
-    }
-}
-
-public class EnemyMovingForwardAnimator : ActorAnimator
+public class EnemyAnimator : ActorAnimator
 {
     public override void AdaptOnStateChange(Actor actor, Actor.States state)
     {

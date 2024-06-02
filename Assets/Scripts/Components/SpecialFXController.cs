@@ -38,13 +38,6 @@ public class SpecialFXController : MonoBehaviour
             case Actor.States.run:
                 DisableFX(bank.GetEffectOfType<KyubiFX>());
                 TriggerFX(bank.GetEffectOfType<RunFX>());
-
-                if (Actor.GetType() == typeof(EnemySleeping))
-                {
-                    foreach (Transform fx in Actor.GetMesh().transform)
-                        fx.gameObject.SetActive(false);
-                }
-
                 break;
             default:
                 DisableFX(bank.GetEffectOfType<KyubiFX>());

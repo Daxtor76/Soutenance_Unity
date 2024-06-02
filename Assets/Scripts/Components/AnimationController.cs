@@ -31,7 +31,7 @@ public class AnimationController : MonoBehaviour
         CurrentActorAnimator?.AdaptOnStateChange(_actor, state);
     }
 
-    private Animator GetAnimator()
+    public Animator GetAnimator()
     {
         Animator animator = gameObject.GetComponentInChildren<Animator>();
         return animator != null ? animator : null;

@@ -12,7 +12,7 @@ public class EnemyMovingForward : Actor
         StateController?.ChangeState(States.idle);
 
         MovementController.runMover = new ForwardMover(Const.ENEMY_FORWARD_SPEED);
-        AnimationController?.SetActorAnimator(new EnemyMovingForwardAnimator());
+        AnimationController?.SetActorAnimator(new EnemyAnimator());
 
         CollisionController?.OnCollisionWithCharacter?.AddListener(OnCharacterHit);
     }

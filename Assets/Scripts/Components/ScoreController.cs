@@ -18,7 +18,7 @@ public class ScoreController : MonoBehaviour
         _orbPrefab = Resources.Load(Const.PATH_TO_FX_FOLDER + Const.ORB_NAME) as GameObject;
         _currentPatounesCount = 0;
         TotalPatounesCount = 0;
-        _patouneThreshold = 1;
+        _patouneThreshold = 3;
         _actor.CollisionController?.OnCollisionWithPatoune?.AddListener(OnHitPatoune);
     }
 

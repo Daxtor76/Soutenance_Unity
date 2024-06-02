@@ -86,12 +86,6 @@ public class LevelManager : MonoBehaviour
     private void BuildInitialTiles()
     {
         AddTile(_tilesModels[0]);
-        // TODO: remove this debug
-        AddTile(_tilesModels[7]);
-        AddTile(_tilesModels[7]);
-        AddTile(_tilesModels[7]);
-        AddTile(_tilesModels[7]);
-        AddTile(_tilesModels[7]);
         AddTile(PickRandomTile());
         AddTile(PickRandomTile());
         AddTile(PickRandomTile());
