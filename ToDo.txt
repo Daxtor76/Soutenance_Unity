@@ -94,6 +94,10 @@
 		- Enemies killed
 		- Patoune score
 	o Pass data between scenes with a singleton
+- Begin a new run
+
+
+
 - Main menu
 	o Cool dog idle blend
 - Polish
@@ -103,11 +107,6 @@
 	o flick character or camera ??
 - New chunks
 - Upload on itch.io
-
-
-
-
-
 - Tutorial
 	o Pause game when new enemy
 	o Description display

@@ -6,11 +6,7 @@ using UnityEngine.TextCore.Text;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance
-    {
-        get;
-        private set;
-    }
+    public static GameManager Instance { get; private set; }
 
     public enum GameStates
     {
@@ -20,9 +16,13 @@ public class GameManager : MonoBehaviour
     }
 
     public GameStates CurrentState { get; private set; }
-    public UnityEvent<GameStates> OnGameStateChange = new UnityEvent<GameStates>();
+
     private GameObject _levelManagerPrefab;
     private GameObject _uiManagerPrefab;
+
+    private RunData _lastRunData;
+
+    public UnityEvent<GameStates> OnGameStateChange = new UnityEvent<GameStates>();
 
 
     private void Awake()
@@ -58,5 +58,10 @@ public class GameManager : MonoBehaviour
         CurrentState = newState;
         OnGameStateChange.Invoke(CurrentState);
         Debug.Log($"GAME CHANGED STATE TO {CurrentState}");
+    }
+
+    public void RegisterRunData(RunData runData)
+    {
+        _lastRunData = runData;
     }
 }

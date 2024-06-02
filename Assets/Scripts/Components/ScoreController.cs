@@ -8,20 +8,33 @@ public class ScoreController : MonoBehaviour
 {
     private Actor _actor;
     private GameObject _orbPrefab;
-    private int _currentPatounesCount;
     private int _patouneThreshold;
-    public int TotalPatounesValue { get; private set; }
+
+    private RunData _runData = new RunData();
+
     public UnityEvent<int> OnScoreChange = new UnityEvent<int>();
     public UnityEvent OnScoreThresholdReached = new UnityEvent();
     private void Awake()
     {
         _actor = GetComponent<Actor>();
         _orbPrefab = Resources.Load(Const.PATH_TO_FX_FOLDER + Const.ORB_NAME) as GameObject;
-        _currentPatounesCount = 0;
+
         _patouneThreshold = 3;
-        TotalPatounesValue = 0;
+
         _actor.CollisionController?.OnCollisionWithPatoune?.AddListener(OnHitPatoune);
         _actor.CollisionController?.OnCollisionWithEnemy?.AddListener(OnHitEnemy);
+        _actor.StateController?.OnStateChange?.AddListener(OnStateChange);
+    }
+
+    private void OnStateChange(Actor.States state)
+    {
+        if (state == Actor.States.dead)
+        {
+            _runData.SetGameDuration(Time.time);
+            _runData.SetDistance(_runData.GetDuration(), _actor.MovementController.CurrentMover.GetForwardSpeed());
+
+            GameManager.Instance.RegisterRunData(_runData);
+        }
     }
 
     private void OnHitEnemy(Actor other)
@@ -50,12 +63,12 @@ public class ScoreController : MonoBehaviour
 
     private bool IsScoreThresholdReached()
     {
-        return _currentPatounesCount >= _patouneThreshold;
+        return _runData.GetPatounesCount() >= _patouneThreshold;
     }
 
     private void WinPatoune()
     {
-        _currentPatounesCount += 1;
+        _runData.AddPatounes(1);
 
         if (IsScoreThresholdReached())
         {
@@ -65,14 +78,15 @@ public class ScoreController : MonoBehaviour
             foreach (Transform orb in orbsContainer)
                 Destroy(orb.gameObject);
 
-            _currentPatounesCount = 0;
             OnScoreThresholdReached.Invoke();
         }
     }
 
     private void WinPoints(int value)
     {
-        TotalPatounesValue += value;
-        OnScoreChange.Invoke(TotalPatounesValue);
+        _runData.AddEnemiesKilled(1);
+        _runData.SetTotalScore(value);
+
+        OnScoreChange.Invoke(_runData.GetTotalScore());
     }
 }
