@@ -26,27 +26,29 @@ public class SpecialFXController : MonoBehaviour
 
     private void OnStateChange(Actor.States state)
     {
-        if (state == Actor.States.kyubi)
+        switch (state)
         {
-            TriggerFX(bank.GetEffectOfType<KyubiFX>());
-        }
-        else if (state == Actor.States.dead)
-        {
-            TriggerFX(bank.GetEffectOfType<DeathFX>());
-        }
-        else if (state == Actor.States.run)
-        {
-            TriggerFX(bank.GetEffectOfType<RunFX>());
+            case Actor.States.kyubi:
+                TriggerFX(bank.GetEffectOfType<KyubiFX>());
+                break;
+            case Actor.States.dead:
+                DisableFX(bank.GetEffectOfType<KyubiFX>());
+                TriggerFX(bank.GetEffectOfType<DeathFX>());
+                break;
+            case Actor.States.run:
+                DisableFX(bank.GetEffectOfType<KyubiFX>());
+                TriggerFX(bank.GetEffectOfType<RunFX>());
 
-            if (Actor.GetType() == typeof(EnemySleeping))
-            {
-                foreach (Transform fx in Actor.GetMesh().transform)
-                    fx.gameObject.SetActive(false);
-            }
-        }
-        else
-        {
-            DisableFX(bank.GetEffectOfType<KyubiFX>());
+                if (Actor.GetType() == typeof(EnemySleeping))
+                {
+                    foreach (Transform fx in Actor.GetMesh().transform)
+                        fx.gameObject.SetActive(false);
+                }
+
+                break;
+            default:
+                DisableFX(bank.GetEffectOfType<KyubiFX>());
+                break;
         }
     }
 

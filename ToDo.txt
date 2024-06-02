@@ -99,6 +99,12 @@
 - Main menu (no scene switch to game)
 	o Camera
 	o Cool dog idle
+- Upload on itch.io
+
+
+
+
+
 - Tutorial
 	o Pause game when new enemy
 	o Description display

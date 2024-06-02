@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 
-public class CharacterAnimator : ActorAnimator
+public class EnemyMovingForwardAnimator : ActorAnimator
 {
     private float _movementBlender = 0.0f;
     private float _movementBlendSpeed = 5.0f;
@@ -12,7 +12,24 @@ public class CharacterAnimator : ActorAnimator
     {
         base.Enter(actor);
 
-        _actor = actor;
+        actor.AnimationController?.Animator?.SetFloat("MovementBlend", _movementBlender);
+    }
+
+    public override void AdaptOnStateChange(Actor actor, Actor.States state)
+    {
+        if (state == Actor.States.run)
+            actor.AnimationController?.Animator.SetTrigger("LaunchGame");
+    }
+}
+
+public class CharacterAnimator : ActorAnimator
+{
+    private float _movementBlender = 0.0f;
+    private float _movementBlendSpeed = 5.0f;
+
+    public override void Enter(Actor actor)
+    {
+        base.Enter(actor);
 
         actor.AnimationController?.Animator?.SetFloat("MovementBlend", _movementBlender);
         actor.CollisionController?.OnCollisionWithEnemy?.AddListener(Attack);

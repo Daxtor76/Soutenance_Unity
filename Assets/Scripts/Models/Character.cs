@@ -20,13 +20,12 @@ public class Character : Actor
             Const.CHARACTER_STRAFE_SPEED,
             Const.CHARACTER_ROTATION_SPEED
         );
+        AnimationController?.SetActorAnimator(new CharacterAnimator());
 
         CollisionController?.OnCollisionWithObstacle?.AddListener(OnObstacleHit);
         CollisionController?.OnCollisionWithEnemy?.AddListener(OnEnemyHit);
         ScoreController?.OnScoreThresholdReached?.AddListener(GoKyubi);
         GameManager.Instance.OnGameStateChange?.AddListener(OnGameStateChange);
-
-        AnimationController?.SetActorAnimator(new CharacterAnimator());
     }
 
     private void OnGameStateChange(GameManager.GameStates state)

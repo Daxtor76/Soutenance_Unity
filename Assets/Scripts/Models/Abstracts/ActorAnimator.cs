@@ -12,6 +12,7 @@ public abstract class ActorAnimator : IActorAnimator
 
     public virtual void Enter(Actor actor)
     {
+        _actor = actor;
     }
 
     public virtual void Exit(Actor actor)

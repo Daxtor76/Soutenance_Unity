@@ -656,12 +656,17 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1650046981019559573, guid: c0779a16e9900fb478ef932e641935c4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 49e6576b40a1c654ca47fe7c578f63e9, type: 2}
     - target: {fileID: 1884559825861172166, guid: c0779a16e9900fb478ef932e641935c4, type: 3}
       propertyPath: m_Name
       value: Litle_Ghost (4)
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1650046981019559570, guid: c0779a16e9900fb478ef932e641935c4, type: 3}
+    - {fileID: 1650046981019559571, guid: c0779a16e9900fb478ef932e641935c4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
