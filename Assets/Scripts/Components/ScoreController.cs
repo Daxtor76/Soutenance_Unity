@@ -2,14 +2,15 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using static UnityEngine.Rendering.DebugUI;
 
 public class ScoreController : MonoBehaviour
 {
     private Actor _actor;
     private GameObject _orbPrefab;
-    public int TotalPatounesCount { get; private set; }
     private int _currentPatounesCount;
     private int _patouneThreshold;
+    public int TotalPatounesValue { get; private set; }
     public UnityEvent<int> OnScoreChange = new UnityEvent<int>();
     public UnityEvent OnScoreThresholdReached = new UnityEvent();
     private void Awake()
@@ -17,15 +18,22 @@ public class ScoreController : MonoBehaviour
         _actor = GetComponent<Actor>();
         _orbPrefab = Resources.Load(Const.PATH_TO_FX_FOLDER + Const.ORB_NAME) as GameObject;
         _currentPatounesCount = 0;
-        TotalPatounesCount = 0;
         _patouneThreshold = 3;
+        TotalPatounesValue = 0;
         _actor.CollisionController?.OnCollisionWithPatoune?.AddListener(OnHitPatoune);
+        _actor.CollisionController?.OnCollisionWithEnemy?.AddListener(OnHitEnemy);
+    }
+
+    private void OnHitEnemy(Actor other)
+    {
+        if (_actor.StateController.CurrentState == Actor.States.kyubi)
+            WinPoints(10);
     }
 
     private void OnHitPatoune(GameObject other)
     {
         CreateOrb();
-        WinPoints(other.GetComponent<PatouneController>().scoreValue);
+        WinPatoune();
     }
 
     private GameObject CreateOrb()
@@ -42,15 +50,12 @@ public class ScoreController : MonoBehaviour
 
     private bool IsScoreThresholdReached()
     {
-
         return _currentPatounesCount >= _patouneThreshold;
     }
 
-    private void WinPoints(int value)
+    private void WinPatoune()
     {
         _currentPatounesCount += 1;
-        TotalPatounesCount += value;
-        OnScoreChange.Invoke(TotalPatounesCount);
 
         if (IsScoreThresholdReached())
         {
@@ -63,5 +68,11 @@ public class ScoreController : MonoBehaviour
             _currentPatounesCount = 0;
             OnScoreThresholdReached.Invoke();
         }
+    }
+
+    private void WinPoints(int value)
+    {
+        TotalPatounesValue += value;
+        OnScoreChange.Invoke(TotalPatounesValue);
     }
 }

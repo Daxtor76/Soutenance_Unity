@@ -24,6 +24,15 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.OnGameStateChange.AddListener(OnGameStateChange);
     }
 
+    private void Update()
+    {
+        if (_character.StateController.PreviousState != Actor.States.kyubi && _character.StateController.CurrentState == Actor.States.kyubi)
+            ActivateAllPatounes(false);
+
+        if (_character.StateController.PreviousState == Actor.States.kyubi && _character.StateController.CurrentState != Actor.States.kyubi)
+            ActivateAllPatounes(true);
+    }
+
     private void OnGameStateChange(GameManager.GameStates state)
     {
         if (state == GameManager.GameStates.MainMenu)
@@ -48,11 +57,6 @@ public class LevelManager : MonoBehaviour
     {
         AddTile(PickRandomTile());
         RemoveFirstTile();
-
-        if (_character.StateController.CurrentState != Actor.States.kyubi)
-            ActivateAllPatounes(true);
-        else
-            ActivateAllPatounes(false);
     }
 
     private Character CreateCharacter()

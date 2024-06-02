@@ -81,6 +81,10 @@
 	o Manage Speed permanent increasing when going kyubi -> ok
 - Bug camera
 	o Constant SmoothDamp make the camera flick a little when running and camera is almost placed -> ok
+- Bugs:
+	o Disable patounes directly when in kyubi mode -> ok
+	o Clamp bobbing effect -> ok
+	o Add Score when killing enemy -> ok
 - End scene
 	o Defeat system
 	o Stats

@@ -91,6 +91,7 @@ public class CameraController : MonoBehaviour
         if (_canInterpolatePosition && actor.MovementController.CurrentMover.IsGrounded(actor))
         {
             _interpolator += _cameraMovementSpeed * Time.deltaTime * _interpolationSign;
+            _interpolator = Mathf.Clamp(_interpolator, -_maxPositionOffset, _maxPositionOffset);
             _target.position = new Vector3(
                 _target.position.x,
                 _target.position.y + _interpolator,
