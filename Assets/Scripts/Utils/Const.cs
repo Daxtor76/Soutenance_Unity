@@ -36,6 +36,7 @@ public static class Const
     public const string COMMON_TILE_NAME = "Tile";
     public const string PATH_TO_MANAGERS_FOLDER = "Prefabs/Managers/";
     public const string LEVEL_MANAGER_NAME = "LevelManager";
+    public const string UI_MANAGER_NAME = "UIManager";
     public const string PATH_TO_FX_FOLDER = "Prefabs/FX/";
     public const string ORB_NAME = "Orb";
     public const string PATH_TO_UI_FOLDER = "Prefabs/UI/";
@@ -44,7 +45,7 @@ public static class Const
     public const string CAMERA_MAINMENU_TARGET_DUMMY = "CameraMainMenuTargetDummy";
     public const string CAMERA_GAME_TARGET_DUMMY = "CameraGameTargetDummy";
     public const string CAMERA_MAINMENU_DUMMY = "CameraMainMenuDummy";
-    public const string CAMERA_NORMAL_DUMMY = "CameraGameDummy";
+    public const string CAMERA_GAME_DUMMY = "CameraGameDummy";
     public const string CAMERA_KYUBI_DUMMY = "CameraKyubiDummy";
     public const string TILE_NEXT_SPAWN_DUMMY = "NextSpawnDummy";
     public const string TILE_PATOUNES_DUMMY = "Patounes";

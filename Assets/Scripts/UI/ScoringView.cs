@@ -9,13 +9,13 @@ public class ScoringView : MonoBehaviour
 
     private void Awake()
     {
-        scoringText = transform.Find(Const.SCORING_TEXT_NAME)?.GetComponent<TextMeshProUGUI>();
+        scoringText = transform.Find(Const.SCORING_TEXT_NAME).GetComponent<TextMeshProUGUI>();
+        scoringText.text = "0";
     }
 
     private void Start()
     {
-        FindObjectOfType<ScoreController>()?.OnScoreChange?.AddListener(OnScoreChange);
-        scoringText.text = 0.ToString();
+        FindObjectOfType<ScoreController>(true)?.OnScoreChange?.AddListener(OnScoreChange);
     }
 
     private void OnScoreChange(int newValue)

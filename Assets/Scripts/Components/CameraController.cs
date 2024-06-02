@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
 
     // Position acceleration effect
     private Transform _gameTargetDummy;
-    private Transform _normalDummy;
+    private Transform _gameDummy;
     private Transform _kyubiDummy;
     private float _kyubiPosTransitionSpeed = 0.3f;
 
@@ -56,9 +56,8 @@ public class CameraController : MonoBehaviour
         _mainMenuDummy = _character.transform.Find(Const.CAMERA_MAINMENU_DUMMY);
 
         _gameTargetDummy = _character.transform.Find(Const.CAMERA_GAME_TARGET_DUMMY);
-        _normalDummy = _character.transform.Find(Const.CAMERA_NORMAL_DUMMY);
+        _gameDummy = _character.transform.Find(Const.CAMERA_GAME_DUMMY);
         _kyubiDummy = _character.transform.Find(Const.CAMERA_KYUBI_DUMMY);
-
 
         _destination = _mainMenuDummy;
         _target = _mainMenuTargetDummy;
@@ -70,13 +69,15 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         LookAtTargetDummy(_target);
+        ApplyCameraPositioning();
         switch (GameManager.Instance.CurrentState)
         {
             case GameManager.GameStates.MainMenu:
+                _destination = _mainMenuDummy;
+                _target = _mainMenuTargetDummy;
                 break;
             case GameManager.GameStates.Playing:
                 ApplyFOVEffect();
-                ApplyCameraPositioning();
                 ApplyBobbingEffect(_character);
                 RotateOnStrafe();
                 break;
@@ -156,6 +157,8 @@ public class CameraController : MonoBehaviour
         if (newState != Actor.States.idle && newState != Actor.States.sleep && newState != Actor.States.dead)
         {
             _cameraMovementSpeed = _character.MovementController.CurrentMover.GetForwardSpeed() * 0.02f;
+            _destination = _gameDummy;
+            _target = _gameTargetDummy;
             _canInterpolatePosition = true;
         }
         else
@@ -171,7 +174,7 @@ public class CameraController : MonoBehaviour
         {
             _kyubiFOVTransitionSign = -1;
             _canInterpolateFOV = true;
-            _destination = _normalDummy;
+            _destination = _gameDummy;
         }
     }
 

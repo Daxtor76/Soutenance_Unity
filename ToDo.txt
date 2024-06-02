@@ -85,6 +85,8 @@
 	o Disable patounes directly when in kyubi mode -> ok
 	o Clamp bobbing effect -> ok
 	o Add Score when killing enemy -> ok
+- Main menu (no scene switch to game)
+	o Camera rotation -> meh ok
 - End scene
 	o Defeat system
 	o Stats
@@ -92,8 +94,7 @@
 		- Enemies killed
 		- Patoune score
 	o Pass data between scenes with a singleton
-- Main menu (no scene switch to game)
-	o Camera rotation
+- Main menu
 	o Cool dog idle blend
 - Polish
 	o algo : increase chunk chances depending on kyubi state or not

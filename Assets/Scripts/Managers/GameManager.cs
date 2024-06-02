@@ -21,8 +21,9 @@ public class GameManager : MonoBehaviour
 
     public GameStates CurrentState { get; private set; }
     public UnityEvent<GameStates> OnGameStateChange = new UnityEvent<GameStates>();
-    public GameObject levelManagerPrefab;
-    public GameObject UI;
+    private GameObject _levelManagerPrefab;
+    private GameObject _uiManagerPrefab;
+
 
     private void Awake()
     {
@@ -33,16 +34,16 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(Instance);
         }
-        levelManagerPrefab = Resources.Load(Const.PATH_TO_MANAGERS_FOLDER + Const.LEVEL_MANAGER_NAME) as GameObject;
-        UI = Resources.Load(Const.PATH_TO_UI_FOLDER + Const.UI_NAME) as GameObject;
+        _levelManagerPrefab = Resources.Load(Const.PATH_TO_MANAGERS_FOLDER + Const.LEVEL_MANAGER_NAME) as GameObject;
+        _uiManagerPrefab = Resources.Load(Const.PATH_TO_MANAGERS_FOLDER + Const.UI_MANAGER_NAME) as GameObject;
+        Instantiate(_uiManagerPrefab);
+        Instantiate(_levelManagerPrefab);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(levelManagerPrefab);
         ChangeGameState(GameStates.MainMenu);
-        Instantiate(UI);
     }
 
     // Update is called once per frame
