@@ -95,6 +95,8 @@
 - Main menu (no scene switch to game)
 	o Camera rotation
 	o Cool dog idle blend
+- Bugs:
+	o UI isn't update in build
 - Polish
 - New chunks
 - Upload on itch.io

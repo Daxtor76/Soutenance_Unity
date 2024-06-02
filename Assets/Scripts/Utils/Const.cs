@@ -38,6 +38,8 @@ public static class Const
     public const string LEVEL_MANAGER_NAME = "LevelManager";
     public const string PATH_TO_FX_FOLDER = "Prefabs/FX/";
     public const string ORB_NAME = "Orb";
+    public const string PATH_TO_UI_FOLDER = "Prefabs/UI/";
+    public const string UI_NAME = "UI";
 
     public const string CAMERA_TARGET_DUMMY = "CameraTargetDummy";
     public const string CAMERA_NORMAL_DUMMY = "CameraNormalDummy";
