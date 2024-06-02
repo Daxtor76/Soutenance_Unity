@@ -6,6 +6,7 @@ public class Character : Actor
     public float kyubiTimer = 10.0f;
     public float initKyubiTime;
     private float _currentTimer;
+    private GameObject _mainMenuLighting;
 
     public UnityEvent OnCharacterHit = new UnityEvent();
 
@@ -26,12 +27,17 @@ public class Character : Actor
         CollisionController?.OnCollisionWithEnemy?.AddListener(OnEnemyHit);
         ScoreController?.OnScoreThresholdReached?.AddListener(GoKyubi);
         GameManager.Instance.OnGameStateChange?.AddListener(OnGameStateChange);
+
+        _mainMenuLighting = transform.Find("MainMenuLighting").gameObject;
     }
 
     private void OnGameStateChange(GameManager.GameStates state)
     {
         if (state == GameManager.GameStates.Playing)
+        {
+            _mainMenuLighting.SetActive(false);
             StateController.ChangeState(States.run);
+        }
     }
 
     private void Update()

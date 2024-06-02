@@ -95,9 +95,11 @@
 - Main menu (no scene switch to game)
 	o Camera rotation
 	o Cool dog idle blend
-- Bugs:
-	o UI isn't update in build
 - Polish
+	o algo : increase chunk chances depending on kyubi state or not
+	o abaisser la hauteur des obstacles big
+	o augmenter la hauteur des obstacles mid
+	o flick character or camera ??
 - New chunks
 - Upload on itch.io
 

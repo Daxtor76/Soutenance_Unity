@@ -13,6 +13,10 @@ public class CameraController : MonoBehaviour
 
     private Vector3 _currentVelocity;
 
+    // Main menu
+    private Transform _mainMenuDummy;
+    private Transform _mainMenuTargetDummy;
+
     // FOV acceleration effect
     private bool _canInterpolateFOV = false;
     private float _kyubiFOVTransitionSpeed = 3.0f;
@@ -22,6 +26,7 @@ public class CameraController : MonoBehaviour
     private float _FOVInterpolator = 0.0f;
 
     // Position acceleration effect
+    private Transform _gameTargetDummy;
     private Transform _normalDummy;
     private Transform _kyubiDummy;
     private float _kyubiPosTransitionSpeed = 0.3f;
@@ -46,11 +51,17 @@ public class CameraController : MonoBehaviour
     {
         _camera = GetComponent<Camera>();
         _character = transform.parent.transform.parent.gameObject.GetComponent<Actor>();
-        _target = _character.transform.Find(Const.CAMERA_TARGET_DUMMY);
+
+        _mainMenuTargetDummy = _character.transform.Find(Const.CAMERA_MAINMENU_TARGET_DUMMY);
+        _mainMenuDummy = _character.transform.Find(Const.CAMERA_MAINMENU_DUMMY);
+
+        _gameTargetDummy = _character.transform.Find(Const.CAMERA_GAME_TARGET_DUMMY);
         _normalDummy = _character.transform.Find(Const.CAMERA_NORMAL_DUMMY);
         _kyubiDummy = _character.transform.Find(Const.CAMERA_KYUBI_DUMMY);
 
-        _destination = _normalDummy;
+
+        _destination = _mainMenuDummy;
+        _target = _mainMenuTargetDummy;
 
         _character.StateController.OnStateChange.AddListener(AdaptFromStateChange);
     }
@@ -58,11 +69,20 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        LookAtTargetDummy();
-        ApplyFOVEffect();
-        ApplyCameraPositioning();
-        ApplyBobbingEffect(_character);
-        RotateOnStrafe();
+        LookAtTargetDummy(_target);
+        switch (GameManager.Instance.CurrentState)
+        {
+            case GameManager.GameStates.MainMenu:
+                break;
+            case GameManager.GameStates.Playing:
+                ApplyFOVEffect();
+                ApplyCameraPositioning();
+                ApplyBobbingEffect(_character);
+                RotateOnStrafe();
+                break;
+            case GameManager.GameStates.GameOver:
+                break;
+        }
     }
 
     private void RotateOnStrafe()
@@ -155,8 +175,8 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void LookAtTargetDummy()
+    private void LookAtTargetDummy(Transform target)
     {
-        transform.LookAt(_target);
+        transform.LookAt(target);
     }
 }

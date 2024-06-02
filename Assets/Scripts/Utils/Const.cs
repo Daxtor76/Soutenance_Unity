@@ -41,8 +41,10 @@ public static class Const
     public const string PATH_TO_UI_FOLDER = "Prefabs/UI/";
     public const string UI_NAME = "UI";
 
-    public const string CAMERA_TARGET_DUMMY = "CameraTargetDummy";
-    public const string CAMERA_NORMAL_DUMMY = "CameraNormalDummy";
+    public const string CAMERA_MAINMENU_TARGET_DUMMY = "CameraMainMenuTargetDummy";
+    public const string CAMERA_GAME_TARGET_DUMMY = "CameraGameTargetDummy";
+    public const string CAMERA_MAINMENU_DUMMY = "CameraMainMenuDummy";
+    public const string CAMERA_NORMAL_DUMMY = "CameraGameDummy";
     public const string CAMERA_KYUBI_DUMMY = "CameraKyubiDummy";
     public const string TILE_NEXT_SPAWN_DUMMY = "NextSpawnDummy";
     public const string TILE_PATOUNES_DUMMY = "Patounes";
