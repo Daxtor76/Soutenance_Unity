@@ -88,8 +88,6 @@ public class CharacterMover : Mover
                 if (Input.GetButtonDown(Const.JUMP_AXIS_NAME))
                 {
                     CalculateJump(Const.CHARACTER_JUMP_HEIGHT);
-                    // TO DO : put it in animationcontroller
-                    actor.AnimationController.Animator.SetTrigger("Jump");
                 }
             }
 

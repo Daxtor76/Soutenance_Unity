@@ -42,6 +42,9 @@ public class CharacterAnimator : ActorAnimator
         }
 
         actor.AnimationController?.Animator.SetFloat("MovementBlend", _movementBlender);
+
+        if (Input.GetButtonDown(Const.JUMP_AXIS_NAME))
+            actor.AnimationController.Animator.SetTrigger("Jump");
     }
 
     private void Attack(Actor other)
