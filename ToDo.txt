@@ -88,13 +88,13 @@
 - Main menu (no scene switch to game)
 	o Camera rotation -> meh ok
 - End scene
-	o Defeat system
-	o Stats
-		- Distance
-		- Enemies killed
-		- Patoune score
-	o Pass data between scenes with a singleton
-- Begin a new run
+	o Defeat system -> ok
+	o Stats -> ok
+		- Distance -> ok
+		- Enemies killed -> ok
+		- Patoune score -> ok
+	o Pass data between scenes with a singleton -> ok
+- Begin a new run -> ok
 
 
 

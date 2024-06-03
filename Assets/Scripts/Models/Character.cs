@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 public class Character : Actor
 {
     public float kyubiTimer = 10.0f;
@@ -12,15 +13,16 @@ public class Character : Actor
 
     private void Start()
     {
-        SpecialFXController.PopulateCharacterFXBank();
+        SpecialFXController?.PopulateCharacterFXBank();
 
         StateController?.ChangeState(States.idle);
 
-        MovementController.runMover = new CharacterMover(
-            Const.CHARACTER_FORWARD_SPEED,
-            Const.CHARACTER_STRAFE_SPEED,
-            Const.CHARACTER_ROTATION_SPEED
-        );
+        if (MovementController != null)
+            MovementController.runMover = new CharacterMover(
+                Const.CHARACTER_FORWARD_SPEED,
+                Const.CHARACTER_STRAFE_SPEED,
+                Const.CHARACTER_ROTATION_SPEED
+            );
         AnimationController?.SetActorAnimator(new CharacterAnimator());
 
         CollisionController?.OnCollisionWithObstacle?.AddListener(OnObstacleHit);
@@ -63,12 +65,18 @@ public class Character : Actor
     void OnEnemyHit(Actor other)
     {
         if (StateController?.CurrentState != States.kyubi)
+        {
             StateController?.ChangeState(States.dead);
+            SceneManager.LoadScene("GameOverScene", LoadSceneMode.Single);
+        }
     }
 
     void OnObstacleHit(GameObject other)
     {
         if (StateController?.CurrentState != States.kyubi)
+        {
             StateController?.ChangeState(States.dead);
+            SceneManager.LoadScene("GameOverScene", LoadSceneMode.Single);
+        }
     }
 }

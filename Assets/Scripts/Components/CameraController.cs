@@ -70,7 +70,7 @@ public class CameraController : MonoBehaviour
     {
         LookAtTargetDummy(_target);
         ApplyCameraPositioning();
-        switch (GameManager.Instance.CurrentState)
+        switch (GameManager.Instance?.CurrentState)
         {
             case GameManager.GameStates.MainMenu:
                 _destination = _mainMenuDummy;
@@ -82,6 +82,8 @@ public class CameraController : MonoBehaviour
                 RotateOnStrafe();
                 break;
             case GameManager.GameStates.GameOver:
+                _destination = _mainMenuDummy;
+                _target = _mainMenuTargetDummy;
                 break;
         }
     }

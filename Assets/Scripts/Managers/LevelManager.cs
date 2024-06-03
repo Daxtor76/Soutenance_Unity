@@ -11,7 +11,6 @@ using Random = UnityEngine.Random;
 public class LevelManager : MonoBehaviour
 {
     private Actor _character;
-    private Camera _camera;
     private Transform _tilesContainer;
     private List<GameObject> _tilesModels = new List<GameObject>();
     [SerializeField]private List<GameObject> spawnedTiles = new List<GameObject>();
@@ -40,8 +39,6 @@ public class LevelManager : MonoBehaviour
             BuildInitialTiles();
             _character = CreateCharacter();
             _character.CollisionController.OnCollisionWithTileSpawner.AddListener(BuildPathTile);
-
-            //_camera = CreateCamera();
         }
     }
 
@@ -67,16 +64,6 @@ public class LevelManager : MonoBehaviour
         GameObject chara = Instantiate(characterPrefab, new Vector3(spawnPoint.position.x, spawnPoint.position.y + 0.05f, spawnPoint.position.z + 2.0f), Quaternion.identity);
         chara.name = Const.CHARACTER_NAME;
         return chara.GetComponent<Character>();
-    }
-
-    private Camera CreateCamera()
-    {
-        GameObject camPrefab = Resources.Load(Const.PATH_TO_CAMERA_FOLDER + Const.CAMERA_NAME) as GameObject;
-        Transform spawnPoint = spawnedTiles.First().transform;
-        
-        GameObject cam = Instantiate(camPrefab, new Vector3(spawnPoint.position.x + 0.3f, spawnPoint.position.y + 0.75f, spawnPoint.position.z + 0.75f), Quaternion.identity);
-        cam.name = Const.CAMERA_NAME;
-        return cam.GetComponent<Camera>();
     }
 
     private void LoadTiles()

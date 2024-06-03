@@ -10,7 +10,8 @@ public class EnemyStrafing : Actor
 
         StateController?.ChangeState(States.idle);
 
-        MovementController.runMover = new StrafeMover(Const.ENEMY_SIDE_SPEED);
+        if (MovementController != null)
+            MovementController.runMover = new StrafeMover(Const.ENEMY_SIDE_SPEED);
         AnimationController?.SetActorAnimator(new EnemyAnimator());
 
         CollisionController?.OnCollisionWithCharacter?.AddListener(OnCharacterHit);

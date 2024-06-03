@@ -21,7 +21,8 @@ public class EnemySleeping : Actor
 
         StateController?.ChangeState(States.sleep);
 
-        MovementController.runMover = new ToTargetMover(Const.ENEMY_FORWARD_SPEED, Const.ENEMY_SIDE_SPEED, target);
+        if (MovementController != null)
+            MovementController.runMover = new ToTargetMover(Const.ENEMY_FORWARD_SPEED, Const.ENEMY_SIDE_SPEED, target);
 
         CollisionController?.OnCollisionWithCharacter?.AddListener(OnCharacterHit);
     }
