@@ -10,12 +10,15 @@ public class ScoreController : MonoBehaviour
     private GameObject _orbPrefab;
     private int _patouneThreshold;
 
-    private RunData _runData = new RunData();
+    private RunData _runData;
+    internal float lastRunSpeed;
 
     public UnityEvent<int> OnScoreChange = new UnityEvent<int>();
     public UnityEvent OnScoreThresholdReached = new UnityEvent();
+
     private void Awake()
     {
+        _runData = new RunData(Time.time);
         _actor = GetComponent<Actor>();
         _orbPrefab = Resources.Load(Const.PATH_TO_FX_FOLDER + Const.ORB_NAME) as GameObject;
 
@@ -28,10 +31,15 @@ public class ScoreController : MonoBehaviour
 
     private void OnStateChange(Actor.States state)
     {
+        if (_actor.MovementController.CurrentMover != null)
+            lastRunSpeed = _actor.MovementController.CurrentMover.GetForwardSpeed();
+
         if (state == Actor.States.dead)
         {
+            DestroyOrbs();
+
             _runData.SetGameDuration(Time.time);
-            _runData.SetDistance(_runData.GetDuration(), _actor.MovementController.CurrentMover.GetForwardSpeed());
+            _runData.SetDistance(_runData.GetDuration(), lastRunSpeed != 0.0f ? lastRunSpeed : _actor.MovementController.CurrentMover.GetForwardSpeed());
 
             GameManager.Instance.RegisterRunData(_runData);
         }
@@ -63,7 +71,7 @@ public class ScoreController : MonoBehaviour
 
     private bool IsScoreThresholdReached()
     {
-        return _runData.GetPatounesCount() >= _patouneThreshold;
+        return _runData.GetPatounesCount() % _patouneThreshold == 0;
     }
 
     private void WinPatoune()
@@ -74,12 +82,18 @@ public class ScoreController : MonoBehaviour
         {
             Transform actorFX = _actor.transform.Find("FX");
             Transform orbsContainer = actorFX.Find("Orbs");
-
-            foreach (Transform orb in orbsContainer)
-                Destroy(orb.gameObject);
+            DestroyOrbs();
 
             OnScoreThresholdReached.Invoke();
         }
+    }
+
+    private void DestroyOrbs()
+    {
+        Transform actorFX = _actor.transform.Find("FX");
+        Transform orbsContainer = actorFX.Find("Orbs");
+        foreach (Transform orb in orbsContainer)
+            Destroy(orb.gameObject);
     }
 
     private void WinPoints(int value)

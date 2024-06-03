@@ -35,19 +35,25 @@ public class MovementController : MonoBehaviour
 
     void AdaptMoverOnStateChange(Actor.States state)
     {
-        if (state == Actor.States.idle || state == Actor.States.sleep || state == Actor.States.dead)
+        switch (state)
         {
-            ChangeMover(null);
-            return;
-        }
-        else
-        {
-            if (CurrentMover == null)
-            {
-                ChangeMover(runMover);
+            case Actor.States.idle:
+                ChangeMover(null);
                 return;
-            }
-            CurrentMover?.AdaptMoverOnStateChange(state);
+            case Actor.States.sleep:
+                ChangeMover(null);
+                return;
+            case Actor.States.dead:
+                ChangeMover(null);
+                return;
+            default:
+                if (CurrentMover == null)
+                {
+                    ChangeMover(runMover);
+                    return;
+                }
+                CurrentMover?.AdaptMoverOnStateChange(state);
+                break;
         }
 
     }

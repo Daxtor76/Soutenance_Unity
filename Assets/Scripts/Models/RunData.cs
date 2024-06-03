@@ -12,9 +12,9 @@ public class RunData
 	private int _patounesCount;
     private int _totalScore;
 
-    public RunData()
+    public RunData(float initTime)
     {
-        _runDuration = Time.time;
+        _runDuration = initTime;
         _distance = 0.0f;
 		_enemiesKilled = 0;
 		_patounesCount = 0;
@@ -25,7 +25,7 @@ public class RunData
 	public void SetDistance(float duration, float speed) => _distance = speed * duration;
 	public void AddEnemiesKilled(int amount) => _enemiesKilled += amount;
 	public void AddPatounes(int amount) => _patounesCount += amount;
-	public void SetTotalScore(int amount) => _patounesCount += amount;
+	public void SetTotalScore(int amount) => _totalScore += amount;
 
 	public int GetPatounesCount() => _patounesCount;
 	public int GetTotalScore() => _totalScore;
